@@ -1,96 +1,23 @@
-<svg viewBox="0 0 200 200" class="w-20 h-20 md:w-32 md:h-32">
-  <defs>
-    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1e3a8a"></stop>
-      <!-- Dark Blue -->
-      <stop offset="50%" stop-color="#7e22ce"></stop>
-      <!-- Purple -->
-      <stop offset="100%" stop-color="#f97316"></stop>
-      <!-- Orange -->
-    </linearGradient>
-    <clipPath id="circleClip">
-      <circle cx="100" cy="100" r="95"></circle>
-    </clipPath>
-  </defs>
+---
+interface Props {
+  class?: string;
+  size?: "sm" | "md" | "lg";
+}
 
-  <!-- Outer Circle -->
-  <circle
-    cx="100"
-    cy="100"
-    r="95"
-    fill="none"
-    stroke="#1e3a8a"
-    stroke-width="4"></circle>
+const { class: className = "", size = "md" } = Astro.props;
 
-  <g clip-path="url(#circleClip)">
-    <!-- Mountains (Top Half) -->
-    <path
-      d="M20 100 L60 50 L90 80 L120 40 L160 90 L190 100"
-      fill="#1e3a8a"
-      stroke="#1e3a8a"
-      stroke-width="2"></path>
-    <path d="M60 50 L75 70 L65 75 Z" fill="white" opacity="0.8"></path>
-    <!-- Snow cap -->
-    <path d="M120 40 L135 60 L125 65 Z" fill="white" opacity="0.8"></path>
-    <!-- Snow cap -->
+const sizeClasses = {
+  sm: "w-16 h-16",
+  md: "w-20 h-20 md:w-32 md:h-32",
+  lg: "w-32 h-32 md:w-48 md:h-48",
+};
+---
 
-    <!-- Sun/Sky Lines -->
-    <circle
-      cx="100"
-      cy="100"
-      r="70"
-      fill="none"
-      stroke="#1e3a8a"
-      stroke-width="1"
-      stroke-dasharray="4 4"
-      opacity="0.3"></circle>
-    <circle
-      cx="100"
-      cy="100"
-      r="85"
-      fill="none"
-      stroke="#1e3a8a"
-      stroke-width="1"
-      stroke-dasharray="4 4"
-      opacity="0.2"></circle>
-
-    <!-- Circuit Board (Bottom Half) -->
-    <rect x="0" y="130" width="200" height="70" fill="white"></rect>
-    <path
-      d="M30 130 V160 M50 130 V150 L60 160 V180 M80 130 V170 M100 130 V150 M120 130 V160 L130 170 V180 M150 130 V150 M170 130 V160"
-      stroke="#1e3a8a"
-      stroke-width="2"
-      fill="none"></path>
-    <circle cx="30" cy="160" r="3" fill="#1e3a8a"></circle>
-    <circle cx="60" cy="180" r="3" fill="#1e3a8a"></circle>
-    <circle cx="130" cy="180" r="3" fill="#1e3a8a"></circle>
-
-    <!-- VCU Text -->
-    <text
-      x="100"
-      y="125"
-      text-anchor="middle"
-      font-family="sans-serif"
-      font-weight="900"
-      font-size="50"
-      letter-spacing="2"
-      fill="url(#logoGradient)"
-    >
-      VCU
-    </text>
-  </g>
-
-  <!-- Bottom Curve Text -->
-  <path id="curvePath" d="M 40 150 Q 100 200 160 150" fill="transparent"></path>
-  <text width="200">
-    <textPath
-      href="#curvePath"
-      startOffset="50%"
-      text-anchor="middle"
-      class="text-sm font-bold fill-current text-blue-900 tracking-widest uppercase"
-      font-size="14"
-    >
-      VibeCodeUtah
-    </textPath>
-  </text>
-</svg>
+<img
+  src="/vcu-logo.webp"
+  alt="VibeCodeUtah Logo"
+  class:list={[sizeClasses[size], "object-contain", className]}
+  width="200"
+  height="200"
+  loading="eager"
+/>

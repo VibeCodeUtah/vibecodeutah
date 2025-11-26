@@ -1,6 +1,6 @@
 ---
 import Section from "@components/Section.astro";
-import { Signal, MapPin, Database } from "lucide-react";
+import { Signal, MapPin, Database } from "lucide-astro";
 ---
 
 <Section title="The Mission" id="mission">
@@ -16,7 +16,7 @@ import { Signal, MapPin, Database } from "lucide-react";
         <div
           class="flex gap-4 p-4 rounded-lg bg-gray-900 border border-gray-800 hover:border-yellow-500/50 transition-colors"
         >
-          <Signal client:visible className="text-yellow-500 shrink-0 mt-1" />
+          <Signal class="text-yellow-500 shrink-0 mt-1" />
           <div>
             <h4 class="font-bold text-white">mPedigree Style Verification</h4>
             <p class="text-gray-400 text-sm">
@@ -30,7 +30,7 @@ import { Signal, MapPin, Database } from "lucide-react";
         <div
           class="flex gap-4 p-4 rounded-lg bg-gray-900 border border-gray-800 hover:border-yellow-500/50 transition-colors"
         >
-          <MapPin client:visible className="text-yellow-500 shrink-0 mt-1" />
+          <MapPin class="text-yellow-500 shrink-0 mt-1" />
           <div>
             <h4 class="font-bold text-white">Ushahidi Crisis Mapping</h4>
             <p class="text-gray-400 text-sm">
@@ -43,7 +43,7 @@ import { Signal, MapPin, Database } from "lucide-react";
         <div
           class="flex gap-4 p-4 rounded-lg bg-gray-900 border border-gray-800 hover:border-yellow-500/50 transition-colors"
         >
-          <Database client:visible className="text-yellow-500 shrink-0 mt-1" />
+          <Database class="text-yellow-500 shrink-0 mt-1" />
           <div>
             <h4 class="font-bold text-white">CommCare / DHIS2</h4>
             <p class="text-gray-400 text-sm">
@@ -61,7 +61,7 @@ import { Signal, MapPin, Database } from "lucide-react";
       <div
         class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
       >
-        <Signal client:visible size={120} />
+        <Signal size={120} />
       </div>
       <h4 class="text-xl font-bold text-yellow-500 mb-4">Prompt Inspiration</h4>
       <div
