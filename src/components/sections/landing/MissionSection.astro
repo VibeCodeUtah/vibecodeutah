@@ -1,52 +1,69 @@
 ---
 import Section from "@components/Section.astro";
-import { Signal, MapPin, Database } from "lucide-astro";
+import { Signal, MapPin, Database, Zap } from "lucide-astro";
 ---
 
-<Section title="The Mission" id="mission">
-  <div class="grid md:grid-cols-2 gap-12 items-center">
-    <div>
-      <h3 class="text-2xl font-bold text-white mb-4">Code with a Conscience</h3>
-      <p class="text-neutral-400 mb-6 text-lg">
+<Section title="The Mission" subtitle="Code with a Conscience" id="mission" gradient="cyan">
+  <div class="grid lg:grid-cols-2 gap-12 items-start">
+    <!-- Left Column - Mission Cards -->
+    <div class="space-y-6">
+      <p class="text-lg text-neutral-300 leading-relaxed mb-8">
         We aren't looking for the next crypto-exchange. We are looking for
-        "Quiet Giants"—boring, critical software that solves logistical and
+        <span class="text-cyan-400 font-semibold">"Quiet Giants"</span>—boring, critical software that solves logistical and
         survival problems in low-resource environments.
       </p>
-      <div class="space-y-6">
-        <div
-          class="flex gap-4 p-4 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-yellow-500/50 transition-colors"
-        >
-          <Signal class="text-yellow-500 shrink-0 mt-1" />
+
+      <!-- Mission Card 1 -->
+      <div class="mission-card group relative p-6 rounded-2xl bg-gradient-to-br from-cyan-950/40 to-black border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-500">
+        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative z-10 flex gap-5">
+          <div class="shrink-0">
+            <div class="w-14 h-14 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-300">
+              <Signal size={28} />
+            </div>
+          </div>
           <div>
-            <h4 class="font-bold text-white">mPedigree Style Verification</h4>
-            <p class="text-neutral-400 text-sm">
+            <h4 class="font-bold text-white text-lg mb-2 group-hover:text-cyan-300 transition-colors">mPedigree Style Verification</h4>
+            <p class="text-neutral-400 leading-relaxed">
               Counterfeit malaria drugs kill thousands. Systems that use simple
               SMS codes on flip phones to verify medicine authenticity save
               lives.
             </p>
           </div>
         </div>
+      </div>
 
-        <div
-          class="flex gap-4 p-4 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-yellow-500/50 transition-colors"
-        >
-          <MapPin class="text-yellow-500 shrink-0 mt-1" />
+      <!-- Mission Card 2 -->
+      <div class="mission-card group relative p-6 rounded-2xl bg-gradient-to-br from-purple-950/40 to-black border border-purple-500/20 hover:border-purple-400/50 transition-all duration-500">
+        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative z-10 flex gap-5">
+          <div class="shrink-0">
+            <div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
+              <MapPin size={28} />
+            </div>
+          </div>
           <div>
-            <h4 class="font-bold text-white">Ushahidi Crisis Mapping</h4>
-            <p class="text-neutral-400 text-sm">
+            <h4 class="font-bold text-white text-lg mb-2 group-hover:text-purple-300 transition-colors">Ushahidi Crisis Mapping</h4>
+            <p class="text-neutral-400 leading-relaxed">
               Crowdsourcing reports during disasters. When the power goes out,
               how do communities organize aid?
             </p>
           </div>
         </div>
+      </div>
 
-        <div
-          class="flex gap-4 p-4 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-yellow-500/50 transition-colors"
-        >
-          <Database class="text-yellow-500 shrink-0 mt-1" />
+      <!-- Mission Card 3 -->
+      <div class="mission-card group relative p-6 rounded-2xl bg-gradient-to-br from-orange-950/40 to-black border border-orange-500/20 hover:border-orange-400/50 transition-all duration-500">
+        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative z-10 flex gap-5">
+          <div class="shrink-0">
+            <div class="w-14 h-14 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform duration-300">
+              <Database size={28} />
+            </div>
+          </div>
           <div>
-            <h4 class="font-bold text-white">CommCare / DHIS2</h4>
-            <p class="text-neutral-400 text-sm">
+            <h4 class="font-bold text-white text-lg mb-2 group-hover:text-orange-300 transition-colors">CommCare / DHIS2</h4>
+            <p class="text-neutral-400 leading-relaxed">
               Offline-first medical records. Helping rural health workers track
               patient history in areas with zero internet.
             </p>
@@ -55,29 +72,90 @@ import { Signal, MapPin, Database } from "lucide-astro";
       </div>
     </div>
 
-    <div
-      class="bg-neutral-900 p-8 rounded-2xl border border-neutral-800 relative overflow-hidden group hover:border-yellow-500/30 transition-all"
-    >
-      <div
-        class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
-      >
-        <Signal size={120} />
-      </div>
-      <h4 class="text-xl font-bold text-yellow-500 mb-4">Prompt Inspiration</h4>
-      <div
-        class="bg-black p-4 rounded font-mono text-sm text-green-400 border border-neutral-800 mb-4"
-      >
-        <span class="text-neutral-500">// Example Prompt</span><br />
-        "Build an SMS-based inventory bot for rural pharmacies that runs on 2G
-        networks..."
-      </div>
-      <div
-        class="bg-black p-4 rounded font-mono text-sm text-green-400 border border-neutral-800"
-      >
-        <span class="text-neutral-500">// Example Prompt</span><br />
-        "Create a peer-to-peer mesh network app for locating fresh water sources
-        during a flood..."
+    <!-- Right Column - Prompt Inspiration -->
+    <div class="lg:sticky lg:top-32">
+      <div class="relative group">
+        <!-- Glowing background -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+
+        <div class="relative bg-black/80 backdrop-blur-xl p-8 rounded-2xl border border-neutral-800 overflow-hidden">
+          <!-- Floating icon -->
+          <div class="absolute top-4 right-4 text-neutral-800 group-hover:text-neutral-700 transition-colors duration-500">
+            <Zap size={80} />
+          </div>
+
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 flex items-center justify-center">
+                <Zap size={20} class="text-white" />
+              </div>
+              <h4 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400">
+                Prompt Inspiration
+              </h4>
+            </div>
+
+            <!-- Prompt 1 -->
+            <div class="mb-4 relative">
+              <div class="absolute -left-3 top-0 w-1 h-full bg-gradient-to-b from-cyan-500 to-purple-500 rounded-full"></div>
+              <div class="bg-neutral-900/80 p-5 rounded-xl border border-neutral-800 hover:border-cyan-500/30 transition-colors duration-300">
+                <span class="text-neutral-600 text-xs uppercase tracking-wider font-mono">// Example Prompt</span>
+                <p class="text-cyan-400 font-mono text-sm mt-2 leading-relaxed">
+                  "Build an SMS-based inventory bot for rural pharmacies that runs on 2G
+                  networks..."
+                </p>
+              </div>
+            </div>
+
+            <!-- Prompt 2 -->
+            <div class="relative">
+              <div class="absolute -left-3 top-0 w-1 h-full bg-gradient-to-b from-purple-500 to-orange-500 rounded-full"></div>
+              <div class="bg-neutral-900/80 p-5 rounded-xl border border-neutral-800 hover:border-purple-500/30 transition-colors duration-300">
+                <span class="text-neutral-600 text-xs uppercase tracking-wider font-mono">// Example Prompt</span>
+                <p class="text-purple-400 font-mono text-sm mt-2 leading-relaxed">
+                  "Create a peer-to-peer mesh network app for locating fresh water sources
+                  during a flood..."
+                </p>
+              </div>
+            </div>
+
+            <!-- Decorative dots -->
+            <div class="flex justify-center gap-2 mt-6">
+              <div class="w-2 h-2 rounded-full bg-cyan-500"></div>
+              <div class="w-2 h-2 rounded-full bg-purple-500"></div>
+              <div class="w-2 h-2 rounded-full bg-orange-500"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </Section>
+
+<style>
+  .mission-card {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  .mission-card:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .mission-card:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  .mission-card:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

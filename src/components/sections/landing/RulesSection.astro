@@ -4,35 +4,48 @@ import Card from "@components/Card.astro";
 import { Video, Code, Sparkles, Scale, Users, Trophy } from "lucide-astro";
 ---
 
-<Section title="Vibe Protocols" id="rules">
+<Section title="Vibe Protocols" subtitle="The Rules of Engagement" id="rules" gradient="purple">
+  <!-- First Row -->
   <div class="grid md:grid-cols-3 gap-6 mb-6">
-    <Card title="Share Your Vision" icon={Video}>
-      You must submit <strong>3 Vibe Sessions</strong> (20-30 mins each). Show us
+    <Card title="Share Your Vision" icon={Video} color="cyan">
+      You must submit <span class="text-cyan-400 font-semibold">3 Vibe Sessions</span> (20-30 mins each). Show us
       your screen, your AI tools, and talk through your logic. We want to see the
       human directing the machine.
     </Card>
-    <Card title="Clean Git History" icon={Code}>
+    <Card title="Clean Git History" icon={Code} color="purple">
       No dumping pre-written code. We analyze commit history. We want to see
-      organic growth over the 15 days. Use libraries, but build the core here.
+      <span class="text-purple-400 font-semibold">organic growth</span> over the 15 days. Use libraries, but build the core here.
     </Card>
-    <Card title="AI is Mandatory" icon={Sparkles} highlight={true}>
-      This isn't a test of syntax memorization. It's a test of orchestration.
-      Use Cursor, Claude, ChatGPT, Copilot. Show us how you <strong>Vibe Code</strong
-      >.
+    <Card title="AI is Mandatory" icon={Sparkles} highlight={true} color="orange">
+      This isn't a test of syntax memorization. It's a test of <span class="text-orange-400 font-semibold">orchestration</span>.
+      Use Cursor, Claude, ChatGPT, Copilot. Show us how you <span class="text-orange-400 font-bold">Vibe Code</span>.
     </Card>
   </div>
+
+  <!-- Second Row -->
   <div class="grid md:grid-cols-3 gap-6">
-    <Card title="Open Source MIT License" icon={Scale}>
-      All submissions must be <strong>open source under MIT license</strong> to be
+    <Card title="Open Source MIT License" icon={Scale} color="green">
+      All submissions must be <span class="text-green-400 font-semibold">open source under MIT license</span> to be
       eligible for prizes. Your code becomes a gift to the community.
     </Card>
-    <Card title="Solo or Team (Max 4)" icon={Users}>
-      Compete solo or form a team of up to 4 people. All team members must be
+    <Card title="Solo or Team (Max 4)" icon={Users} color="pink">
+      Compete solo or form a team of up to <span class="text-pink-400 font-semibold">4 people</span>. All team members must be
       registered. One submission per team.
     </Card>
-    <Card title="Original Work Only" icon={Trophy}>
-      Projects must be started fresh for this hackathon. No pre-existing projects.
+    <Card title="Original Work Only" icon={Trophy} color="yellow">
+      Projects must be <span class="text-yellow-400 font-semibold">started fresh</span> for this hackathon. No pre-existing projects.
       Third-party libraries and APIs are allowed.
     </Card>
+  </div>
+
+  <!-- Visual accent at bottom -->
+  <div class="flex justify-center mt-12">
+    <div class="flex items-center gap-4">
+      <div class="w-16 h-1 bg-gradient-to-r from-transparent to-cyan-500 rounded-full"></div>
+      <div class="w-3 h-3 rounded-full bg-cyan-500 animate-pulse"></div>
+      <div class="w-3 h-3 rounded-full bg-purple-500 animate-pulse" style="animation-delay: 0.2s;"></div>
+      <div class="w-3 h-3 rounded-full bg-orange-500 animate-pulse" style="animation-delay: 0.4s;"></div>
+      <div class="w-16 h-1 bg-gradient-to-l from-transparent to-orange-500 rounded-full"></div>
+    </div>
   </div>
 </Section>

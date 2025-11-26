@@ -1,6 +1,6 @@
 ---
 import Section from "@components/Section.astro";
-import { Users, Globe, TrendingUp, Send, CheckCircle } from "lucide-astro";
+import { Users, Globe, TrendingUp, Send, CheckCircle, Sparkles, Heart, Zap } from "lucide-astro";
 
 let showThankYou = false;
 
@@ -11,118 +11,182 @@ if (Astro.request.method === "POST") {
 
 <Section
   title="Fuel The Pot"
+  subtitle="100% Goes to Prizes"
   id="sponsors"
-  className="bg-neutral-900/30 rounded-3xl my-12 border border-neutral-800"
+  gradient="orange"
 >
-  <div class="grid md:grid-cols-2 gap-12">
+  <div class="grid lg:grid-cols-2 gap-12">
+    <!-- Left Column - Benefits -->
     <div>
-      <h3 class="text-2xl font-bold text-white mb-4">Become a Sponsor</h3>
-      <p class="text-neutral-400 mb-8 leading-relaxed">
-        100% of your contribution goes directly to the prize pool. Support the
-        developers building the next generation of humanitarian tools.
-        <br /><br />
-        Sponsors over $1,000 get their logo featured on the Grand Finale stream and
-        this page.
-      </p>
+      <div class="relative mb-8">
+        <div class="absolute -inset-2 bg-gradient-to-r from-orange-500/20 via-yellow-500/20 to-orange-500/20 blur-xl rounded-2xl"></div>
+        <div class="relative bg-black/60 backdrop-blur-xl p-6 rounded-2xl border border-orange-500/30">
+          <h3 class="text-2xl font-bold text-white mb-3 flex items-center gap-3">
+            <Sparkles class="text-orange-400" size={24} />
+            Become a Sponsor
+          </h3>
+          <p class="text-neutral-300 leading-relaxed">
+            <span class="text-orange-400 font-semibold">100%</span> of your contribution goes directly to the prize pool. Support the
+            developers building the next generation of humanitarian tools.
+          </p>
+          <p class="text-neutral-400 mt-4 text-sm">
+            Sponsors over <span class="text-orange-400 font-semibold">$1,000</span> get their logo featured on the Grand Finale stream and
+            this page.
+          </p>
+        </div>
+      </div>
 
       <div class="space-y-4">
-        <div class="flex items-center gap-3 text-neutral-300">
-          <Users class="text-yellow-500" />
-          <span>Recruit top vibe-coders</span>
+        <!-- Benefit 1 -->
+        <div class="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-cyan-950/30 to-transparent border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+            <Users size={24} />
+          </div>
+          <div>
+            <span class="text-white font-semibold block">Recruit Top Vibe-Coders</span>
+            <span class="text-neutral-500 text-sm">Connect with talented builders</span>
+          </div>
         </div>
-        <div class="flex items-center gap-3 text-neutral-300">
-          <Globe class="text-yellow-500" />
-          <span>Global brand visibility</span>
+
+        <!-- Benefit 2 -->
+        <div class="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-purple-950/30 to-transparent border border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+            <Globe size={24} />
+          </div>
+          <div>
+            <span class="text-white font-semibold block">Global Brand Visibility</span>
+            <span class="text-neutral-500 text-sm">Reach the developer community</span>
+          </div>
         </div>
-        <div class="flex items-center gap-3 text-neutral-300">
-          <TrendingUp class="text-yellow-500" />
-          <span>Direct impact on open source</span>
+
+        <!-- Benefit 3 -->
+        <div class="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-orange-950/30 to-transparent border border-orange-500/20 hover:border-orange-400/50 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform">
+            <TrendingUp size={24} />
+          </div>
+          <div>
+            <span class="text-white font-semibold block">Direct Impact on Open Source</span>
+            <span class="text-neutral-500 text-sm">Fund humanitarian tech</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="bg-black p-8 rounded-xl border border-neutral-800 shadow-2xl">
-      {
-        showThankYou ? (
-          <div class="h-full flex flex-col items-center justify-center text-center py-12 animate-in fade-in duration-500">
-            <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-4">
-              <CheckCircle size={32} />
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-2">
-              Contribution Added!
-            </h3>
-            <p class="text-neutral-400">
-              The pool has increased. Thank you for fueling the mission.
-            </p>
-            <a href="/#sponsors" class="mt-6 text-yellow-500 hover:text-white underline">
-              Make another contribution
-            </a>
-          </div>
-        ) : (
-          <form method="POST" action="/#sponsors" class="space-y-4">
-            <div>
-              <label class="block text-xs font-bold text-neutral-500 uppercase tracking-wider mb-2">
-                Name / Organization
-              </label>
-              <input
-                type="text"
-                placeholder="Enter name..."
-                class="w-full bg-neutral-900 border border-neutral-700 rounded p-3 text-white focus:border-yellow-500 focus:outline-none transition-colors"
-              />
-            </div>
+    <!-- Right Column - Form -->
+    <div class="relative">
+      <!-- Glowing border effect -->
+      <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 rounded-3xl blur opacity-20"></div>
 
-            <div class="flex items-center gap-2 mb-2">
-              <input
-                type="checkbox"
-                id="anon"
-                class="w-4 h-4 rounded border-neutral-700 bg-neutral-900 text-yellow-500 focus:ring-yellow-500"
-              />
-              <label
-                for="anon"
-                class="text-sm text-neutral-400 cursor-pointer select-none"
-              >
-                Make donation anonymous
-              </label>
+      <div class="relative bg-black/80 backdrop-blur-xl p-8 rounded-2xl border border-neutral-800 shadow-2xl">
+        {
+          showThankYou ? (
+            <div class="h-full flex flex-col items-center justify-center text-center py-12 animate-in fade-in duration-500">
+              <div class="w-20 h-20 bg-gradient-to-r from-green-500/30 to-emerald-500/30 text-green-400 rounded-2xl flex items-center justify-center mb-6">
+                <CheckCircle size={40} />
+              </div>
+              <h3 class="text-3xl font-bold text-white mb-3">
+                Contribution Added!
+              </h3>
+              <p class="text-neutral-400 text-lg">
+                The pool has increased. Thank you for fueling the mission.
+              </p>
+              <a href="/#sponsors" class="mt-8 px-6 py-3 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-bold hover:opacity-90 transition-opacity flex items-center gap-2">
+                <Heart size={18} />
+                Make Another Contribution
+              </a>
             </div>
+          ) : (
+            <form method="POST" action="/#sponsors" class="space-y-5">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center">
+                  <Zap size={20} class="text-white" />
+                </div>
+                <h4 class="text-xl font-bold text-white">Quick Donate</h4>
+              </div>
 
-            <div>
-              <label class="block text-xs font-bold text-neutral-500 uppercase tracking-wider mb-2">
-                Contribution Amount
-              </label>
-              <div class="relative">
-                <span class="absolute left-4 top-3 text-neutral-500">$</span>
+              <div>
+                <label class="block text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">
+                  Name / Organization
+                </label>
                 <input
-                  type="number"
-                  placeholder="1000"
-                  class="w-full bg-neutral-900 border border-neutral-700 rounded p-3 pl-8 text-white focus:border-yellow-500 focus:outline-none transition-colors font-mono text-lg"
+                  type="text"
+                  placeholder="Enter name..."
+                  class="w-full bg-neutral-900/80 border border-neutral-700 rounded-xl p-4 text-white placeholder-neutral-600 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 focus:outline-none transition-all duration-300"
                 />
               </div>
-            </div>
 
-            <div>
-              <label class="block text-xs font-bold text-neutral-500 uppercase tracking-wider mb-2">
-                Message (Optional)
-              </label>
-              <textarea
-                rows="3"
-                placeholder="Cheering for the builders!"
-                class="w-full bg-neutral-900 border border-neutral-700 rounded p-3 text-white focus:border-yellow-500 focus:outline-none transition-colors"
-              />
-            </div>
+              <div class="flex items-center gap-3 py-2">
+                <input
+                  type="checkbox"
+                  id="anon"
+                  class="w-5 h-5 rounded-lg border-neutral-700 bg-neutral-900 text-orange-500 focus:ring-orange-500 cursor-pointer"
+                />
+                <label
+                  for="anon"
+                  class="text-sm text-neutral-400 cursor-pointer select-none hover:text-neutral-300 transition-colors"
+                >
+                  Make donation anonymous
+                </label>
+              </div>
 
-            <button
-              type="submit"
-              class="w-full bg-yellow-500 text-black font-bold py-4 rounded hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
-            >
-              <Send size={18} />
-              Donate to Pool
-            </button>
-            <p class="text-xs text-center text-neutral-600 mt-2">
-              *This is a demo. No actual cards are charged.
-            </p>
-          </form>
-        )
-      }
+              <div>
+                <label class="block text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">
+                  Contribution Amount
+                </label>
+                <div class="relative">
+                  <span class="absolute left-4 top-1/2 -translate-y-1/2 text-orange-400 font-bold text-lg">$</span>
+                  <input
+                    type="number"
+                    placeholder="1000"
+                    class="w-full bg-neutral-900/80 border border-neutral-700 rounded-xl p-4 pl-10 text-white placeholder-neutral-600 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 focus:outline-none transition-all duration-300 font-mono text-xl"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">
+                  Message (Optional)
+                </label>
+                <textarea
+                  rows="3"
+                  placeholder="Cheering for the builders!"
+                  class="w-full bg-neutral-900/80 border border-neutral-700 rounded-xl p-4 text-white placeholder-neutral-600 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 focus:outline-none transition-all duration-300 resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="group w-full relative overflow-hidden rounded-xl py-4 font-bold transition-all duration-300"
+              >
+                <!-- Animated gradient background -->
+                <div class="absolute inset-0 bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-[length:200%_100%] animate-gradient"></div>
+                <!-- Shimmer effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                <!-- Button content -->
+                <span class="relative z-10 flex items-center justify-center gap-3 text-white text-lg">
+                  <Send size={20} />
+                  Donate to Pool
+                </span>
+              </button>
+
+              <p class="text-xs text-center text-neutral-600 mt-4">
+                *This is a demo. No actual cards are charged.
+              </p>
+            </form>
+          )
+        }
+      </div>
     </div>
   </div>
 </Section>
+
+<style>
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .animate-gradient {
+    animation: gradient 3s ease infinite;
+  }
+</style>
