@@ -95,6 +95,18 @@
   --color-zinc-800: oklch(0.274 0.006 286.033);
   --color-zinc-900: oklch(0.21 0.006 285.885);
   --color-zinc-950: oklch(0.141 0.005 285.823);
+
+  --color-green-50: oklch(0.971 0.013 137.38);
+  --color-green-100: oklch(0.936 0.032 137.717);
+  --color-green-200: oklch(0.885 0.062 138.334);
+  --color-green-300: oklch(0.808 0.114 139.571);
+  --color-green-400: oklch(0.704 0.191 142.216);
+  --color-green-500: oklch(0.637 0.237 145.331);
+  --color-green-600: oklch(0.577 0.245 147.325);
+  --color-green-700: oklch(0.505 0.213 147.518);
+  --color-green-800: oklch(0.444 0.177 146.899);
+  --color-green-900: oklch(0.396 0.141 145.723);
+  --color-green-950: oklch(0.258 0.092 146.042);
 }
 
 /*
