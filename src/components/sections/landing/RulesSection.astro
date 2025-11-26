@@ -1,0 +1,24 @@
+---
+import Section from "@components/Section.astro";
+import Card from "@components/Card.astro";
+import { Video, Code, Sparkles } from "lucide-react";
+---
+
+<Section title="Vibe Protocols" id="rules">
+  <div class="grid md:grid-cols-3 gap-6">
+    <Card title="Screen Record Everything" icon={Video}>
+      You must submit <strong>3 Vibe Sessions</strong> (20-30 mins each). Show us
+      your screen, your AI tools, and talk through your logic. We want to see the
+      human directing the machine.
+    </Card>
+    <Card title="Clean Git History" icon={Code}>
+      No dumping pre-written code. We analyze commit history. We want to see
+      organic growth over the 15 days. Use libraries, but build the core here.
+    </Card>
+    <Card title="AI is Mandatory" icon={Sparkles} highlight={true}>
+      This isn't a test of syntax memorization. It's a test of orchestration.
+      Use Cursor, Claude, ChatGPT, Copilot. Show us how you <strong>Vibe Code</strong
+      >.
+    </Card>
+  </div>
+</Section>

@@ -1,0 +1,128 @@
+---
+import Section from "@components/Section.astro";
+import { Users, Globe, TrendingUp, Send, CheckCircle } from "lucide-react";
+
+let showThankYou = false;
+
+if (Astro.request.method === "POST") {
+  showThankYou = true;
+}
+---
+
+<Section
+  title="Fuel The Pot"
+  id="sponsors"
+  className="bg-gray-900/30 rounded-3xl my-12 border border-gray-800"
+>
+  <div class="grid md:grid-cols-2 gap-12">
+    <div>
+      <h3 class="text-2xl font-bold text-white mb-4">Become a Sponsor</h3>
+      <p class="text-gray-400 mb-8 leading-relaxed">
+        100% of your contribution goes directly to the prize pool. Support the
+        developers building the next generation of humanitarian tools.
+        <br /><br />
+        Sponsors over $1,000 get their logo featured on the Grand Finale stream and
+        this page.
+      </p>
+
+      <div class="space-y-4">
+        <div class="flex items-center gap-3 text-gray-300">
+          <Users client:visible className="text-yellow-500" />
+          <span>Recruit top vibe-coders</span>
+        </div>
+        <div class="flex items-center gap-3 text-gray-300">
+          <Globe client:visible className="text-yellow-500" />
+          <span>Global brand visibility</span>
+        </div>
+        <div class="flex items-center gap-3 text-gray-300">
+          <TrendingUp client:visible className="text-yellow-500" />
+          <span>Direct impact on open source</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-black p-8 rounded-xl border border-gray-800 shadow-2xl">
+      {
+        showThankYou ? (
+          <div class="h-full flex flex-col items-center justify-center text-center py-12 animate-in fade-in duration-500">
+            <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-4">
+              <CheckCircle client:visible size={32} />
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">
+              Contribution Added!
+            </h3>
+            <p class="text-gray-400">
+              The pool has increased. Thank you for fueling the mission.
+            </p>
+            <a href="/#sponsors" class="mt-6 text-yellow-500 hover:text-white underline">
+              Make another contribution
+            </a>
+          </div>
+        ) : (
+          <form method="POST" action="/#sponsors" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
+                Name / Organization
+              </label>
+              <input
+                type="text"
+                placeholder="Enter name..."
+                class="w-full bg-gray-900 border border-gray-700 rounded p-3 text-white focus:border-yellow-500 focus:outline-none transition-colors"
+              />
+            </div>
+
+            <div class="flex items-center gap-2 mb-2">
+              <input
+                type="checkbox"
+                id="anon"
+                class="w-4 h-4 rounded border-gray-700 bg-gray-900 text-yellow-500 focus:ring-yellow-500"
+              />
+              <label
+                for="anon"
+                class="text-sm text-gray-400 cursor-pointer select-none"
+              >
+                Make donation anonymous
+              </label>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
+                Contribution Amount
+              </label>
+              <div class="relative">
+                <span class="absolute left-4 top-3 text-gray-500">$</span>
+                <input
+                  type="number"
+                  placeholder="1000"
+                  class="w-full bg-gray-900 border border-gray-700 rounded p-3 pl-8 text-white focus:border-yellow-500 focus:outline-none transition-colors font-mono text-lg"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
+                Message (Optional)
+              </label>
+              <textarea
+                rows="3"
+                placeholder="Cheering for the builders!"
+                class="w-full bg-gray-900 border border-gray-700 rounded p-3 text-white focus:border-yellow-500 focus:outline-none transition-colors"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-yellow-500 text-black font-bold py-4 rounded hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2"
+            >
+              <Send client:visible size={18} />
+              Donate to Pool
+            </button>
+            <p class="text-xs text-center text-gray-600 mt-2">
+              *This is a demo. No actual cards are charged.
+            </p>
+          </form>
+        )
+      }
+    </div>
+  </div>
+</Section>
