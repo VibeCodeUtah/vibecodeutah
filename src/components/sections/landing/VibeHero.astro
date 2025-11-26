@@ -178,6 +178,54 @@ const formatMoney = (amount: number) => {
           {formatMoney(raisedAmount)} of {formatMoney(goalAmount)} goal. Help us reach $100k.
         </p>
       </div>
+
+      <!-- Prize Breakdown -->
+      <div class="mt-12">
+        <!-- Grand Prize -->
+        <div class="p-6 rounded-xl border-2 border-yellow-500/50 bg-gray-900/50 mb-6 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+            <svg viewBox="0 0 100 100" class="w-full h-full text-yellow-500 fill-current">
+              <text x="50" y="70" text-anchor="middle" font-size="60" font-weight="bold">$</text>
+            </svg>
+          </div>
+          <div class="flex justify-between items-center relative z-10">
+            <div>
+              <h4 class="text-2xl font-bold text-white">Grand Prize</h4>
+              <p class="text-yellow-500">Best Overall Impact + Execution</p>
+            </div>
+            <div class="text-right">
+              <div class="text-4xl md:text-5xl font-bold text-yellow-500">{formatMoney(raisedAmount * 0.5)}</div>
+              <p class="text-gray-400 text-sm">Est. 50% of Pool</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary Prizes Grid -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="p-6 rounded-xl bg-gray-800/50 border border-gray-700">
+            <div class="text-2xl font-bold text-white mb-1">{formatMoney(raisedAmount * 0.15)}</div>
+            <p class="text-gray-400 uppercase text-sm tracking-wide">Social Impact (15%)</p>
+          </div>
+          <div class="p-6 rounded-xl bg-gray-800/50 border border-gray-700">
+            <div class="text-2xl font-bold text-white mb-1">{formatMoney(raisedAmount * 0.10)}</div>
+            <p class="text-gray-400 uppercase text-sm tracking-wide">Best Vibe Flow (10%)</p>
+          </div>
+          <div class="p-6 rounded-xl bg-gray-800/50 border border-gray-700">
+            <div class="text-2xl font-bold text-white mb-1">{formatMoney(raisedAmount * 0.10)}</div>
+            <p class="text-gray-400 uppercase text-sm tracking-wide">Solo Builder (10%)</p>
+          </div>
+          <div class="p-6 rounded-xl bg-gray-800/50 border border-gray-700">
+            <div class="text-2xl font-bold text-white mb-1">{formatMoney(raisedAmount * 0.10)}</div>
+            <p class="text-gray-400 uppercase text-sm tracking-wide">Best Student (10%)</p>
+          </div>
+        </div>
+
+        <!-- Community Choice -->
+        <div class="mt-4 p-6 rounded-xl bg-gray-800/50 border border-gray-700 md:w-1/2">
+          <div class="text-2xl font-bold text-white mb-1">{formatMoney(raisedAmount * 0.05)}</div>
+          <p class="text-gray-400 uppercase text-sm tracking-wide">Community Choice (5%)</p>
+        </div>
+      </div>
     </div>
   </Section>
 </div>
