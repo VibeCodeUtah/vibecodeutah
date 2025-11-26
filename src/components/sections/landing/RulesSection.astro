@@ -1,12 +1,12 @@
 ---
 import Section from "@components/Section.astro";
 import Card from "@components/Card.astro";
-import { Video, Code, Sparkles } from "lucide-astro";
+import { Video, Code, Sparkles, Scale, Users, Trophy } from "lucide-astro";
 ---
 
 <Section title="Vibe Protocols" id="rules">
-  <div class="grid md:grid-cols-3 gap-6">
-    <Card title="Screen Record Everything" icon={Video}>
+  <div class="grid md:grid-cols-3 gap-6 mb-6">
+    <Card title="Share Your Vision" icon={Video}>
       You must submit <strong>3 Vibe Sessions</strong> (20-30 mins each). Show us
       your screen, your AI tools, and talk through your logic. We want to see the
       human directing the machine.
@@ -19,6 +19,20 @@ import { Video, Code, Sparkles } from "lucide-astro";
       This isn't a test of syntax memorization. It's a test of orchestration.
       Use Cursor, Claude, ChatGPT, Copilot. Show us how you <strong>Vibe Code</strong
       >.
+    </Card>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <Card title="Open Source MIT License" icon={Scale}>
+      All submissions must be <strong>open source under MIT license</strong> to be
+      eligible for prizes. Your code becomes a gift to the community.
+    </Card>
+    <Card title="Solo or Team (Max 4)" icon={Users}>
+      Compete solo or form a team of up to 4 people. All team members must be
+      registered. One submission per team.
+    </Card>
+    <Card title="Original Work Only" icon={Trophy}>
+      Projects must be started fresh for this hackathon. No pre-existing projects.
+      Third-party libraries and APIs are allowed.
     </Card>
   </div>
 </Section>

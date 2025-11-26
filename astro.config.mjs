@@ -11,7 +11,7 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
-  site: "https://screwfast.uk",
+  site: "https://vibecodeutah.com",
   image: {
     domains: ["images.unsplash.com"],
   },
@@ -35,7 +35,7 @@ export default defineConfig({
       },
     },
   }), starlight({
-    title: "ScrewFast Docs",
+    title: "VibeCodeUtah Docs",
     // https://github.com/withastro/starlight/blob/main/packages/starlight/CHANGELOG.md
     // If no Astro and Starlight i18n configurations are provided, the built-in default locale is used in Starlight and a matching Astro i18n configuration is generated/used.
     // If only a Starlight i18n configuration is provided, an equivalent Astro i18n configuration is generated/used.
@@ -56,38 +56,31 @@ export default defineConfig({
     // https://starlight.astro.build/guides/sidebar/
     sidebar: [
       {
-        label: "Quick Start Guides",
+        label: "Getting Started",
         translations: {
-          de: "Schnellstartanleitungen",
-          es: "Guías de Inicio Rápido",
-          fa: "راهنمای شروع سریع",
-          fr: "Guides de Démarrage Rapide",
-          ja: "クイックスタートガイド",
-          "zh-cn": "快速入门指南",
+          de: "Erste Schritte",
+          es: "Primeros Pasos",
+          fa: "شروع به کار",
+          fr: "Premiers Pas",
+          ja: "はじめに",
+          "zh-cn": "入门指南",
         },
         autogenerate: { directory: "guides" },
       },
       {
-        label: "Tools & Equipment",
-        items: [
-          { label: "Tool Guides", link: "tools/tool-guides/" },
-          { label: "Equipment Care", link: "tools/equipment-care/" },
-        ],
+        label: "Official Rules",
+        autogenerate: { directory: "rules" },
       },
       {
-        label: "Construction Services",
-        autogenerate: { directory: "construction" },
-      },
-      {
-        label: "Advanced Topics",
-        autogenerate: { directory: "advanced" },
+        label: "Support & FAQ",
+        autogenerate: { directory: "support" },
       },
     ],
     social: [
       {
         icon: "github",
         label: "GitHub",
-        href: "https://github.com/mearashadowfax/ScrewFast",
+        href: "https://github.com/VibeCodeUtah/VibeCodeUtah",
       },
     ],
     disable404Route: true,
@@ -105,14 +98,14 @@ export default defineConfig({
         tag: "meta",
         attrs: {
           property: "og:image",
-          content: "https://screwfast.uk" + "/social.webp",
+          content: "https://vibecodeutah.com" + "/social.webp",
         },
       },
       {
         tag: "meta",
         attrs: {
           property: "twitter:image",
-          content: "https://screwfast.uk" + "/social.webp",
+          content: "https://vibecodeutah.com" + "/social.webp",
         },
       },
     ],

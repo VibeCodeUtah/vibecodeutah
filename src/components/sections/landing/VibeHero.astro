@@ -4,15 +4,17 @@ import VCU_Logo_Detailed from "@components/VCU_Logo_Detailed.astro";
 import Countdown from "@components/Countdown.astro";
 import Section from "@components/Section.astro";
 
-const raisedAmount = 5000;
-const goalAmount = 100000;
-const progressPercent = (raisedAmount / goalAmount) * 100;
-
 // Donors data for the timeline
 const donors = [
-  { name: "Brandon Barclay", amount: 2500, color: "from-indigo-500 to-purple-500" },
-  { name: "Signa Pay SC", amount: 2500, color: "from-purple-500 to-orange-500" },
+  { name: "ToroSachi", amount: 2500, color: "from-indigo-500 to-purple-500" },
+  { name: "The Maurer Family", amount: 2500, color: "from-purple-500 to-orange-500" },
+  { name: "This Could Be You!", amount: 0, color: "from-orange-500/50 to-yellow-500/50 border-2 border-dashed border-orange-400", isPlaceholder: true },
 ];
+
+// Calculate raised amount from actual donors (excluding placeholders)
+const raisedAmount = donors.filter(d => !d.isPlaceholder).reduce((sum, d) => sum + d.amount, 0);
+const goalAmount = 100000;
+const progressPercent = (raisedAmount / goalAmount) * 100;
 
 const formatMoney = (amount: number) => {
   return new Intl.NumberFormat("en-US", {
@@ -116,7 +118,7 @@ const milestones = [
         </div>
       </div>
       <div class="p-8 text-center hover-card group cursor-default">
-        <div class="text-3xl font-bold text-white mb-1 group-hover:text-orange-400 transition-colors">Feb 7th</div>
+        <div class="text-3xl font-bold text-white mb-1 group-hover:text-orange-400 transition-colors">Feb 5th</div>
         <div class="text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-orange-400 uppercase tracking-widest font-bold">
           Deadline
         </div>

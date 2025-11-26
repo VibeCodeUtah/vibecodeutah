@@ -7,14 +7,14 @@ interface Props {
 const { class: className = "", size = "md" } = Astro.props;
 
 const sizeClasses = {
-  sm: "w-16 h-16",
-  md: "w-20 h-20 md:w-32 md:h-32",
-  lg: "w-32 h-32 md:w-48 md:h-48",
+  sm: "w-20 h-20",
+  md: "w-32 h-32 md:w-48 md:h-48",
+  lg: "w-48 h-48 md:w-64 md:h-64",
 };
 ---
 
 <img
-  src="/vcu-logo.webp"
+  src="/vcu-logo.png"
   alt="VibeCodeUtah Logo"
   class:list={[sizeClasses[size], "object-contain", className]}
   width="200"

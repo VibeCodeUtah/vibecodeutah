@@ -1,48 +1,47 @@
 ---
-title: ScrewFast Docs
+title: VibeCodeUtah Docs
 head:
   - tag: title
-    content: ScrewFast Docs
-description: Explore ScrewFast's comprehensive documentation for an in-depth look at our premium tools and construction services. 
+    content: VibeCodeUtah Hackathon Docs
+description: Everything you need to participate in the VibeCodeUtah Hackathon — rules, guides, and support.
 template: splash
 editUrl: false
 lastUpdated: false
 next: false
 hero:
-  title: Documentation Hub
-  tagline: Your central hub for streamlined tool guidance, detailed service docs, and project support.
+  title: Hackathon Documentation
+  tagline: Your complete guide to participating in the VibeCodeUtah Hackathon. Learn the rules, get started, and find support.
   image:
-      alt: A ScrewFast's Logo
-      dark: ../../images/starlight/screwfast_hero.svg
-      light: ../../images/starlight/screwfast_hero_dark.svg
+      alt: VibeCodeUtah Logo
+      file: ../../images/vcu-hero.png
   actions:
-    - text: Get started
+    - text: Get Started
       icon: right-arrow
       variant: primary
       link: /guides/getting-started/
-    - text: View on GitHub
-      icon: external
+    - text: View Rules
+      icon: document
       variant: minimal
-      link: https://github.com/mearashadowfax/ScrewFast
+      link: /rules/official-rules/
 ---
 import "@styles/starlight_main.css";
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
 <CardGrid stagger>
 
-  <Card title="Quick Start Guides" icon="document">
-    Get up and running swiftly with our straightforward and concise guides, tailored for new users and seasoned experts alike.
+  <Card title="Getting Started" icon="rocket">
+    New to the hackathon? Start here! Learn how to set up your environment, understand Vibe Coding, and prepare for success.
   </Card>
 
-  <Card title="Tools & Equipment" icon="seti:eslint">
-    Discover the complete lineup of ScrewFast's superior quality tools and equipment. Each subsection offers detailed specifications, usage instructions, and maintenance tips.
+  <Card title="Official Rules" icon="warning">
+    Know before you code. Understand eligibility requirements, the MIT License requirement, and all submission guidelines.
   </Card>
 
-   <Card title="Construction Services" icon="seti:puppet">
-    Discover the complete lineup of ScrewFast's superior quality tools and equipment. Each subsection offers detailed specifications, usage instructions, and maintenance tips.
+  <Card title="How to Submit" icon="approve-check">
+    Ready to submit? Follow our step-by-step guide to ensure your project meets all requirements for judging.
   </Card>
 
-   <Card title="Advanced Topics" icon="seti:terraform">
-    Discover the complete lineup of ScrewFast's superior quality tools and equipment. Each subsection offers detailed specifications, usage instructions, and maintenance tips.
+  <Card title="FAQ & Support" icon="comment">
+    Got questions? Find answers to common questions or reach out to our support team for help.
   </Card>
 </CardGrid>

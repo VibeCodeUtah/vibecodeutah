@@ -6,8 +6,11 @@ interface TimeLeft {
   seconds: number;
 }
 
+// Vibe Coding Challenge Kickoff: January 21, 2026 (15 days before Feb 5th deadline)
+const KICKOFF_DATE = "2026-01-21T00:00:00";
+
 const calculateTimeLeft = (): TimeLeft => {
-  const difference = +new Date("2025-02-07T00:00:00") - +new Date();
+  const difference = +new Date(KICKOFF_DATE) - +new Date();
   let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
   if (difference > 0) {
@@ -24,21 +27,26 @@ const calculateTimeLeft = (): TimeLeft => {
 const timeLeft = calculateTimeLeft();
 ---
 
-<div
-  class="flex gap-4 md:gap-8 justify-center mt-8 text-yellow-500 font-mono"
->
-  {
-    Object.keys(timeLeft).map((interval) => (
-      <div class="flex flex-col items-center">
-        <span class="text-3xl md:text-5xl font-bold">
-          {timeLeft[interval as keyof TimeLeft] || "0"}
-        </span>
-        <span class="text-xs uppercase tracking-widest text-gray-500">
-          {interval}
-        </span>
-      </div>
-    ))
-  }
+<div class="countdown-wrapper text-center">
+  <p class="text-sm uppercase tracking-widest text-gray-400 mb-4">Kickoff In</p>
+  <div
+    class="flex gap-4 md:gap-8 justify-center text-yellow-500 font-mono"
+    id="countdown-display"
+  >
+    {
+      Object.keys(timeLeft).map((interval) => (
+        <div class="flex flex-col items-center">
+          <span class="text-3xl md:text-5xl font-bold countdown-value" data-interval={interval}>
+            {timeLeft[interval as keyof TimeLeft] || "0"}
+          </span>
+          <span class="text-xs uppercase tracking-widest text-gray-500">
+            {interval}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+  <p class="text-xs text-gray-500 mt-4">Jan 21 - Feb 5, 2026</p>
 </div>
 
 <script>
@@ -49,8 +57,10 @@ const timeLeft = calculateTimeLeft();
     seconds: number;
   }
 
+  const KICKOFF_DATE = "2026-01-21T00:00:00";
+
   function calculateTimeLeft(): TimeLeft {
-    const difference = +new Date("2025-02-07T00:00:00") - +new Date();
+    const difference = +new Date(KICKOFF_DATE) - +new Date();
     let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
     if (difference > 0) {
@@ -66,23 +76,13 @@ const timeLeft = calculateTimeLeft();
 
   function updateCountdown() {
     const timeLeft = calculateTimeLeft();
-    const countdownElement = document.querySelector(".font-mono");
-    if (countdownElement) {
-      const intervals = countdownElement.querySelectorAll(
-        ".flex.flex-col.items-center"
-      );
-      intervals.forEach((intervalElement) => {
-        const intervalSpan = intervalElement.querySelector(
-          ".text-xs.uppercase.tracking-widest.text-gray-500"
-        );
-        if (intervalSpan) {
-          const interval = intervalSpan.textContent as keyof TimeLeft;
-          const timeValueElement = intervalElement.querySelector(
-            ".text-3xl.md\\:text-5xl.font-bold"
-          );
-          if (timeValueElement) {
-            timeValueElement.textContent = timeLeft[interval]?.toString() || "0";
-          }
+    const countdownDisplay = document.getElementById("countdown-display");
+    if (countdownDisplay) {
+      const valueElements = countdownDisplay.querySelectorAll(".countdown-value");
+      valueElements.forEach((el) => {
+        const interval = el.getAttribute("data-interval") as keyof TimeLeft;
+        if (interval) {
+          el.textContent = timeLeft[interval]?.toString() || "0";
         }
       });
     }
