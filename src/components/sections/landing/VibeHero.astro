@@ -4,10 +4,10 @@ import VCU_Logo_Detailed from "@components/VCU_Logo_Detailed.astro";
 import Countdown from "@components/Countdown.astro";
 import Section from "@components/Section.astro";
 
-// Donors data for the timeline
+// Donors data for the timeline - distinct colors for each donor
 const donors = [
-  { name: "ToroSachi", amount: 2500, color: "from-orange-500 to-yellow-500" },
-  { name: "The Maurer Family", amount: 2500, color: "from-yellow-500 to-orange-400" },
+  { name: "ToroSachi", amount: 2500, color: "from-cyan-400 to-blue-500" },
+  { name: "The Maurer Family", amount: 2500, color: "from-purple-500 to-pink-500" },
   { name: "This Could Be You!", amount: 0, color: "from-orange-500/50 to-yellow-500/50 border-2 border-dashed border-orange-400", isPlaceholder: true },
 ];
 
@@ -40,12 +40,14 @@ const milestones = [
   <div class="relative pt-32 pb-20 overflow-hidden">
     <!-- Abstract Background Grid with brand gradient overlay -->
     <div
-      class="hero-grid-bg absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"
+      class="hero-grid-bg absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none"
     >
     </div>
 
-    <!-- Gradient glow behind logo -->
-    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 blur-3xl rounded-full pointer-events-none"></div>
+    <!-- Multi-color gradient glows -->
+    <div class="absolute top-10 left-1/4 w-72 h-72 bg-cyan-500/20 blur-3xl rounded-full pointer-events-none animate-pulse"></div>
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/20 blur-3xl rounded-full pointer-events-none"></div>
+    <div class="absolute top-10 right-1/4 w-72 h-72 bg-orange-500/20 blur-3xl rounded-full pointer-events-none animate-pulse"></div>
 
     <div
       class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
@@ -58,7 +60,7 @@ const milestones = [
         <span class="hero-title inline-block">HACKING FOR</span>
         <br />
         <span
-          class="hero-title inline-block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400"
+          class="hero-title inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400"
         >HUMANITARIAN</span>
       </h1>
 
@@ -67,20 +69,21 @@ const milestones = [
       </p>
 
       <div class="countdown-container relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-yellow-500/10 blur-xl rounded-lg"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 blur-xl rounded-lg"></div>
         <Countdown />
       </div>
 
       <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
         <button
-          class="hero-button group relative bg-gradient-to-r from-orange-500 to-yellow-500 text-neutral-900 px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/50 hover:scale-105 flex items-center justify-center gap-2"
+          class="hero-button group relative overflow-hidden bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50 hover:scale-105 flex items-center justify-center gap-2"
         >
-          <Terminal size={20} />
-          <span>Start Hacking</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+          <Terminal size={20} class="relative z-10" />
+          <span class="relative z-10">Start Hacking</span>
         </button>
         <a
           href="#sponsors"
-          class="hero-button group border-2 border-yellow-500/50 text-neutral-300 px-8 py-4 rounded-lg text-lg font-bold hover:border-yellow-500 hover:text-yellow-400 transition-all duration-300 flex items-center justify-center gap-2 hover:bg-yellow-500/10"
+          class="hero-button group border-2 border-purple-500/50 text-neutral-300 px-8 py-4 rounded-xl text-lg font-bold hover:border-purple-400 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 hover:bg-purple-500/10"
         >
           <DollarSign size={20} />
           Fuel the Pot
@@ -90,30 +93,30 @@ const milestones = [
   </div>
 
   <!-- Stats / Goals Banner with animations -->
-  <div class="reveal-section border-y border-yellow-500/30 bg-neutral-900/80 backdrop-blur">
+  <div class="reveal-section border-y border-purple-500/30 bg-gradient-to-r from-cyan-950/50 via-purple-950/50 to-orange-950/50 backdrop-blur">
     <div
-      class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-yellow-500/20"
+      class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-purple-500/30"
     >
       <div class="p-8 text-center hover-card group cursor-default">
         <div class="text-3xl font-bold text-white mb-1">
           <span class="animate-counter" data-target={raisedAmount} data-prefix="$">$0</span>
         </div>
-        <div class="text-sm text-yellow-500 uppercase tracking-widest font-bold">
+        <div class="text-sm text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 uppercase tracking-widest font-bold">
           Current Pool
         </div>
       </div>
       <div class="p-8 text-center hover-card group cursor-default">
-        <div class="text-3xl font-bold text-white mb-1 group-hover:text-yellow-400 transition-colors">Feb 5th</div>
-        <div class="text-sm text-yellow-500 uppercase tracking-widest font-bold">
+        <div class="text-3xl font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">Feb 5th</div>
+        <div class="text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 uppercase tracking-widest font-bold">
           Deadline
         </div>
       </div>
       <div class="p-8 text-center hover-card group cursor-default">
         <div class="text-3xl font-bold text-white mb-1 flex items-center justify-center gap-2">
-          <Zap size={24} class="text-yellow-500" />
+          <Zap size={24} class="text-orange-500" />
           Global
         </div>
-        <div class="text-sm text-yellow-500 uppercase tracking-widest font-bold">
+        <div class="text-sm text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 uppercase tracking-widest font-bold">
           Remote Entry
         </div>
       </div>
@@ -122,7 +125,7 @@ const milestones = [
 
   <!-- Epic Funding Display Section -->
   <Section title="The Stash" id="prizes">
-    <div class="reveal-section bg-neutral-900/80 rounded-2xl border border-yellow-500/30 p-8 md:p-12 relative overflow-hidden">
+    <div class="reveal-section bg-gradient-to-b from-neutral-900/80 to-black rounded-2xl border border-purple-500/30 p-8 md:p-12 relative overflow-hidden">
 
       <div class="text-center mb-12 relative z-10">
         <h3 class="text-3xl font-bold text-white mb-2">Community Prize Pool</h3>
@@ -132,7 +135,7 @@ const milestones = [
           <div class="flex items-end justify-between mb-4">
             <div class="text-left">
               <span class="block text-xs text-neutral-500 uppercase tracking-widest mb-1">Raised</span>
-              <span class="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">
+              <span class="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400">
                 <span class="animate-counter" data-target={raisedAmount} data-prefix="$">$0</span>
               </span>
             </div>
@@ -156,7 +159,7 @@ const milestones = [
               ))}
             </div>
 
-            <div class="progress-bar-container h-10 bg-neutral-800/80 rounded-full overflow-hidden border-2 border-yellow-500/30 relative flex shadow-lg shadow-yellow-500/10">
+            <div class="progress-bar-container h-10 bg-neutral-800/80 rounded-full overflow-hidden border-2 border-purple-500/30 relative flex shadow-lg shadow-purple-500/20">
               <!-- Animated gradient fill -->
               {donors.map((donor, i) => (
                 <div
@@ -202,11 +205,11 @@ const milestones = [
       <!-- Prize Breakdown with animations -->
       <div class="mt-12 reveal-cards relative z-10">
         <!-- Grand Prize -->
-        <div class="card-item hover-card p-8 rounded-xl border border-yellow-500/30 bg-neutral-900/50 mb-6 relative overflow-hidden group">
-          <div class="absolute inset-0 bg-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="card-glow absolute inset-0 bg-yellow-500/20 opacity-0 blur-xl transition-opacity"></div>
+        <div class="card-item hover-card p-8 rounded-xl border-2 border-transparent bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 mb-6 relative overflow-hidden group">
+          <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+          <div class="card-glow absolute inset-0 bg-gradient-to-r from-cyan-500/30 via-purple-500/30 to-orange-500/30 opacity-0 blur-xl transition-opacity"></div>
           <div class="absolute top-0 right-0 w-40 h-40 opacity-10">
-            <svg viewBox="0 0 100 100" class="w-full h-full fill-current text-yellow-500">
+            <svg viewBox="0 0 100 100" class="w-full h-full fill-current text-purple-500">
               <text x="50" y="70" text-anchor="middle" font-size="60" font-weight="bold">$</text>
             </svg>
           </div>
@@ -215,10 +218,10 @@ const milestones = [
               <div class="flex items-center gap-2 mb-2">
                 <h4 class="text-2xl md:text-3xl font-bold text-white">Grand Prize</h4>
               </div>
-              <p class="text-yellow-500 font-medium">Best Overall Impact + Execution</p>
+              <p class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400 font-medium">Best Overall Impact + Execution</p>
             </div>
             <div class="text-left md:text-right">
-              <div class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">
+              <div class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400">
                 <span class="animate-counter" data-target={raisedAmount * 0.5} data-prefix="$">$0</span>
               </div>
               <p class="text-neutral-400 text-sm mt-1">Est. 50% of Pool</p>
@@ -228,47 +231,47 @@ const milestones = [
 
         <!-- Secondary Prizes Grid -->
         <div class="grid md:grid-cols-2 gap-4">
-          <div class="card-item hover-card p-6 rounded-xl bg-neutral-800/50 border border-neutral-700 group relative overflow-hidden hover:border-yellow-500/30 transition-colors">
-            <div class="card-glow absolute inset-0 bg-yellow-500/10 opacity-0 blur-xl"></div>
+          <div class="card-item hover-card p-6 rounded-xl bg-cyan-950/30 border border-cyan-500/30 group relative overflow-hidden">
+            <div class="card-glow absolute inset-0 bg-cyan-500/20 opacity-0 blur-xl"></div>
             <div class="relative z-10">
               <div class="text-2xl font-bold text-white mb-1">
                 <span class="animate-counter" data-target={raisedAmount * 0.15} data-prefix="$">$0</span>
               </div>
-              <p class="text-yellow-500 uppercase text-sm tracking-wide font-medium">Social Impact (15%)</p>
+              <p class="text-cyan-400 uppercase text-sm tracking-wide font-medium">Social Impact (15%)</p>
             </div>
           </div>
-          <div class="card-item hover-card p-6 rounded-xl bg-neutral-800/50 border border-neutral-700 group relative overflow-hidden hover:border-yellow-500/30 transition-colors">
-            <div class="card-glow absolute inset-0 bg-yellow-500/10 opacity-0 blur-xl"></div>
+          <div class="card-item hover-card p-6 rounded-xl bg-purple-950/30 border border-purple-500/30 group relative overflow-hidden">
+            <div class="card-glow absolute inset-0 bg-purple-500/20 opacity-0 blur-xl"></div>
             <div class="relative z-10">
               <div class="text-2xl font-bold text-white mb-1">
                 <span class="animate-counter" data-target={raisedAmount * 0.10} data-prefix="$">$0</span>
               </div>
-              <p class="text-yellow-500 uppercase text-sm tracking-wide font-medium">Best Vibe Flow (10%)</p>
+              <p class="text-purple-400 uppercase text-sm tracking-wide font-medium">Best Vibe Flow (10%)</p>
             </div>
           </div>
-          <div class="card-item hover-card p-6 rounded-xl bg-neutral-800/50 border border-neutral-700 group relative overflow-hidden hover:border-yellow-500/30 transition-colors">
-            <div class="card-glow absolute inset-0 bg-yellow-500/10 opacity-0 blur-xl"></div>
+          <div class="card-item hover-card p-6 rounded-xl bg-orange-950/30 border border-orange-500/30 group relative overflow-hidden">
+            <div class="card-glow absolute inset-0 bg-orange-500/20 opacity-0 blur-xl"></div>
             <div class="relative z-10">
               <div class="text-2xl font-bold text-white mb-1">
                 <span class="animate-counter" data-target={raisedAmount * 0.10} data-prefix="$">$0</span>
               </div>
-              <p class="text-yellow-500 uppercase text-sm tracking-wide font-medium">Solo Builder (10%)</p>
+              <p class="text-orange-400 uppercase text-sm tracking-wide font-medium">Solo Builder (10%)</p>
             </div>
           </div>
-          <div class="card-item hover-card p-6 rounded-xl bg-neutral-800/50 border border-neutral-700 group relative overflow-hidden hover:border-yellow-500/30 transition-colors">
-            <div class="card-glow absolute inset-0 bg-yellow-500/10 opacity-0 blur-xl"></div>
+          <div class="card-item hover-card p-6 rounded-xl bg-pink-950/30 border border-pink-500/30 group relative overflow-hidden">
+            <div class="card-glow absolute inset-0 bg-pink-500/20 opacity-0 blur-xl"></div>
             <div class="relative z-10">
               <div class="text-2xl font-bold text-white mb-1">
                 <span class="animate-counter" data-target={raisedAmount * 0.10} data-prefix="$">$0</span>
               </div>
-              <p class="text-yellow-500 uppercase text-sm tracking-wide font-medium">Best Student (10%)</p>
+              <p class="text-pink-400 uppercase text-sm tracking-wide font-medium">Best Student (10%)</p>
             </div>
           </div>
         </div>
 
         <!-- Community Choice -->
-        <div class="mt-4 card-item hover-card p-6 rounded-xl bg-neutral-800/50 border border-neutral-700 md:w-1/2 group relative overflow-hidden hover:border-yellow-500/30 transition-colors">
-          <div class="card-glow absolute inset-0 bg-yellow-500/10 opacity-0 blur-xl"></div>
+        <div class="mt-4 card-item hover-card p-6 rounded-xl bg-neutral-800/50 border border-neutral-600/30 md:w-1/2 group relative overflow-hidden">
+          <div class="card-glow absolute inset-0 bg-neutral-500/20 opacity-0 blur-xl"></div>
           <div class="relative z-10">
             <div class="text-2xl font-bold text-white mb-1">
               <span class="animate-counter" data-target={raisedAmount * 0.05} data-prefix="$">$0</span>
