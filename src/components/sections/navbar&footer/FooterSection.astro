@@ -18,30 +18,36 @@ const sectionThreeContent: string = Astro.currentLocale === "fr" ? "Restez infor
 const crafted: string = Astro.currentLocale === "fr" ? "Fabriqué par" : "Crafted by";
 ---
 
-<footer class="w-full bg-neutral-300 dark:bg-neutral-900">
-  <div
-    class="mx-auto w-full max-w-[85rem] px-4 py-10 sm:px-6 lg:px-16 lg:pt-20 2xl:max-w-(--breakpoint-2xl)"
-  >
-    <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
+<footer class="w-full bg-neutral-300 dark:bg-neutral-900 relative">
+  <!-- Subtle top border gradient -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-400/50 dark:via-neutral-600/50 to-transparent"></div>
+
+  <div class="mx-auto w-full max-w-[85rem] px-4 py-16 sm:px-6 lg:px-16 2xl:max-w-(--breakpoint-2xl)">
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5 lg:gap-12">
+      <!-- Brand Section -->
       <div class="col-span-full lg:col-span-1">
-        <!-- Brand Logo -->
         <BrandLogo class="h-auto w-32" />
       </div>
-      <!-- An array of links for Product and Company sections -->
+
+      <!-- Link Sections -->
       {
         strings.footerLinks.map((section) => (
           <div class="col-span-1">
-            <h3 class="font-bold text-neutral-800 dark:text-neutral-200">
+            <h3 class="text-sm font-semibold tracking-wide uppercase text-neutral-800 dark:text-neutral-200 mb-4">
               {section.section}
             </h3>
-            <ul class="mt-3 grid space-y-3">
+            <ul class="space-y-3">
               {section.links.map((link) => (
                 <li>
                   <a
                     href={link.url}
-                    class="inline-flex gap-x-2 rounded-lg text-neutral-600 outline-hidden ring-zinc-500 transition duration-300 hover:text-neutral-500 focus-visible:ring-3 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-hidden"
+                    class="group inline-flex items-center gap-x-2 text-sm text-neutral-600 dark:text-neutral-400 transition-colors duration-200 hover:text-neutral-900 dark:hover:text-neutral-100 focus:outline-hidden focus-visible:text-neutral-900 dark:focus-visible:text-neutral-100"
                   >
-                    {link.name}
+                    <span class="relative">
+                      {link.name}
+                      <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-neutral-900 dark:bg-neutral-100 transition-all duration-200 group-hover:w-full"></span>
+                    </span>
                   </a>
                 </li>
               ))}
@@ -50,56 +56,52 @@ const crafted: string = Astro.currentLocale === "fr" ? "Fabriqué par" : "Crafte
         ))
       }
 
+      <!-- Newsletter Section -->
       <div class="col-span-2">
-        <h3 class="font-bold text-neutral-800 dark:text-neutral-200">
+        <h3 class="text-sm font-semibold tracking-wide uppercase text-neutral-800 dark:text-neutral-200 mb-4">
           {sectionThreeTitle}
         </h3>
-
-        <form>
+        <form class="space-y-3">
           <EmailFooterInput />
-          <p class="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+          <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
             {sectionThreeContent}
           </p>
         </form>
       </div>
     </div>
 
-    <div
-      class="mt-9 grid gap-y-2 sm:mt-12 sm:flex sm:items-center sm:justify-between sm:gap-y-0"
-    >
-      <div class="flex items-center justify-between">
-        <p class="text-sm text-neutral-600 dark:text-neutral-400">
+    <!-- Footer Bottom -->
+    <div class="mt-16 pt-8 border-t border-neutral-400/30 dark:border-neutral-700/30">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Copyright -->
+        <p class="text-xs text-neutral-600 dark:text-neutral-400 order-2 sm:order-1">
           © <span id="current-year"></span> {SITE.title}. {crafted}
           <a
-            class="rounded-lg font-medium underline underline-offset-2 outline-hidden ring-zinc-500 transition duration-300 hover:text-neutral-700 hover:decoration-dashed focus:outline-hidden focus-visible:ring-3 dark:ring-zinc-200 dark:hover:text-neutral-300"
+            class="font-medium text-neutral-700 dark:text-neutral-300 transition-colors duration-200 hover:text-neutral-900 dark:hover:text-neutral-100 focus:outline-hidden focus-visible:text-neutral-900 dark:focus-visible:text-neutral-100"
             href="https://www.gulamoff.dev/"
             target="_blank"
             rel="noopener noreferrer">gulamoff</a
           >.
         </p>
-      </div>
 
-      <!-- Social Brands -->
-      <div>
-        <FooterSocialLink url={strings.socialLinks.facebook}
-          ><Icon name="facebookFooter" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={strings.socialLinks.x}
-          ><Icon name="xFooter" /></FooterSocialLink
-        >
-
-        <FooterSocialLink url={strings.socialLinks.github}
-          ><Icon name="githubFooter" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={strings.socialLinks.google}
-          ><Icon name="googleFooter" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={strings.socialLinks.slack}
-          ><Icon name="slackFooter" />
-        </FooterSocialLink>
+        <!-- Social Links -->
+        <div class="flex items-center gap-1 order-1 sm:order-2">
+          <FooterSocialLink url={strings.socialLinks.facebook}>
+            <Icon name="facebookFooter" />
+          </FooterSocialLink>
+          <FooterSocialLink url={strings.socialLinks.x}>
+            <Icon name="xFooter" />
+          </FooterSocialLink>
+          <FooterSocialLink url={strings.socialLinks.github}>
+            <Icon name="githubFooter" />
+          </FooterSocialLink>
+          <FooterSocialLink url={strings.socialLinks.google}>
+            <Icon name="googleFooter" />
+          </FooterSocialLink>
+          <FooterSocialLink url={strings.socialLinks.slack}>
+            <Icon name="slackFooter" />
+          </FooterSocialLink>
+        </div>
       </div>
     </div>
 
