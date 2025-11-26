@@ -1,7 +1,7 @@
 ---
 // Import the necessary components
 import MainLayout from "@/layouts/MainLayout.astro";
-import HeroSection from "@components/sections/landing/HeroSection.astro";
+import VibeHero from "@components/sections/landing/VibeHero.astro";
 import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
 import ClientsSection from "@components/sections/landing/ClientsSection.astro";
 import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
@@ -29,28 +29,7 @@ const avatarSrcs: Array<string> = [
 ---
 
 <MainLayout>
-  <AnnouncementBanner
-    btnId="dismiss-button"
-    btnTitle="Explore ScrewFast on GitHub"
-    url="https://github.com/mearashadowfax/ScrewFast"
-  />
-
-  <HeroSection
-    title=`Equip Your Projects with <span
-        class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>`
-    subTitle="Top-quality hardware tools and expert construction services for every project need."
-    primaryBtn="Start Exploring"
-    primaryBtnURL="/products"
-    secondaryBtn="Contact Sales Team"
-    secondaryBtnURL="/contact"
-    withReview={true}
-    avatars={avatarSrcs}
-    rating=`<span class="font-bold">4.8</span> / 5`
-    starCount={4}
-    reviews=`From Over <span class="font-bold">12.8k</span> Reviews`
-    src={heroImage}
-    alt="Stack of ScrewFast product boxes containing assorted hardware tools"
-  />
+  <VibeHero />
 
   <ClientsSection
     title="Trusted by Industry Leaders"

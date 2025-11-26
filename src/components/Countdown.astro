@@ -1,0 +1,92 @@
+---
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+const calculateTimeLeft = (): TimeLeft => {
+  const difference = +new Date("2025-02-07T00:00:00") - +new Date();
+  let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+  if (difference > 0) {
+    timeLeft = {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  }
+  return timeLeft;
+};
+
+const timeLeft = calculateTimeLeft();
+---
+
+<div
+  class="flex gap-4 md:gap-8 justify-center mt-8 text-yellow-500 font-mono"
+>
+  {
+    Object.keys(timeLeft).map((interval) => (
+      <div class="flex flex-col items-center">
+        <span class="text-3xl md:text-5xl font-bold">
+          {timeLeft[interval as keyof TimeLeft] || "0"}
+        </span>
+        <span class="text-xs uppercase tracking-widest text-gray-500">
+          {interval}
+        </span>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  interface TimeLeft {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  }
+
+  function calculateTimeLeft(): TimeLeft {
+    const difference = +new Date("2025-02-07T00:00:00") - +new Date();
+    let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+    return timeLeft;
+  }
+
+  function updateCountdown() {
+    const timeLeft = calculateTimeLeft();
+    const countdownElement = document.querySelector(".font-mono");
+    if (countdownElement) {
+      const intervals = countdownElement.querySelectorAll(
+        ".flex.flex-col.items-center"
+      );
+      intervals.forEach((intervalElement) => {
+        const intervalSpan = intervalElement.querySelector(
+          ".text-xs.uppercase.tracking-widest.text-gray-500"
+        );
+        if (intervalSpan) {
+          const interval = intervalSpan.textContent as keyof TimeLeft;
+          const timeValueElement = intervalElement.querySelector(
+            ".text-3xl.md\\:text-5xl.font-bold"
+          );
+          if (timeValueElement) {
+            timeValueElement.textContent = timeLeft[interval]?.toString() || "0";
+          }
+        }
+      });
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+</script>
