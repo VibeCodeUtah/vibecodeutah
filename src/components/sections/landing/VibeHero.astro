@@ -33,11 +33,8 @@ const milestones = [
 ];
 ---
 
-<div
-  class="min-h-screen bg-neutral-100 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 font-sans selection:bg-orange-500 selection:text-white dark:selection:text-black overflow-hidden"
->
-  <!-- Hero Section -->
-  <div class="relative pt-32 pb-20 overflow-hidden">
+<!-- Hero Section -->
+<div class="relative pt-32 pb-20 overflow-hidden">
     <!-- Abstract Background Grid with brand gradient overlay -->
     <div
       class="hero-grid-bg absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none"
@@ -89,42 +86,40 @@ const milestones = [
           Fuel the Pot
         </a>
       </div>
-    </div>
   </div>
+</div>
 
-  <!-- Stats / Goals Banner with animations -->
-  <div class="reveal-section border-y border-purple-300 dark:border-purple-500/30 bg-gradient-to-r from-cyan-100/50 via-purple-100/50 to-orange-100/50 dark:from-cyan-950/50 dark:via-purple-950/50 dark:to-orange-950/50 backdrop-blur">
-    <div
-      class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-purple-300 dark:divide-purple-500/30"
-    >
-      <div class="p-8 text-center hover-card group cursor-default">
-        <div class="text-3xl font-bold text-cyan-700 dark:text-white mb-1">
-          <span class="animate-counter" data-target={raisedAmount} data-prefix="$">$0</span>
-        </div>
-        <div class="text-sm text-cyan-600 dark:text-cyan-400 uppercase tracking-widest font-bold">
-          Current Pool
-        </div>
+<!-- Stats / Goals Banner with animations -->
+<div class="reveal-section border-y border-purple-300 dark:border-purple-500/30 bg-gradient-to-r from-cyan-100/50 via-purple-100/50 to-orange-100/50 dark:from-cyan-950/50 dark:via-purple-950/50 dark:to-orange-950/50 backdrop-blur">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-purple-300 dark:divide-purple-500/30">
+    <div class="p-8 text-center hover-card group cursor-default">
+      <div class="text-3xl font-bold text-cyan-700 dark:text-white mb-1">
+        <span class="animate-counter" data-target={raisedAmount} data-prefix="$">$0</span>
       </div>
-      <div class="p-8 text-center hover-card group cursor-default">
-        <div class="text-3xl font-bold text-purple-700 dark:text-white mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Feb 5th</div>
-        <div class="text-sm text-purple-600 dark:text-purple-400 uppercase tracking-widest font-bold">
-          Deadline
-        </div>
+      <div class="text-sm text-cyan-600 dark:text-cyan-400 uppercase tracking-widest font-bold">
+        Current Pool
       </div>
-      <div class="p-8 text-center hover-card group cursor-default">
-        <div class="text-3xl font-bold text-orange-700 dark:text-white mb-1 flex items-center justify-center gap-2">
-          <Zap size={24} class="text-orange-500" />
-          Global
-        </div>
-        <div class="text-sm text-orange-600 dark:text-orange-400 uppercase tracking-widest font-bold">
-          Remote Entry
-        </div>
+    </div>
+    <div class="p-8 text-center hover-card group cursor-default">
+      <div class="text-3xl font-bold text-purple-700 dark:text-white mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Feb 5th</div>
+      <div class="text-sm text-purple-600 dark:text-purple-400 uppercase tracking-widest font-bold">
+        Deadline
+      </div>
+    </div>
+    <div class="p-8 text-center hover-card group cursor-default">
+      <div class="text-3xl font-bold text-orange-700 dark:text-white mb-1 flex items-center justify-center gap-2">
+        <Zap size={24} class="text-orange-500" />
+        Global
+      </div>
+      <div class="text-sm text-orange-600 dark:text-orange-400 uppercase tracking-widest font-bold">
+        Remote Entry
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Epic Funding Display Section -->
-  <Section title="The Stash" id="prizes">
+<!-- Epic Funding Display Section -->
+<Section title="The Stash" id="prizes">
     <div class="reveal-section bg-white dark:bg-neutral-900 rounded-2xl border border-purple-300 dark:border-purple-500/30 p-8 md:p-12 relative overflow-hidden">
 
       <div class="text-center mb-12 relative z-10">
@@ -282,7 +277,6 @@ const milestones = [
       </div>
     </div>
   </Section>
-</div>
 
 <style>
   /* Minimal styles - most styling is handled by Tailwind */
