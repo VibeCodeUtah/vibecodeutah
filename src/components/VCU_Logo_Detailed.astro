@@ -13,10 +13,20 @@ const sizeClasses = {
 };
 ---
 
+<!-- Light mode: show dark logo (dark text on light bg) -->
 <img
-  src="/vcu-logo.png"
+  src="/vcu-logo-light.png"
   alt="VibeCodeUtah Logo"
-  class:list={[sizeClasses[size], "object-contain", className]}
+  class:list={[sizeClasses[size], "object-contain dark:hidden", className]}
+  width="200"
+  height="200"
+  loading="eager"
+/>
+<!-- Dark mode: show light logo (light text on dark bg) -->
+<img
+  src="/vcu-logo-dark.png"
+  alt="VibeCodeUtah Logo"
+  class:list={[sizeClasses[size], "object-contain hidden dark:block", className]}
   width="200"
   height="200"
   loading="eager"

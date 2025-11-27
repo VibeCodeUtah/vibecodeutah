@@ -7,24 +7,24 @@ import { Signal, MapPin, Database, Zap } from "lucide-astro";
   <div class="grid lg:grid-cols-2 gap-12 items-start">
     <!-- Left Column - Mission Cards -->
     <div class="space-y-6">
-      <p class="text-lg text-neutral-300 leading-relaxed mb-8">
+      <p class="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed mb-8">
         We aren't looking for the next crypto-exchange. We are looking for
-        <span class="text-cyan-400 font-semibold">"Quiet Giants"</span>—boring, critical software that solves logistical and
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">"Quiet Giants"</span>—boring, critical software that solves logistical and
         survival problems in low-resource environments.
       </p>
 
       <!-- Mission Card 1 -->
-      <div class="mission-card group relative p-6 rounded-2xl bg-gradient-to-br from-cyan-950/40 to-black border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-500">
-        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div class="mission-card group relative p-6 rounded-2xl bg-white dark:bg-neutral-800 border border-cyan-200 dark:border-cyan-500/50 hover:border-cyan-400 transition-all duration-500">
+        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/5 dark:from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
         <div class="relative z-10 flex gap-5">
           <div class="shrink-0">
-            <div class="w-14 h-14 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-300">
+            <div class="w-14 h-14 rounded-xl bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-300 group-hover:scale-110 transition-transform duration-300">
               <Signal size={28} />
             </div>
           </div>
           <div>
-            <h4 class="font-bold text-white text-lg mb-2 group-hover:text-cyan-300 transition-colors">mPedigree Style Verification</h4>
-            <p class="text-neutral-400 leading-relaxed">
+            <h4 class="font-bold text-neutral-900 dark:text-white text-lg mb-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">mPedigree Style Verification</h4>
+            <p class="text-neutral-600 dark:text-neutral-100 leading-relaxed">
               Counterfeit malaria drugs kill thousands. Systems that use simple
               SMS codes on flip phones to verify medicine authenticity save
               lives.
@@ -34,17 +34,17 @@ import { Signal, MapPin, Database, Zap } from "lucide-astro";
       </div>
 
       <!-- Mission Card 2 -->
-      <div class="mission-card group relative p-6 rounded-2xl bg-gradient-to-br from-purple-950/40 to-black border border-purple-500/20 hover:border-purple-400/50 transition-all duration-500">
-        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div class="mission-card group relative p-6 rounded-2xl bg-white dark:bg-neutral-800 border border-purple-200 dark:border-purple-500/50 hover:border-purple-400 transition-all duration-500">
+        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/5 dark:from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
         <div class="relative z-10 flex gap-5">
           <div class="shrink-0">
-            <div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
+            <div class="w-14 h-14 rounded-xl bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-300 group-hover:scale-110 transition-transform duration-300">
               <MapPin size={28} />
             </div>
           </div>
           <div>
-            <h4 class="font-bold text-white text-lg mb-2 group-hover:text-purple-300 transition-colors">Ushahidi Crisis Mapping</h4>
-            <p class="text-neutral-400 leading-relaxed">
+            <h4 class="font-bold text-neutral-900 dark:text-white text-lg mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">Ushahidi Crisis Mapping</h4>
+            <p class="text-neutral-600 dark:text-neutral-100 leading-relaxed">
               Crowdsourcing reports during disasters. When the power goes out,
               how do communities organize aid?
             </p>
@@ -53,17 +53,17 @@ import { Signal, MapPin, Database, Zap } from "lucide-astro";
       </div>
 
       <!-- Mission Card 3 -->
-      <div class="mission-card group relative p-6 rounded-2xl bg-gradient-to-br from-orange-950/40 to-black border border-orange-500/20 hover:border-orange-400/50 transition-all duration-500">
-        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div class="mission-card group relative p-6 rounded-2xl bg-white dark:bg-neutral-800 border border-orange-200 dark:border-orange-500/50 hover:border-orange-400 transition-all duration-500">
+        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-500/5 dark:from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
         <div class="relative z-10 flex gap-5">
           <div class="shrink-0">
-            <div class="w-14 h-14 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform duration-300">
+            <div class="w-14 h-14 rounded-xl bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-300 group-hover:scale-110 transition-transform duration-300">
               <Database size={28} />
             </div>
           </div>
           <div>
-            <h4 class="font-bold text-white text-lg mb-2 group-hover:text-orange-300 transition-colors">CommCare / DHIS2</h4>
-            <p class="text-neutral-400 leading-relaxed">
+            <h4 class="font-bold text-neutral-900 dark:text-white text-lg mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-300 transition-colors">CommCare / DHIS2</h4>
+            <p class="text-neutral-600 dark:text-neutral-100 leading-relaxed">
               Offline-first medical records. Helping rural health workers track
               patient history in areas with zero internet.
             </p>
@@ -76,11 +76,11 @@ import { Signal, MapPin, Database, Zap } from "lucide-astro";
     <div class="lg:sticky lg:top-32">
       <div class="relative group">
         <!-- Glowing background -->
-        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 rounded-3xl blur-xl opacity-10 dark:opacity-20 group-hover:opacity-20 dark:group-hover:opacity-30 transition-opacity duration-500"></div>
 
-        <div class="relative bg-black/80 backdrop-blur-xl p-8 rounded-2xl border border-neutral-800 overflow-hidden">
+        <div class="relative bg-white dark:bg-neutral-800 p-8 rounded-2xl border border-neutral-200 dark:border-neutral-600 overflow-hidden">
           <!-- Floating icon -->
-          <div class="absolute top-4 right-4 text-neutral-800 group-hover:text-neutral-700 transition-colors duration-500">
+          <div class="absolute top-4 right-4 text-neutral-200 dark:text-neutral-700 group-hover:text-neutral-300 dark:group-hover:text-neutral-600 transition-colors duration-500">
             <Zap size={80} />
           </div>
 
@@ -89,7 +89,7 @@ import { Signal, MapPin, Database, Zap } from "lucide-astro";
               <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 flex items-center justify-center">
                 <Zap size={20} class="text-white" />
               </div>
-              <h4 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400">
+              <h4 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 dark:from-cyan-400 dark:via-purple-400 dark:to-orange-400">
                 Prompt Inspiration
               </h4>
             </div>
@@ -97,9 +97,9 @@ import { Signal, MapPin, Database, Zap } from "lucide-astro";
             <!-- Prompt 1 -->
             <div class="mb-4 relative">
               <div class="absolute -left-3 top-0 w-1 h-full bg-gradient-to-b from-cyan-500 to-purple-500 rounded-full"></div>
-              <div class="bg-neutral-900/80 p-5 rounded-xl border border-neutral-800 hover:border-cyan-500/30 transition-colors duration-300">
-                <span class="text-neutral-600 text-xs uppercase tracking-wider font-mono">// Example Prompt</span>
-                <p class="text-cyan-400 font-mono text-sm mt-2 leading-relaxed">
+              <div class="bg-neutral-100 dark:bg-neutral-800 p-5 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-cyan-400/50 transition-colors duration-300">
+                <span class="text-neutral-500 dark:text-neutral-400 text-xs uppercase tracking-wider font-mono">// Example Prompt</span>
+                <p class="text-cyan-600 dark:text-cyan-400 font-mono text-sm mt-2 leading-relaxed">
                   "Build an SMS-based inventory bot for rural pharmacies that runs on 2G
                   networks..."
                 </p>
@@ -109,9 +109,9 @@ import { Signal, MapPin, Database, Zap } from "lucide-astro";
             <!-- Prompt 2 -->
             <div class="relative">
               <div class="absolute -left-3 top-0 w-1 h-full bg-gradient-to-b from-purple-500 to-orange-500 rounded-full"></div>
-              <div class="bg-neutral-900/80 p-5 rounded-xl border border-neutral-800 hover:border-purple-500/30 transition-colors duration-300">
-                <span class="text-neutral-600 text-xs uppercase tracking-wider font-mono">// Example Prompt</span>
-                <p class="text-purple-400 font-mono text-sm mt-2 leading-relaxed">
+              <div class="bg-neutral-100 dark:bg-neutral-800 p-5 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-purple-400/50 transition-colors duration-300">
+                <span class="text-neutral-500 dark:text-neutral-400 text-xs uppercase tracking-wider font-mono">// Example Prompt</span>
+                <p class="text-purple-600 dark:text-purple-400 font-mono text-sm mt-2 leading-relaxed">
                   "Create a peer-to-peer mesh network app for locating fresh water sources
                   during a flood..."
                 </p>
