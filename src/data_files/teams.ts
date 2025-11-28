@@ -67,6 +67,16 @@ const teams: Team[] = [
     elevatorPitch: "Article 18 of the Universal Declaration of Human Rights says we all have the freedom to believe. But in reality, unless you have expensive lawyers and official paperwork, your faith is invisible to the law. Indigenous groups and small spiritual communities are often bullied out of existence simply because they lack a 'charter.' The Freedom Forge is an open-source legal shield for the spirit. We use AI to automate the complex process of registering a faith, removing the cost barrier entirely. Then, we use blockchain to permanently archive their existence, creating an immutable record that no government can erase. We aren't selling religion. We are forging the legal armor that protects the human right to believe.",
     category: "Human Rights",
     tokenImage: "/images/tokens/freedom-forge.png"
+  },
+  {
+    id: "watchful-owls",
+    name: "The Watchful Owls",
+    slogan: "Dignity in privacy, safety in vigilance",
+    members: [],
+    projectName: "NightGaze",
+    elevatorPitch: "We all fear that phone call in the middle of the night. For millions of elderly people, their own bed is a dangerous cliff edge. They fall while trying to get up in the dark, often lying on the floor for hours. Current cameras invade their privacy, and panic buttons are never worn to sleep. NightGaze is an offline, intelligent camera that sees in the dark but tells no secrets. It uses on-device AI to learn the specific body language of a 'dangerous exit'—like swinging legs out too fast. Instead of just reporting a tragedy after it happens, NightGaze intervenes before the fall, using a gentle voice prompt to pause the user, giving them those vital seconds to stabilize. We give seniors the dignity of privacy and the safety of a guardian.",
+    category: "Healthcare",
+    tokenImage: "/images/tokens/watchful-owls.png"
   }
 ];
 
