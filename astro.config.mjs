@@ -3,16 +3,14 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import compressor from "astro-compressor";
 import starlight from "@astrojs/starlight";
-import node from "@astrojs/node";
+import vercel from "@astrojs/vercel";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
   output: "server", // SSR for API routes and admin
-  adapter: node({
-    mode: "standalone"
-  }),
+  adapter: vercel(),
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
   site: "https://vibecodeutah.com",
   image: {
