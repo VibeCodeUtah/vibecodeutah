@@ -12,7 +12,8 @@ export interface Team {
     | "Disaster Response"
     | "Economic Empowerment"
     | "Environmental"
-    | "Accessibility";
+    | "Accessibility"
+    | "Human Rights";
   tokenImage: string;
 }
 
@@ -56,6 +57,16 @@ const teams: Team[] = [
     elevatorPitch: "During heat waves, vulnerable people—elderly, homeless, outdoor workers—die because they can't find cooling. CoolRoute maps every air-conditioned public space in a city: libraries, malls, community centers, even shady parks with water fountains. Users get walking directions to the nearest cool spot and alerts when dangerous heat is coming. Cities can see where cooling gaps exist. It's basically Google Maps for surviving summer, and it could save thousands of lives as heat waves get worse.",
     category: "Disaster Response",
     tokenImage: "/images/tokens/team-8.png"
+  },
+  {
+    id: "freedom-forge",
+    name: "The Freedom Forge",
+    slogan: "Giving every soul a sanctuary",
+    members: [],
+    projectName: "The Freedom Forge",
+    elevatorPitch: "Article 18 of the Universal Declaration of Human Rights says we all have the freedom to believe. But in reality, unless you have expensive lawyers and official paperwork, your faith is invisible to the law. Indigenous groups and small spiritual communities are often bullied out of existence simply because they lack a 'charter.' The Freedom Forge is an open-source legal shield for the spirit. We use AI to automate the complex process of registering a faith, removing the cost barrier entirely. Then, we use blockchain to permanently archive their existence, creating an immutable record that no government can erase. We aren't selling religion. We are forging the legal armor that protects the human right to believe.",
+    category: "Human Rights",
+    tokenImage: "/images/tokens/freedom-forge.png"
   }
 ];
 
