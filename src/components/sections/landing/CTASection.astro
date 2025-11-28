@@ -1,0 +1,268 @@
+---
+import { Code, Heart, Megaphone, ArrowRight } from "lucide-astro";
+---
+
+<section id="cta" class="relative py-24 px-4 md:px-8 overflow-hidden">
+  <!-- Dark background with grid pattern -->
+  <div class="absolute inset-0 bg-neutral-900"></div>
+  <div class="absolute inset-0 opacity-10 grid-pattern"></div>
+
+  <!-- Animated gradient background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-orange-500/5 animate-gradient-shift"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-16 cta-header">
+      <h2 class="text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-white tracking-tight">
+        Build something that<br/>actually matters.
+      </h2>
+      <div class="max-w-3xl mx-auto space-y-3">
+        <p class="text-xl md:text-2xl text-neutral-300 leading-relaxed">
+          15 days. Real problems. Real impact.
+        </p>
+        <p class="text-xl md:text-2xl text-neutral-400 font-bold">
+          Join builders creating humanitarian tech that changes lives.
+        </p>
+      </div>
+    </div>
+
+    <!-- Three CTA Tracks -->
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      <!-- For Builders -->
+      <div class="cta-card group relative">
+        <div class="absolute -inset-px bg-gradient-to-b from-cyan-500/50 to-cyan-500/0 rounded-2xl"></div>
+        <div class="relative bg-neutral-800 rounded-2xl p-8 h-full flex flex-col border-t-4 border-cyan-500">
+          <!-- Icon -->
+          <div class="w-16 h-16 mb-6 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-300">
+            <Code size={32} strokeWidth={2.5} />
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-2xl font-bold text-white mb-6">Join the Hackathon</h3>
+
+          <!-- Requirements -->
+          <div class="space-y-3 mb-8 flex-grow">
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></div>
+              <p class="text-neutral-300">Can code (any level)</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></div>
+              <p class="text-neutral-300">Give a damn</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></div>
+              <p class="text-neutral-300 font-bold">That's it</p>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <a href="/join" class="cta-button cta-button-primary group/btn relative overflow-hidden rounded-xl py-4 px-6 font-bold text-center transition-all duration-300">
+            <div class="absolute inset-0 bg-cyan-500 group-hover/btn:bg-cyan-400 transition-colors"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+            <span class="relative z-10 flex items-center justify-center gap-2 text-white text-lg">
+              Start Building
+              <ArrowRight size={20} class="group-hover/btn:translate-x-1 transition-transform duration-300" />
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- For Sponsors -->
+      <div class="cta-card group relative">
+        <div class="absolute -inset-px bg-gradient-to-b from-orange-500/50 to-orange-500/0 rounded-2xl"></div>
+        <div class="relative bg-neutral-800 rounded-2xl p-8 h-full flex flex-col border-t-4 border-orange-500">
+          <!-- Icon -->
+          <div class="w-16 h-16 mb-6 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform duration-300">
+            <Heart size={32} strokeWidth={2.5} />
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-2xl font-bold text-white mb-6">Fuel the Mission</h3>
+
+          <!-- Description -->
+          <p class="text-neutral-300 leading-relaxed mb-8 flex-grow">
+            Every dollar grows the prize pool. Every dollar goes directly to builders solving real problems.
+          </p>
+
+          <!-- Button -->
+          <a href="#sponsors" class="cta-button cta-button-secondary group/btn relative overflow-hidden rounded-xl py-4 px-6 font-bold text-center transition-all duration-300 border-2 border-orange-500">
+            <div class="absolute inset-0 bg-orange-500/0 group-hover/btn:bg-orange-500/10 transition-colors"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-orange-400/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+            <span class="relative z-10 flex items-center justify-center gap-2 text-orange-400 group-hover/btn:text-orange-300 text-lg transition-colors">
+              Become a Sponsor
+              <ArrowRight size={20} class="group-hover/btn:translate-x-1 transition-transform duration-300" />
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- For Supporters -->
+      <div class="cta-card group relative">
+        <div class="absolute -inset-px bg-gradient-to-b from-purple-500/50 to-purple-500/0 rounded-2xl"></div>
+        <div class="relative bg-neutral-800 rounded-2xl p-8 h-full flex flex-col border-t-4 border-purple-500">
+          <!-- Icon -->
+          <div class="w-16 h-16 mb-6 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
+            <Megaphone size={32} strokeWidth={2.5} />
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-2xl font-bold text-white mb-6">Spread the Word</h3>
+
+          <!-- Description -->
+          <p class="text-neutral-300 leading-relaxed mb-8 flex-grow">
+            Can't code? Share with developers. Test prototypes. Connect teams with orgs.
+          </p>
+
+          <!-- Button -->
+          <a href="https://discord.gg/vibecodeutah" target="_blank" rel="noopener noreferrer" class="cta-button cta-button-tertiary group/btn relative overflow-hidden rounded-xl py-4 px-6 font-bold text-center transition-all duration-300 border-2 border-purple-500">
+            <div class="absolute inset-0 bg-purple-500/0 group-hover/btn:bg-purple-500/10 transition-colors"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+            <span class="relative z-10 flex items-center justify-center gap-2 text-purple-400 group-hover/btn:text-purple-300 text-lg transition-colors">
+              Join Community
+              <ArrowRight size={20} class="group-hover/btn:translate-x-1 transition-transform duration-300" />
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Strip -->
+    <div class="text-center space-y-4 bottom-strip">
+      <div class="inline-block relative">
+        <div class="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-orange-500/20 blur-lg rounded-lg"></div>
+        <p class="relative text-3xl md:text-4xl font-black text-white tracking-tight px-8 py-4">
+          No pitch deck required.
+        </p>
+      </div>
+      <p class="text-xs uppercase tracking-[0.3em] text-neutral-500 font-bold">
+        QUIET GIANTS — CODE WITH A CONSCIENCE
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Grid pattern background */
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Gradient animation */
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  /* Staggered fade-in animations */
+  .cta-header {
+    animation: fadeInUp 0.8s ease-out both;
+  }
+
+  .cta-card:nth-child(1) {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  .cta-card:nth-child(2) {
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+
+  .cta-card:nth-child(3) {
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+  }
+
+  .bottom-strip {
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Card hover glow effects */
+  .cta-card:nth-child(1):hover {
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
+  }
+
+  .cta-card:nth-child(2):hover {
+    box-shadow: 0 0 40px rgba(249, 115, 22, 0.3);
+  }
+
+  .cta-card:nth-child(3):hover {
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+  }
+
+  /* Button hover glow effects */
+  .cta-button-primary:hover {
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+  }
+
+  .cta-button-secondary:hover {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+  }
+
+  .cta-button-tertiary:hover {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+  }
+
+  /* Smooth transitions */
+  .cta-card {
+    transition: all 0.3s ease;
+  }
+
+  .cta-button {
+    transition: all 0.3s ease;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .cta-header h2 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+  }
+</style>
+
+<script>
+  // GSAP scroll-triggered animations (if GSAP is installed)
+  // This is optional and will enhance the experience if GSAP is available
+  if (typeof window !== 'undefined') {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px',
+      }
+    );
+
+    // Observe all CTA cards
+    document.querySelectorAll('.cta-card').forEach((card) => {
+      observer.observe(card);
+    });
+  }
+</script>

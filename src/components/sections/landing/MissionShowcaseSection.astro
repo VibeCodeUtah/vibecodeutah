@@ -1,0 +1,421 @@
+---
+// Enhanced Mission Showcase Section with Scroll-Driven Storytelling
+---
+
+<section class="mission-showcase relative bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white overflow-hidden">
+  <!-- Opening Statement - Full Viewport -->
+  <div class="opening-statement min-h-[80vh] flex items-center justify-center relative px-6 py-24">
+    <!-- Background grid pattern -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30 dark:opacity-20"></div>
+
+    <!-- Subtle gradient glow -->
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5 dark:from-cyan-500/10 dark:via-transparent dark:to-purple-500/10"></div>
+
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+      <!-- Label -->
+      <div class="opening-label mb-8">
+        <span class="inline-flex items-center gap-3 text-neutral-500 dark:text-neutral-400 text-sm font-mono uppercase tracking-[0.2em]">
+          <span class="w-8 h-px bg-gradient-to-r from-transparent to-cyan-500"></span>
+          THE MISSION
+          <span class="w-8 h-px bg-gradient-to-l from-transparent to-purple-500"></span>
+        </span>
+      </div>
+
+      <!-- Main statement -->
+      <div class="opening-text space-y-6">
+        <h2 class="text-4xl md:text-6xl lg:text-7xl font-light text-neutral-600 dark:text-neutral-300 leading-tight">
+          We're not building the next big thing.
+        </h2>
+        <h2 class="text-4xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 dark:from-white dark:via-neutral-100 dark:to-white bg-clip-text text-transparent leading-tight pb-2">
+          We're building the next necessary thing.
+        </h2>
+      </div>
+
+      <!-- Elegant divider -->
+      <div class="my-16 flex items-center justify-center gap-4">
+        <div class="w-16 h-px bg-gradient-to-r from-transparent to-cyan-500/50"></div>
+        <div class="w-2 h-2 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500"></div>
+        <div class="w-16 h-px bg-gradient-to-l from-transparent to-purple-500/50"></div>
+      </div>
+
+      <!-- Quiet Giants definition -->
+      <div class="quiet-giants-section max-w-3xl mx-auto">
+        <p class="text-xl md:text-2xl lg:text-3xl font-light text-neutral-600 dark:text-neutral-300 leading-relaxed mb-8">
+          We're searching for <span class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-400">"Quiet Giants"</span>
+        </p>
+        <p class="text-lg md:text-xl text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-2xl mx-auto">
+          Software that makes a real difference. Apps, tools, and platforms that help people in meaningful ways—whether that's healthcare, education, disaster relief, food security, or beyond.
+        </p>
+      </div>
+
+      <!-- Value pills -->
+      <div class="mt-12 flex flex-wrap justify-center gap-3">
+        <span class="px-4 py-2 rounded-full text-sm font-medium bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-500/20">
+          Healthcare
+        </span>
+        <span class="px-4 py-2 rounded-full text-sm font-medium bg-purple-500/10 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-500/20">
+          Education
+        </span>
+        <span class="px-4 py-2 rounded-full text-sm font-medium bg-orange-500/10 dark:bg-orange-500/20 text-orange-700 dark:text-orange-300 border border-orange-500/20">
+          Disaster Relief
+        </span>
+        <span class="px-4 py-2 rounded-full text-sm font-medium bg-green-500/10 dark:bg-green-500/20 text-green-700 dark:text-green-300 border border-green-500/20">
+          Food Security
+        </span>
+        <span class="px-4 py-2 rounded-full text-sm font-medium bg-pink-500/10 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 border border-pink-500/20">
+          Accessibility
+        </span>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator mt-16">
+        <div class="w-[1px] h-12 mx-auto bg-gradient-to-b from-neutral-400 dark:from-white/50 to-transparent animate-pulse"></div>
+        <span class="block mt-3 text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">See Examples</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case Study Cards Section -->
+  <div class="case-studies relative py-24 px-6 bg-neutral-50 dark:bg-neutral-900/50">
+    <div class="max-w-7xl mx-auto">
+      <!-- Section Label -->
+      <div class="text-center mb-16">
+        <span class="inline-flex items-center gap-3 text-neutral-500 dark:text-neutral-400 text-sm font-mono uppercase tracking-[0.2em]">
+          <span class="w-8 h-px bg-gradient-to-r from-transparent to-orange-500/50"></span>
+          PROOF OF CONCEPT
+          <span class="w-8 h-px bg-gradient-to-l from-transparent to-orange-500/50"></span>
+        </span>
+        <h3 class="mt-6 text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white">
+          Real Solutions. Real Impact.
+        </h3>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Card 1 - Drug Verification -->
+        <div class="case-card group relative">
+          <!-- Card background with border -->
+          <div class="absolute inset-0 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-cyan-500/20 rounded-2xl transition-all duration-500 group-hover:border-cyan-500/50 shadow-lg dark:shadow-none"></div>
+
+          <!-- Gradient glow on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 dark:group-hover:from-cyan-500/10 group-hover:to-transparent rounded-2xl transition-all duration-500"></div>
+
+          <!-- Content -->
+          <div class="relative p-8 h-full flex flex-col">
+            <!-- Label -->
+            <div class="mb-6">
+              <span class="text-cyan-600 dark:text-cyan-400 text-xs font-mono uppercase tracking-[0.2em] font-bold">CASE_01</span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white mb-6 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300">
+              SMS Drug Verification
+            </h3>
+
+            <!-- Copy -->
+            <p class="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed mb-8 flex-grow">
+              A mother buys malaria medicine. Scratches a code. Sends one SMS. Knows it's real in 3 seconds.
+            </p>
+
+            <!-- Stat -->
+            <div class="pt-6 border-t border-neutral-200 dark:border-cyan-500/20">
+              <div class="text-3xl font-black text-cyan-600 dark:text-cyan-400">150K+</div>
+              <div class="text-sm text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mt-1">Lives saved annually</div>
+            </div>
+
+            <!-- Decorative element -->
+            <div class="absolute top-8 right-8 w-16 h-16 rounded-full bg-cyan-500/10 dark:bg-cyan-500/5 blur-2xl group-hover:bg-cyan-500/20 transition-all duration-500"></div>
+          </div>
+        </div>
+
+        <!-- Card 2 - Crisis Mapping -->
+        <div class="case-card group relative">
+          <!-- Card background with border -->
+          <div class="absolute inset-0 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-purple-500/20 rounded-2xl transition-all duration-500 group-hover:border-purple-500/50 shadow-lg dark:shadow-none"></div>
+
+          <!-- Gradient glow on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-purple-500/0 group-hover:from-purple-500/5 dark:group-hover:from-purple-500/10 group-hover:to-transparent rounded-2xl transition-all duration-500"></div>
+
+          <!-- Content -->
+          <div class="relative p-8 h-full flex flex-col">
+            <!-- Label -->
+            <div class="mb-6">
+              <span class="text-purple-600 dark:text-purple-400 text-xs font-mono uppercase tracking-[0.2em] font-bold">CASE_02</span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white mb-6 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+              Crisis Mesh Networks
+            </h3>
+
+            <!-- Copy -->
+            <p class="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed mb-8 flex-grow">
+              When cell towers go down, phones become the network. Data hops device to device until it finds a way out.
+            </p>
+
+            <!-- Stat -->
+            <div class="pt-6 border-t border-neutral-200 dark:border-purple-500/20">
+              <div class="text-3xl font-black text-purple-600 dark:text-purple-400">2G</div>
+              <div class="text-sm text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mt-1">Works on basic networks</div>
+            </div>
+
+            <!-- Decorative element -->
+            <div class="absolute top-8 right-8 w-16 h-16 rounded-full bg-purple-500/10 dark:bg-purple-500/5 blur-2xl group-hover:bg-purple-500/20 transition-all duration-500"></div>
+          </div>
+        </div>
+
+        <!-- Card 3 - Agricultural Alerts -->
+        <div class="case-card group relative">
+          <!-- Card background with border -->
+          <div class="absolute inset-0 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-orange-500/20 rounded-2xl transition-all duration-500 group-hover:border-orange-500/50 shadow-lg dark:shadow-none"></div>
+
+          <!-- Gradient glow on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-orange-500/0 to-orange-500/0 group-hover:from-orange-500/5 dark:group-hover:from-orange-500/10 group-hover:to-transparent rounded-2xl transition-all duration-500"></div>
+
+          <!-- Content -->
+          <div class="relative p-8 h-full flex flex-col">
+            <!-- Label -->
+            <div class="mb-6">
+              <span class="text-orange-600 dark:text-orange-400 text-xs font-mono uppercase tracking-[0.2em] font-bold">CASE_03</span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white mb-6 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">
+              Farm SMS Alerts
+            </h3>
+
+            <!-- Copy -->
+            <p class="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed mb-8 flex-grow">
+              48-hour weather warnings. Disease detection. Market prices. All via text message.
+            </p>
+
+            <!-- Stat -->
+            <div class="pt-6 border-t border-neutral-200 dark:border-orange-500/20">
+              <div class="text-3xl font-black text-orange-600 dark:text-orange-400">30-40%</div>
+              <div class="text-sm text-neutral-500 dark:text-neutral-500 uppercase tracking-wider mt-1">Yield increase</div>
+            </div>
+
+            <!-- Decorative element -->
+            <div class="absolute top-8 right-8 w-16 h-16 rounded-full bg-orange-500/10 dark:bg-orange-500/5 blur-2xl group-hover:bg-orange-500/20 transition-all duration-500"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mission-showcase {
+    position: relative;
+  }
+
+  /* Ensure smooth scrolling */
+  @media (prefers-reduced-motion: no-preference) {
+    .mission-showcase {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Card hover effect enhancements */
+  .case-card {
+    transform: translateY(0);
+    transition: transform 0.3s ease-out;
+  }
+
+  .case-card:hover {
+    transform: translateY(-8px);
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Opening Statement Animation
+    const openingTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".opening-statement",
+        start: "top top",
+        end: "bottom center",
+        scrub: 1,
+      }
+    });
+
+    // Fade in label
+    gsap.from(".opening-label", {
+      opacity: 0,
+      y: 30,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".opening-statement",
+        start: "top center",
+        toggleActions: "play none none none"
+      }
+    });
+
+    // Animate opening text with split text effect
+    const openingTexts = gsap.utils.toArray<HTMLElement>(".opening-text h2");
+    openingTexts.forEach((text, i) => {
+      gsap.from(text, {
+        opacity: 0,
+        y: 50,
+        duration: 1.2,
+        delay: i * 0.3 + 0.3,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".opening-statement",
+          start: "top center",
+          toggleActions: "play none none none"
+        }
+      });
+    });
+
+    // Fade out opening section as user scrolls
+    openingTimeline.to(".opening-statement .opening-text", {
+      opacity: 0,
+      y: -50,
+      ease: "power2.in"
+    });
+
+    // Anti-hype Statement Animation
+    const antiHypeContent = gsap.utils.toArray<HTMLElement>(".anti-hype-content > *");
+
+    gsap.from(antiHypeContent, {
+      opacity: 0,
+      y: 60,
+      stagger: 0.3,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".anti-hype",
+        start: "top 60%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    // Parallax effect for anti-hype section
+    gsap.to(".anti-hype-content", {
+      y: -100,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".anti-hype",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1
+      }
+    });
+
+    // Case Study Cards Animation
+    const caseCards = gsap.utils.toArray<HTMLElement>(".case-card");
+
+    // Stagger the cards in from bottom
+    gsap.from(caseCards, {
+      opacity: 0,
+      y: 100,
+      stagger: 0.2,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".case-studies",
+        start: "top 70%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    // Individual card element animations
+    caseCards.forEach((card) => {
+      const label = card.querySelector("span");
+      const title = card.querySelector("h3");
+      const copy = card.querySelector("p");
+      const stat = card.querySelector(".text-3xl");
+
+      // Character by character reveal for title on scroll into view
+      if (title) {
+        const chars = title.textContent?.split("") || [];
+        const html = chars.map((char) =>
+          `<span class="char" style="display: inline-block; opacity: 0;">${char === " " ? "&nbsp;" : char}</span>`
+        ).join("");
+        title.innerHTML = html;
+
+        const charElements = title.querySelectorAll(".char");
+
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 75%",
+          onEnter: () => {
+            gsap.to(charElements, {
+              opacity: 1,
+              duration: 0.03,
+              stagger: 0.03,
+              ease: "none"
+            });
+          }
+        });
+      }
+
+      // Stat counter animation
+      if (stat) {
+        const statText = stat.textContent || "";
+        const hasNumber = /\d+/.test(statText);
+
+        if (hasNumber) {
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 70%",
+            onEnter: () => {
+              // Pulse effect on stat
+              gsap.fromTo(stat,
+                { scale: 0.8, opacity: 0 },
+                {
+                  scale: 1,
+                  opacity: 1,
+                  duration: 0.6,
+                  ease: "back.out(1.7)"
+                }
+              );
+            }
+          });
+        }
+      }
+    });
+
+    // Hover effects for cards using GSAP
+    caseCards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+          scale: 1.02,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+    });
+
+    // Create subtle parallax effect on card decorative elements
+    caseCards.forEach((card) => {
+      const decorative = card.querySelector(".absolute.top-8.right-8");
+      if (decorative) {
+        gsap.to(decorative, {
+          y: -20,
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1
+          }
+        });
+      }
+    });
+  });
+</script>

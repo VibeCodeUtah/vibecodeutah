@@ -1,0 +1,256 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import Section from "@components/Section.astro";
+import TeamCard from "@components/ui/cards/TeamCard.astro";
+import teams from "@data/teams";
+import { SITE } from "@data/constants";
+
+// Get unique categories from actual teams + "All"
+const uniqueCategories = [...new Set(teams.map(t => t.category))];
+const categories = ["All", ...uniqueCategories.sort()];
+---
+
+<MainLayout
+  title={`Competing Teams | ${SITE.title}`}
+  customDescription="Meet the innovative teams competing in the Vibe Code Utah hackathon. Each team is building technology solutions to address critical global challenges."
+>
+  <!-- Hero Section -->
+  <Section
+    title="Competing Teams"
+    subtitle="Meet the innovators building technology solutions for critical global challenges"
+    gradient="none"
+    id="teams-hero"
+  >
+  </Section>
+
+  <!-- Filter and Sort Controls -->
+  <div class="max-w-6xl mx-auto px-4 md:px-8 pb-8">
+    <div class="bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-6 mb-8">
+      <!-- Filter Buttons -->
+      <div class="mb-6">
+        <h3 class="text-sm font-semibold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider mb-3">
+          Filter by Category
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {
+            categories.map((category, index) => (
+              <button
+                class={`filter-btn px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
+                  index === 0
+                    ? "bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white shadow-lg active"
+                    : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                }`}
+                data-category={category}
+              >
+                {category}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Sort Dropdown -->
+      <div class="flex items-center justify-between border-t border-neutral-200 dark:border-neutral-700 pt-6">
+        <h3 class="text-sm font-semibold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider">
+          Sort By
+        </h3>
+        <div class="relative">
+          <select
+            id="sort-select"
+            class="appearance-none bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 px-4 py-2 pr-10 rounded-lg font-medium text-sm border border-neutral-200 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 cursor-pointer transition-all duration-300"
+          >
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="category">Category</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-neutral-700 dark:text-neutral-300">
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teams Grid -->
+    <div id="teams-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {teams.map((team) => <TeamCard team={team} />)}
+    </div>
+
+    <!-- No Results Message -->
+    <div id="no-results" class="hidden text-center py-16">
+      <div class="inline-block p-6 bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700">
+        <svg
+          class="w-16 h-16 mx-auto mb-4 text-neutral-400 dark:text-neutral-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-2">No teams found</h3>
+        <p class="text-neutral-600 dark:text-neutral-400">Try selecting a different category or sort option.</p>
+      </div>
+    </div>
+  </div>
+</MainLayout>
+
+<script>
+  // Filter and sort functionality
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const sortSelect = document.getElementById("sort-select") as HTMLSelectElement;
+    const teamsGrid = document.getElementById("teams-grid");
+    const noResults = document.getElementById("no-results");
+    let currentCategory = "All";
+
+    // Filter functionality
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Update active state
+        filterButtons.forEach((btn) => {
+          btn.classList.remove(
+            "bg-gradient-to-r",
+            "from-cyan-500",
+            "via-purple-500",
+            "to-orange-500",
+            "text-white",
+            "shadow-lg",
+            "active"
+          );
+          btn.classList.add(
+            "bg-neutral-100",
+            "dark:bg-neutral-700",
+            "text-neutral-700",
+            "dark:text-neutral-300"
+          );
+        });
+
+        button.classList.remove(
+          "bg-neutral-100",
+          "dark:bg-neutral-700",
+          "text-neutral-700",
+          "dark:text-neutral-300"
+        );
+        button.classList.add(
+          "bg-gradient-to-r",
+          "from-cyan-500",
+          "via-purple-500",
+          "to-orange-500",
+          "text-white",
+          "shadow-lg",
+          "active"
+        );
+
+        // Filter teams
+        currentCategory = button.getAttribute("data-category") || "All";
+        filterTeams();
+      });
+    });
+
+    // Sort functionality
+    sortSelect?.addEventListener("change", () => {
+      sortTeams();
+    });
+
+    function filterTeams() {
+      const teamCards = document.querySelectorAll(".team-card");
+      let visibleCount = 0;
+
+      teamCards.forEach((card) => {
+        const cardCategory = card.getAttribute("data-category");
+
+        if (currentCategory === "All" || cardCategory === currentCategory) {
+          (card as HTMLElement).style.display = "block";
+          visibleCount++;
+        } else {
+          (card as HTMLElement).style.display = "none";
+        }
+      });
+
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults?.classList.remove("hidden");
+        teamsGrid?.classList.add("hidden");
+      } else {
+        noResults?.classList.add("hidden");
+        teamsGrid?.classList.remove("hidden");
+      }
+    }
+
+    function sortTeams() {
+      const sortValue = sortSelect?.value;
+      const teamCards = Array.from(document.querySelectorAll(".team-card"));
+
+      teamCards.sort((a, b) => {
+        const nameA = a.querySelector("h3")?.textContent?.trim() || "";
+        const nameB = b.querySelector("h3")?.textContent?.trim() || "";
+        const categoryA = a.getAttribute("data-category") || "";
+        const categoryB = b.getAttribute("data-category") || "";
+
+        switch (sortValue) {
+          case "a-z":
+            return nameA.localeCompare(nameB);
+          case "z-a":
+            return nameB.localeCompare(nameA);
+          case "category":
+            return categoryA.localeCompare(categoryB) || nameA.localeCompare(nameB);
+          default:
+            return 0;
+        }
+      });
+
+      // Reorder DOM elements
+      teamCards.forEach((card) => {
+        teamsGrid?.appendChild(card);
+      });
+    }
+
+    // Initialize
+    filterTeams();
+  });
+</script>
+
+<style>
+  /* Smooth transitions for cards */
+  .team-card {
+    transition: all 0.3s ease;
+  }
+
+  /* Filter button hover effects */
+  .filter-btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .filter-btn:not(.active):hover {
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    transform: scale(1.05);
+  }
+
+  /* Custom scrollbar for the page */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #06b6d4, #a855f7, #f97316);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #0891b2, #9333ea, #ea580c);
+  }
+</style>

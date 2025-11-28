@@ -1,0 +1,178 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import Section from "@components/Section.astro";
+import { SITE } from "@data/constants";
+import { Rocket, Users, Lightbulb, Mail, Phone, ChevronRight } from "lucide-astro";
+
+// Form submits to our API which saves to Supabase
+const formAction = "/api/register";
+---
+
+<MainLayout
+  title={`Join the Hackathon | ${SITE.title}`}
+  customDescription="Register your team for Vibe Code Utah - the AI-powered hackathon building solutions that matter."
+>
+  <!-- Hero -->
+  <Section
+    title="Join the Hackathon"
+    subtitle="Register your team and start building something that matters"
+    gradient="purple"
+    id="join-hero"
+  />
+
+  <div class="max-w-4xl mx-auto px-4 md:px-8 pb-20 -mt-8">
+    <!-- Why Join Cards -->
+    <div class="grid md:grid-cols-3 gap-4 mb-12">
+      <div class="flex items-start gap-4 p-5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+        <div class="shrink-0 w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400">
+          <Rocket size={20} />
+        </div>
+        <div>
+          <h3 class="font-bold text-neutral-900 dark:text-white mb-1">Build with AI</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">Use Cursor, Claude, ChatGPT - whatever tools help you ship</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+        <div class="shrink-0 w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
+          <Users size={20} />
+        </div>
+        <div>
+          <h3 class="font-bold text-neutral-900 dark:text-white mb-1">Any Skill Level</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">No PhD required. Just bring an idea and enthusiasm</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+        <div class="shrink-0 w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400">
+          <Lightbulb size={20} />
+        </div>
+        <div>
+          <h3 class="font-bold text-neutral-900 dark:text-white mb-1">Real Impact</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">Build software that actually helps people</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-xl overflow-hidden">
+      <!-- Form Header -->
+      <div class="bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 p-6 text-white">
+        <h2 class="text-2xl font-bold mb-1">Team Registration</h2>
+        <p class="text-white/80">Fill out the form below to register your team</p>
+      </div>
+
+      <!-- Form Body -->
+      <form
+        action={formAction}
+        method="POST"
+        class="p-6 md:p-8 space-y-6"
+        id="registration-form"
+      >
+        <!-- Hidden field to identify form type -->
+        <input type="hidden" name="_subject" value="New Team Registration - Vibe Code Utah" />
+
+        <!-- Team Name -->
+        <div>
+          <label for="team-name" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
+            Team Name <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="team-name"
+            id="team-name"
+            required
+            class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all text-lg"
+            placeholder="The Hot Yetis, Hungry Hippos, etc."
+          />
+          <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400">Get creative with it!</p>
+        </div>
+
+        <!-- Email & Phone -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="email" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
+              <Mail class="inline w-4 h-4 mr-1" />
+              Email <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all"
+              placeholder="your@email.com"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
+              <Phone class="inline w-4 h-4 mr-1" />
+              Phone
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all"
+              placeholder="(555) 123-4567"
+            />
+          </div>
+        </div>
+
+        <!-- Team Members -->
+        <div>
+          <label for="team-members" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
+            Team Members <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            name="team-members"
+            id="team-members"
+            required
+            rows="3"
+            class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all resize-y"
+            placeholder="Sarah Chen&#10;Marcus Johnson&#10;Priya Patel"
+          ></textarea>
+          <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400">One name per line. Solo hackers welcome too!</p>
+        </div>
+
+        <!-- Project Idea -->
+        <div>
+          <label for="project-idea" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
+            Your Idea (Elevator Pitch)
+          </label>
+          <textarea
+            name="project-idea"
+            id="project-idea"
+            rows="4"
+            class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all resize-y"
+            placeholder="What problem are you solving? Who does it help? Don't worry if it's rough - that's what the hackathon is for!"
+          ></textarea>
+          <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400">Optional but helps us match you with mentors</p>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button
+            type="submit"
+            class="w-full group relative overflow-hidden rounded-xl px-8 py-4 text-lg font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+          >
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+            <span class="relative z-10 flex items-center justify-center gap-2 text-white">
+              Register My Team
+              <ChevronRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="mt-8 text-center">
+      <p class="text-neutral-600 dark:text-neutral-400">
+        Questions? Email us at <a href="mailto:hello@vibecodeutah.com" class="font-semibold text-purple-600 dark:text-purple-400 hover:underline">hello@vibecodeutah.com</a>
+      </p>
+    </div>
+  </div>
+</MainLayout>

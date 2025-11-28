@@ -1,0 +1,242 @@
+---
+import type { Team } from "@data/teams";
+import { ChevronDown } from "lucide-astro";
+
+interface Props {
+  team: Team;
+}
+
+const { team } = Astro.props;
+
+// Category color mapping
+const categoryColors = {
+  "Food Security": {
+    border: "border-green-200 dark:border-green-500/50 hover:border-green-400",
+    badge: "bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-300",
+    gradient: "from-green-500/5 dark:from-green-500/10",
+    text: "text-green-600 dark:text-green-400",
+    ring: "ring-green-400/50",
+  },
+  "Healthcare": {
+    border: "border-cyan-200 dark:border-cyan-500/50 hover:border-cyan-400",
+    badge: "bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300",
+    gradient: "from-cyan-500/5 dark:from-cyan-500/10",
+    text: "text-cyan-600 dark:text-cyan-400",
+    ring: "ring-cyan-400/50",
+  },
+  "Education": {
+    border: "border-purple-200 dark:border-purple-500/50 hover:border-purple-400",
+    badge: "bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300",
+    gradient: "from-purple-500/5 dark:from-purple-500/10",
+    text: "text-purple-600 dark:text-purple-400",
+    ring: "ring-purple-400/50",
+  },
+  "Disaster Response": {
+    border: "border-orange-200 dark:border-orange-500/50 hover:border-orange-400",
+    badge: "bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-300",
+    gradient: "from-orange-500/5 dark:from-orange-500/10",
+    text: "text-orange-600 dark:text-orange-400",
+    ring: "ring-orange-400/50",
+  },
+  "Economic Empowerment": {
+    border: "border-yellow-200 dark:border-yellow-500/50 hover:border-yellow-400",
+    badge: "bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-300",
+    gradient: "from-yellow-500/5 dark:from-yellow-500/10",
+    text: "text-yellow-600 dark:text-yellow-400",
+    ring: "ring-yellow-400/50",
+  },
+  "Environmental": {
+    border: "border-teal-200 dark:border-teal-500/50 hover:border-teal-400",
+    badge: "bg-teal-100 dark:bg-teal-500/20 text-teal-700 dark:text-teal-300",
+    gradient: "from-teal-500/5 dark:from-teal-500/10",
+    text: "text-teal-600 dark:text-teal-400",
+    ring: "ring-teal-400/50",
+  },
+  "Accessibility": {
+    border: "border-indigo-200 dark:border-indigo-500/50 hover:border-indigo-400",
+    badge: "bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300",
+    gradient: "from-indigo-500/5 dark:from-indigo-500/10",
+    text: "text-indigo-600 dark:text-indigo-400",
+    ring: "ring-indigo-400/50",
+  },
+  default: {
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-neutral-400",
+    badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
+    gradient: "from-neutral-500/5 dark:from-neutral-500/10",
+    text: "text-neutral-600 dark:text-neutral-400",
+    ring: "ring-neutral-400/50",
+  },
+};
+
+const colors = categoryColors[team.category as keyof typeof categoryColors] || categoryColors.default;
+
+// Short preview of elevator pitch
+const previewPitch = team.elevatorPitch.length > 120
+  ? team.elevatorPitch.substring(0, 117) + "..."
+  : team.elevatorPitch;
+---
+
+<article
+  class={`team-card group relative p-6 rounded-2xl bg-white dark:bg-neutral-800 border ${colors.border} transition-all duration-500 hover:shadow-xl dark:hover:shadow-2xl`}
+  data-team-id={team.id}
+  data-category={team.category}
+>
+  <!-- Gradient overlay on hover -->
+  <div
+    class={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+  >
+  </div>
+
+  <!-- Card content -->
+  <div class="relative z-10">
+    <!-- Token image - BIGGER and centered -->
+    <div class="flex justify-center mb-6">
+      <div class="relative">
+        <!-- Glow effect -->
+        <div class={`absolute -inset-2 bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
+        <!-- Token image -->
+        <div class={`relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden ring-4 ${colors.ring} group-hover:ring-8 transition-all duration-300 bg-white dark:bg-neutral-900`}>
+          <img
+            src={team.tokenImage}
+            alt={`${team.name} team token`}
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Category badge -->
+    <div class="flex justify-center mb-4">
+      <span
+        class={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider ${colors.badge} transition-colors duration-300`}
+      >
+        {team.category}
+      </span>
+    </div>
+
+    <!-- Team name -->
+    <h3 class="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white mb-2 text-center">
+      {team.name}
+    </h3>
+
+    <!-- Slogan -->
+    <p class={`text-sm italic ${colors.text} mb-4 text-center`}>
+      "{team.slogan}"
+    </p>
+
+    <!-- Project name -->
+    <p class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-4 text-center">
+      Project: <span class={colors.text}>{team.projectName}</span>
+    </p>
+
+    <!-- Elevator pitch - Preview with expand -->
+    <div class="pitch-container">
+      <!-- Preview (shown when collapsed) -->
+      <p class="pitch-preview text-neutral-600 dark:text-neutral-300 leading-relaxed text-center">
+        {previewPitch}
+      </p>
+
+      <!-- Full pitch (hidden by default) -->
+      <p class="pitch-full text-neutral-600 dark:text-neutral-300 leading-relaxed text-center hidden">
+        {team.elevatorPitch}
+      </p>
+
+      <!-- Expand/Collapse button -->
+      <button
+        class={`expand-btn mt-4 w-full flex items-center justify-center gap-2 py-2 px-4 rounded-lg ${colors.badge} hover:opacity-80 transition-all duration-300 font-medium text-sm`}
+        aria-expanded="false"
+      >
+        <span class="btn-text">Read Full Pitch</span>
+        <ChevronDown class="chevron-icon w-4 h-4 transition-transform duration-300" />
+      </button>
+    </div>
+
+    <!-- Team members -->
+    <div class="border-t border-neutral-200 dark:border-neutral-700 pt-4 mt-6">
+      <p class="text-xs text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-3 text-center">
+        Team Members
+      </p>
+      <div class="flex flex-wrap justify-center gap-2">
+        {team.members.map((member) => (
+          <div class="flex items-center gap-2 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-700/50 rounded-full">
+            <div class={`w-6 h-6 rounded-full ${colors.badge} flex items-center justify-center text-xs font-bold`}>
+              {member.charAt(0).toUpperCase()}
+            </div>
+            <span class="text-sm text-neutral-700 dark:text-neutral-200">
+              {member}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .team-card {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .pitch-full {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+  }
+
+  .pitch-full.expanded {
+    max-height: 500px;
+  }
+
+  .chevron-icon.rotated {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  // Handle expand/collapse for all team cards
+  document.addEventListener('DOMContentLoaded', () => {
+    const expandBtns = document.querySelectorAll('.expand-btn');
+
+    expandBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const container = btn.closest('.pitch-container');
+        if (!container) return;
+
+        const preview = container.querySelector('.pitch-preview');
+        const full = container.querySelector('.pitch-full');
+        const chevron = btn.querySelector('.chevron-icon');
+        const btnText = btn.querySelector('.btn-text');
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+        if (isExpanded) {
+          // Collapse
+          preview?.classList.remove('hidden');
+          full?.classList.add('hidden');
+          full?.classList.remove('expanded');
+          chevron?.classList.remove('rotated');
+          if (btnText) btnText.textContent = 'Read Full Pitch';
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          // Expand
+          preview?.classList.add('hidden');
+          full?.classList.remove('hidden');
+          full?.classList.add('expanded');
+          chevron?.classList.add('rotated');
+          if (btnText) btnText.textContent = 'Show Less';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>

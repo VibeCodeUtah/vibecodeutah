@@ -1,0 +1,177 @@
+---
+import Section from "@components/Section.astro";
+import AuthBtn from "@components/ui/buttons/AuthBtn.astro";
+---
+
+<Section
+  title="Register Your Team"
+  subtitle="Join the hackathon and make an impact"
+  gradient="orange"
+>
+  <div class="mx-auto max-w-3xl">
+    <div class="flex flex-col rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800/50 p-6 sm:p-8 lg:p-10 shadow-lg">
+      <!-- Form -->
+      <form action="#" method="POST" class="space-y-6">
+        <!-- Team Name - Full Width -->
+        <div>
+          <label
+            for="team-name"
+            class="mb-2 block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+          >
+            Team Name <span class="text-orange-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="team-name"
+            id="team-name"
+            required
+            class="block w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-700 placeholder:text-neutral-500 focus:border-orange-400 focus:outline-hidden focus:ring-3 focus:ring-orange-400/30 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-300 dark:placeholder:text-neutral-400 dark:focus:border-orange-400 dark:focus:ring-orange-400/30 transition-all duration-200"
+            placeholder="Enter your team name"
+          />
+          <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+            Choose a creative name that represents your team
+          </p>
+        </div>
+
+        <!-- Email and Phone - 2 Column Grid on larger screens -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <!-- Email -->
+          <div>
+            <label
+              for="team-email"
+              class="mb-2 block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+            >
+              Email <span class="text-orange-500">*</span>
+            </label>
+            <input
+              type="email"
+              name="team-email"
+              id="team-email"
+              required
+              autocomplete="email"
+              class="block w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-700 placeholder:text-neutral-500 focus:border-orange-400 focus:outline-hidden focus:ring-3 focus:ring-orange-400/30 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-300 dark:placeholder:text-neutral-400 dark:focus:border-orange-400 dark:focus:ring-orange-400/30 transition-all duration-200"
+              placeholder="team@example.com"
+            />
+            <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+              Primary contact email
+            </p>
+          </div>
+
+          <!-- Phone Number -->
+          <div>
+            <label
+              for="team-phone"
+              class="mb-2 block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+            >
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              name="team-phone"
+              id="team-phone"
+              pattern="[0-9\s\-\+\(\)]+"
+              class="block w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-700 placeholder:text-neutral-500 focus:border-orange-400 focus:outline-hidden focus:ring-3 focus:ring-orange-400/30 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-300 dark:placeholder:text-neutral-400 dark:focus:border-orange-400 dark:focus:ring-orange-400/30 transition-all duration-200"
+              placeholder="(123) 456-7890"
+            />
+            <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+              Optional contact number
+            </p>
+          </div>
+        </div>
+
+        <!-- Team Members -->
+        <div>
+          <label
+            for="team-members"
+            class="mb-2 block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+          >
+            Team Members
+          </label>
+          <textarea
+            id="team-members"
+            name="team-members"
+            rows="4"
+            class="block w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-700 placeholder:text-neutral-500 focus:border-orange-400 focus:outline-hidden focus:ring-3 focus:ring-orange-400/30 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-300 dark:placeholder:text-neutral-400 dark:focus:border-orange-400 dark:focus:ring-orange-400/30 transition-all duration-200 resize-y"
+            placeholder="John Doe&#10;Jane Smith&#10;Alex Johnson"
+          ></textarea>
+          <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+            List team member names (one per line or comma-separated)
+          </p>
+        </div>
+
+        <!-- Project Idea -->
+        <div>
+          <label
+            for="project-idea"
+            class="mb-2 block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+          >
+            Project Idea
+          </label>
+          <textarea
+            id="project-idea"
+            name="project-idea"
+            rows="5"
+            class="block w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-700 placeholder:text-neutral-500 focus:border-orange-400 focus:outline-hidden focus:ring-3 focus:ring-orange-400/30 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-300 dark:placeholder:text-neutral-400 dark:focus:border-orange-400 dark:focus:ring-orange-400/30 transition-all duration-200 resize-y"
+            placeholder="Describe your project idea, what problem it solves, and how you plan to build it..."
+          ></textarea>
+          <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+            Share your elevator pitch or initial concept (optional but recommended)
+          </p>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <AuthBtn title="Register Team" />
+        </div>
+
+        <!-- Success Message Placeholder -->
+        <div id="success-message" class="hidden rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-900/30">
+          <div class="flex items-center gap-3">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-semibold text-green-800 dark:text-green-200">
+                Registration Successful!
+              </p>
+              <p class="mt-1 text-xs text-green-700 dark:text-green-300">
+                We've received your team registration. Check your email for confirmation and next steps.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Helper Text -->
+        <div class="border-t border-neutral-200 pt-6 dark:border-neutral-700">
+          <p class="text-center text-sm text-neutral-600 dark:text-neutral-400">
+            Questions about registration? <a href="#" class="font-semibold text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors">Contact us</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</Section>
+
+<script>
+  // Simple form submission handler (placeholder for backend integration)
+  const form = document.querySelector('form') as HTMLFormElement;
+  const successMessage = document.getElementById('success-message');
+
+  if (form && successMessage) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Here you would normally send data to your backend
+      // For now, just show the success message
+
+      // Hide form and show success message
+      form.style.display = 'none';
+      successMessage.classList.remove('hidden');
+
+      // Scroll to success message
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+</script>

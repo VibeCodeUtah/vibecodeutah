@@ -1,0 +1,92 @@
+---
+// Example component showing how to use StarkStat in an Astro page
+import StarkStat from './StarkStat';
+---
+
+<section class="stats-showcase bg-neutral-950 py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {/* First stat - Humanitarian impact */}
+    <StarkStat
+      client:visible
+      number={2.5}
+      suffix=" billion"
+      decimals={1}
+      context="people lack access to clean water worldwide"
+      citation="WHO/UNICEF Joint Monitoring Programme 2023"
+      citationUrl="https://www.who.int/news/item/01-07-2023-billions-of-people-still-without-safe-water-and-sanitation"
+      accentColor="cyan"
+    />
+
+    {/* Second stat - Global challenge */}
+    <StarkStat
+      client:visible
+      number={828}
+      suffix=" million"
+      context="people went to bed hungry in 2023"
+      citation="UN World Food Programme"
+      citationUrl="https://www.wfp.org/global-hunger-crisis"
+      accentColor="orange"
+      className="mt-24"
+    />
+
+    {/* Third stat - Tech impact */}
+    <StarkStat
+      client:visible
+      number={67}
+      suffix="%"
+      context="of the world's population now has internet access"
+      citation="International Telecommunication Union"
+      citationUrl="https://www.itu.int/hub/publication/d-ind-ict_mdd-2023/"
+      accentColor="purple"
+      className="mt-24"
+    />
+
+    {/* Fourth stat - Economic disparity */}
+    <StarkStat
+      client:visible
+      number={3.6}
+      suffix=" billion"
+      decimals={1}
+      context="people live on less than $6.85 per day"
+      citation="World Bank Poverty and Inequality Platform"
+      citationUrl="https://www.worldbank.org/en/topic/poverty"
+      accentColor="pink"
+      className="mt-24"
+    />
+
+    {/* Fifth stat - Environmental challenge */}
+    <StarkStat
+      client:visible
+      number={1.1}
+      suffix=" billion"
+      decimals={1}
+      context="tons of food are wasted globally each year"
+      citation="UN Environment Programme Food Waste Index"
+      citationUrl="https://www.unep.org/resources/report/unep-food-waste-index-report-2024"
+      accentColor="green"
+      className="mt-24"
+    />
+
+  </div>
+</section>
+
+<style>
+  .stats-showcase {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Optional: Add a subtle grid background */
+  .stats-showcase::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(64, 64, 64, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(64, 64, 64, 0.1) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: radial-gradient(ellipse 80% 50% at 50% 50%, #000 60%, transparent 100%);
+    pointer-events: none;
+  }
+</style>

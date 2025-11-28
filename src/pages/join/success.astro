@@ -1,0 +1,73 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { SITE } from "@data/constants";
+import { CheckCircle, ArrowRight, Calendar, Users } from "lucide-astro";
+---
+
+<MainLayout
+  title={`Registration Complete | ${SITE.title}`}
+  customDescription="Your team has been registered for Vibe Code Utah!"
+>
+  <div class="min-h-[70vh] flex items-center justify-center px-4 py-20">
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- Success Icon -->
+      <div class="mb-8">
+        <div class="relative inline-block">
+          <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 rounded-full blur-2xl opacity-30 animate-pulse"></div>
+          <div class="relative w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center">
+            <CheckCircle class="w-12 h-12 text-white" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <h1 class="text-4xl md:text-5xl font-black text-neutral-900 dark:text-white mb-4">
+        You're <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500">In!</span>
+      </h1>
+
+      <p class="text-xl text-neutral-600 dark:text-neutral-300 mb-8 max-w-md mx-auto">
+        Your team has been registered. We'll be in touch soon with next steps.
+      </p>
+
+      <!-- What's Next Cards -->
+      <div class="grid md:grid-cols-2 gap-4 mb-10">
+        <div class="p-5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-left">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
+              <Calendar size={20} />
+            </div>
+            <h3 class="font-bold text-neutral-900 dark:text-white">Check Your Email</h3>
+          </div>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">We'll send confirmation and important dates to your inbox.</p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-left">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400">
+              <Users size={20} />
+            </div>
+            <h3 class="font-bold text-neutral-900 dark:text-white">Join the Community</h3>
+          </div>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">Connect with other teams and get updates on Discord.</p>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-neutral-700 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all"
+        >
+          Back to Home
+        </a>
+        <a
+          href="/teams"
+          class="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 hover:scale-105 transition-all"
+        >
+          See Other Teams
+          <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </a>
+      </div>
+    </div>
+  </div>
+</MainLayout>

@@ -1,0 +1,144 @@
+---
+// Example component showing how to use StatsGrid in an Astro page
+import StatsGrid from './StatsGrid';
+
+// Define your statistics data
+const hackathonStats = [
+  {
+    number: 150,
+    suffix: '+',
+    label: 'Global Participants',
+    description: 'Hackers from around the world',
+    accentColor: 'cyan' as const,
+  },
+  {
+    number: 15,
+    label: 'Days to Build',
+    description: 'From idea to submission',
+    accentColor: 'purple' as const,
+  },
+  {
+    number: 5000,
+    prefix: '$',
+    label: 'Prize Pool',
+    description: 'Community-funded rewards',
+    accentColor: 'orange' as const,
+  },
+  {
+    number: 30,
+    suffix: '+',
+    label: 'Project Submissions',
+    description: 'Innovative solutions',
+    accentColor: 'pink' as const,
+  },
+  {
+    number: 100,
+    suffix: '%',
+    label: 'For Humanitarian Impact',
+    description: 'Every project makes a difference',
+    accentColor: 'green' as const,
+  },
+  {
+    number: 24,
+    suffix: '/7',
+    label: 'Discord Support',
+    description: 'Always here to help',
+    accentColor: 'cyan' as const,
+  },
+];
+
+const impactStats = [
+  {
+    number: 2.5,
+    suffix: 'B',
+    decimals: 1,
+    label: 'Without Clean Water',
+    description: 'People globally',
+    accentColor: 'cyan' as const,
+  },
+  {
+    number: 828,
+    suffix: 'M',
+    label: 'Go Hungry Daily',
+    description: 'Food insecurity',
+    accentColor: 'orange' as const,
+  },
+  {
+    number: 67,
+    suffix: '%',
+    label: 'Internet Access',
+    description: 'Global connectivity',
+    accentColor: 'purple' as const,
+  },
+];
+---
+
+<section class="bg-neutral-950 py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {/* Section title */}
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+        Hackathon by the Numbers
+      </h2>
+      <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+        Join a global community building solutions for real-world challenges
+      </p>
+    </div>
+
+    {/* 3-column grid */}
+    <StatsGrid
+      client:visible
+      stats={hackathonStats}
+      columns={3}
+      animationDuration={2000}
+      staggerDelay={100}
+      className="mb-24"
+    />
+
+    {/* Section divider */}
+    <div class="flex justify-center my-16">
+      <div class="h-1 w-32 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500"></div>
+    </div>
+
+    {/* Second section */}
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+        The Challenge We Face
+      </h2>
+      <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+        Real statistics driving real solutions
+      </p>
+    </div>
+
+    {/* 3-column grid for impact stats */}
+    <StatsGrid
+      client:visible
+      stats={impactStats}
+      columns={3}
+      animationDuration={2500}
+      staggerDelay={150}
+    />
+
+  </div>
+</section>
+
+<style>
+  section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Grid background effect */
+  section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(64, 64, 64, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(64, 64, 64, 0.1) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 40%, transparent 100%);
+    pointer-events: none;
+  }
+</style>

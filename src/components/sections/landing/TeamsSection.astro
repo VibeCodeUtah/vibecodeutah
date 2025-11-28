@@ -1,0 +1,179 @@
+---
+import Section from "@components/Section.astro";
+import teams from "@data/teams";
+import TeamCard from "@components/ui/cards/TeamCard.astro";
+import { ArrowRight } from "lucide-astro";
+
+// Shuffle array function (Fisher-Yates shuffle)
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// Get 3 random teams for homepage preview
+const randomTeams = shuffleArray(teams).slice(0, 3);
+---
+
+<Section
+  title="Meet The Teams"
+  subtitle="Innovators building solutions that matter"
+  id="teams"
+  gradient="purple"
+>
+  <!-- Teams Grid -->
+  <div class="teams-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+    {randomTeams.map((team, index) => (
+      <div
+        class="team-card-wrapper"
+        style={`animation-delay: ${index * 0.1}s`}
+      >
+        <TeamCard team={team} />
+      </div>
+    ))}
+  </div>
+
+  <!-- View All Teams Button -->
+  <div class="flex justify-center mt-8">
+    <a
+      href="/teams"
+      class="cta-button group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30"
+    >
+      <!-- Gradient background -->
+      <div class="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 bg-[length:200%_100%] transition-all duration-300 group-hover:bg-[length:100%_100%]"></div>
+
+      <!-- Shimmer effect on hover -->
+      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+
+      <!-- Button content -->
+      <span class="relative z-10 text-white">View All Teams</span>
+      <ArrowRight class="relative z-10 text-white transition-transform duration-300 group-hover:translate-x-1" size={20} />
+    </a>
+  </div>
+</Section>
+
+<style>
+  .team-card-wrapper {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .teams-grid {
+    perspective: 1000px;
+  }
+
+  .cta-button {
+    position: relative;
+    text-decoration: none;
+  }
+
+  /* Responsive grid - adjusts for smaller screens */
+  @media (max-width: 767px) {
+    .teams-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .teams-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .teams-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Add subtle gradient animation to button */
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .cta-button:hover > div:first-child {
+    animation: gradientShift 3s ease infinite;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Animate team cards on scroll
+    const teamCards = document.querySelectorAll(".team-card-wrapper");
+
+    teamCards.forEach((card, index) => {
+      gsap.from(card, {
+        y: 50,
+        opacity: 0,
+        duration: 0.6,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    // Animate the CTA button
+    const ctaButton = document.querySelector(".cta-button");
+    if (ctaButton) {
+      gsap.from(ctaButton, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: ctaButton,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+    // Add hover effect to team cards
+    teamCards.forEach((wrapper) => {
+      const card = wrapper.querySelector(".team-card");
+      if (card) {
+        wrapper.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            y: -8,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+
+        wrapper.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+      }
+    });
+  });
+</script>
