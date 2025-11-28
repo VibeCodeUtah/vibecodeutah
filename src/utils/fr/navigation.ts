@@ -28,11 +28,9 @@ const footerLinks = [
 ];
 
 const socialLinks = {
-  facebook: "#",
-  x: "#",
-  github: "https://github.com/mearashadowfax/VibeCodeUtah",
-  google: "#",
-  slack: "#",
+  github: "https://github.com/VibeCodeUtah",
+  x: "https://twitter.com/VibeCodeUtah",
+  discord: "https://discord.gg/vibecodeutah",
 };
 
 export default {

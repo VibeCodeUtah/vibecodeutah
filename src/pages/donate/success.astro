@@ -1,0 +1,71 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { SITE } from "@data/constants";
+import { CheckCircle, ArrowRight, Mail, Heart } from "lucide-astro";
+---
+
+<MainLayout
+  title={`Thank You for Your Support | ${SITE.title}`}
+  customDescription="Thank you for your interest in supporting VibeCodeUtah!"
+>
+  <div class="min-h-[70vh] flex items-center justify-center px-4 py-20 bg-white dark:bg-neutral-950">
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- Success Icon -->
+      <div class="mb-8">
+        <div class="relative inline-block">
+          <div class="absolute inset-0 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-500 rounded-full blur-2xl opacity-30 animate-pulse"></div>
+          <div class="relative w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center">
+            <CheckCircle class="w-12 h-12 text-white" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-4xl md:text-5xl font-black text-neutral-900 dark:text-white mb-4">
+        Thank <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-500">You!</span>
+      </h1>
+
+      <p class="text-xl text-neutral-600 dark:text-neutral-300 mb-8 max-w-md mx-auto">
+        Your sponsorship inquiry has been received. We're excited to have you supporting our mission!
+      </p>
+
+      <!-- Info Box -->
+      <div class="p-6 rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 mb-10 max-w-md mx-auto">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400">
+            <Mail size={20} />
+          </div>
+          <h3 class="font-bold text-neutral-900 dark:text-white">What's Next?</h3>
+        </div>
+        <p class="text-sm text-neutral-600 dark:text-neutral-400 text-left">
+          Our team will review your inquiry and reach out within 24-48 hours to discuss sponsorship details and recognition opportunities.
+        </p>
+      </div>
+
+      <!-- Impact Message -->
+      <div class="p-4 rounded-lg bg-gradient-to-r from-orange-500/10 to-yellow-500/10 border border-orange-500/20 mb-10 max-w-md mx-auto">
+        <div class="flex items-center gap-2 justify-center text-orange-600 dark:text-orange-400">
+          <Heart size={18} />
+          <span class="font-semibold">100% of sponsorships go directly to builders</span>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-orange-500 to-yellow-500 hover:opacity-90 transition-all"
+        >
+          Back to Home
+          <ArrowRight size={18} />
+        </a>
+        <a
+          href="/teams"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-neutral-700 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all"
+        >
+          View Teams
+        </a>
+      </div>
+    </div>
+  </div>
+</MainLayout>

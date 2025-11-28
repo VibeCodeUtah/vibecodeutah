@@ -6,23 +6,23 @@ const navBarLinks = [
   { name: "Rules", url: "/#rules" },
   { name: "Sponsors", url: "/#sponsors" },
   { name: "Timeline", url: "/#timeline" },
-  { name: "Docs", url: "/docs/welcome-to-docs/" },
+  { name: "Docs", url: "/welcome-to-docs/" },
 ];
 // An array of links for footer
 const footerLinks = [
   {
     section: "Hackathon",
     links: [
-      { name: "Official Rules", url: "/docs/rules/official-rules/" },
-      { name: "Getting Started", url: "/docs/guides/getting-started/" },
-      { name: "How to Submit", url: "/docs/guides/submission/" },
+      { name: "Official Rules", url: "/rules/official-rules/" },
+      { name: "Getting Started", url: "/guides/getting-started/" },
+      { name: "How to Submit", url: "/guides/submission/" },
     ],
   },
   {
     section: "Resources",
     links: [
-      { name: "Documentation", url: "/docs/welcome-to-docs/" },
-      { name: "FAQ & Support", url: "/docs/support/faq/" },
+      { name: "Documentation", url: "/welcome-to-docs/" },
+      { name: "FAQ & Support", url: "/support/faq/" },
       { name: "Contact Us", url: "/contact" },
     ],
   },

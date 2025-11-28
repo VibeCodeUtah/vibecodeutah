@@ -4,15 +4,16 @@ import { Play } from "lucide-astro";
 ---
 
 <Section title="See the Vision" subtitle="Watch what we're building together" id="video" gradient="purple">
-  <div class="grid lg:grid-cols-2 gap-8">
+  <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
     <!-- Main Promo Video -->
-    <div class="lg:col-span-2">
-      <div class="video-container group relative rounded-2xl overflow-hidden bg-neutral-900 border border-purple-500/30 shadow-2xl shadow-purple-500/10">
+    <div class="sm:col-span-2">
+      <div class="video-container group relative rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900 border border-purple-500/30 shadow-xl sm:shadow-2xl shadow-purple-500/10">
         <video
           id="promo-video"
           class="w-full aspect-video object-cover"
           poster="/vcu-hero.png"
           controls
+          playsinline
           preload="metadata"
         >
           <source src="/videos/promo.mp4" type="video/mp4" />
@@ -20,45 +21,47 @@ import { Play } from "lucide-astro";
         </video>
 
         <!-- Play overlay (shown before video plays) -->
-        <div id="play-overlay" class="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer group-hover:bg-black/30 transition-colors duration-300">
-          <div class="w-20 h-20 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-500/50">
-            <Play size={32} class="text-white ml-1" fill="white" />
+        <div id="play-overlay" class="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer active:bg-black/50 sm:group-hover:bg-black/30 transition-colors duration-300">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 flex items-center justify-center transform active:scale-95 sm:group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-500/50">
+            <Play size={28} class="text-white ml-0.5 sm:ml-1 sm:size-8" fill="white" />
           </div>
         </div>
       </div>
-      <p class="text-center text-neutral-500 dark:text-neutral-400 mt-4 text-sm">
+      <p class="text-center text-neutral-500 dark:text-neutral-400 mt-3 sm:mt-4 text-xs sm:text-sm px-4 sm:px-0">
         15 days to build something that matters
       </p>
     </div>
 
     <!-- Secondary Videos -->
-    <div class="video-card group relative rounded-xl overflow-hidden bg-neutral-900 border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300">
+    <div class="video-card group relative rounded-xl overflow-hidden bg-neutral-900 border border-cyan-500/30 active:border-cyan-400 sm:hover:border-cyan-400 transition-all duration-300">
       <video
         class="secondary-video w-full aspect-video object-cover"
         poster="/vcu-hero.png"
         controls
+        playsinline
         preload="metadata"
       >
         <source src="/videos/humanitarian.mp4" type="video/mp4" />
       </video>
-      <div class="p-4 bg-white dark:bg-neutral-800">
-        <h4 class="font-bold text-neutral-900 dark:text-white">Humanitarian Impact</h4>
-        <p class="text-sm text-neutral-600 dark:text-neutral-400">Code that saves lives</p>
+      <div class="p-3 sm:p-4 bg-white dark:bg-neutral-800">
+        <h4 class="font-bold text-sm sm:text-base text-neutral-900 dark:text-white">Humanitarian Impact</h4>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400">Code that saves lives</p>
       </div>
     </div>
 
-    <div class="video-card group relative rounded-xl overflow-hidden bg-neutral-900 border border-orange-500/30 hover:border-orange-400 transition-all duration-300">
+    <div class="video-card group relative rounded-xl overflow-hidden bg-neutral-900 border border-orange-500/30 active:border-orange-400 sm:hover:border-orange-400 transition-all duration-300">
       <video
         class="secondary-video w-full aspect-video object-cover"
         poster="/vcu-hero.png"
         controls
+        playsinline
         preload="metadata"
       >
         <source src="/videos/extended.mp4" type="video/mp4" />
       </video>
-      <div class="p-4 bg-white dark:bg-neutral-800">
-        <h4 class="font-bold text-neutral-900 dark:text-white">The Full Story</h4>
-        <p class="text-sm text-neutral-600 dark:text-neutral-400">Extended look at our mission</p>
+      <div class="p-3 sm:p-4 bg-white dark:bg-neutral-800">
+        <h4 class="font-bold text-sm sm:text-base text-neutral-900 dark:text-white">The Full Story</h4>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400">Extended look at our mission</p>
       </div>
     </div>
   </div>
