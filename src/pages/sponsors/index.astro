@@ -1,0 +1,172 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { SITE } from "@data/constants";
+import { ArrowRight, Heart, DollarSign } from "lucide-astro";
+
+// Sponsors data
+const sponsors = [
+  {
+    name: "ToroSachi",
+    amount: 2500,
+    tier: "Platinum",
+    logo: null, // No logo yet - use initials
+    slug: "torosachi",
+    color: "from-cyan-500 to-blue-600",
+    description: "Supporting humanitarian technology initiatives in Utah.",
+  },
+  {
+    name: "SignaPay SE",
+    amount: 2500,
+    tier: "Platinum",
+    logo: "/images/sponsors/signapay.png",
+    slug: "signapay-se",
+    color: "from-purple-500 to-pink-500",
+    description: "Leading merchant services provider offering credit and debit card processing solutions.",
+  },
+  {
+    name: "Backyard Bookkeeper",
+    amount: 6000,
+    tier: "Platinum",
+    logo: "/images/sponsors/backyard-bookkeeper.webp",
+    slug: "backyard-bookkeeper",
+    color: "from-green-500 to-emerald-500",
+    description: "Professional bookkeeping services for small businesses.",
+    note: "$1,000 + 1 Year Bookkeeping ($5,000 value)",
+  },
+];
+
+const totalRaised = sponsors.reduce((sum, s) => sum + s.amount, 0);
+---
+
+<MainLayout
+  title={`Our Sponsors | ${SITE.title}`}
+  customDescription="Meet the amazing sponsors supporting Vibe Code Utah's humanitarian hackathon."
+>
+  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10"></div>
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 blur-3xl rounded-full"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 blur-3xl rounded-full"></div>
+
+      <div class="max-w-6xl mx-auto px-4 py-16 sm:py-24 relative">
+        <div class="text-center">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 rounded-full text-sm font-semibold mb-6">
+            <Heart size={16} class="text-pink-500" />
+            Thank You to Our Sponsors
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-neutral-900 dark:text-white mb-6">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500">
+              Fueling Humanitarian Tech
+            </span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto mb-8">
+            These incredible organizations are making Vibe Code Utah possible. Their support directly funds prizes for teams building technology that makes a difference.
+          </p>
+
+          <!-- Total Raised Badge -->
+          <div class="inline-flex items-center gap-3 px-6 py-4 bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-purple-200 dark:border-purple-500/30">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 flex items-center justify-center">
+              <DollarSign size={24} class="text-white" />
+            </div>
+            <div class="text-left">
+              <div class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500">
+                ${totalRaised.toLocaleString()}
+              </div>
+              <div class="text-sm text-neutral-500 dark:text-neutral-400">Total Sponsored</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sponsors Grid -->
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sponsors.map((sponsor) => (
+          <a
+            href={`/sponsors/${sponsor.slug}`}
+            class="group bg-white dark:bg-neutral-900 rounded-2xl p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+          >
+            <!-- Logo Area -->
+            <div class="w-full h-32 mb-6 flex items-center justify-center">
+              {sponsor.logo ? (
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  class="max-w-full max-h-full object-contain"
+                />
+              ) : (
+                <div class={`w-24 h-24 rounded-2xl bg-gradient-to-br ${sponsor.color} flex items-center justify-center shadow-lg`}>
+                  <span class="text-3xl font-black text-white">
+                    {sponsor.name.split(' ').map(w => w[0]).join('').slice(0, 2)}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <!-- Sponsor Info -->
+            <div class="text-center">
+              <div class="inline-block px-3 py-1 bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 rounded-full text-xs font-semibold mb-3">
+                {sponsor.tier} Sponsor
+              </div>
+
+              <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                {sponsor.name}
+              </h3>
+
+              <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-2">
+                {sponsor.description}
+              </p>
+
+              {sponsor.note && (
+                <p class="text-xs text-green-600 dark:text-green-400 font-medium mb-4">
+                  {sponsor.note}
+                </p>
+              )}
+
+              <div class="flex items-center justify-between pt-4 border-t border-neutral-200 dark:border-neutral-700">
+                <span class={`text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${sponsor.color}`}>
+                  ${sponsor.amount.toLocaleString()}
+                </span>
+                <span class="flex items-center gap-1 text-sm text-purple-600 dark:text-purple-400 font-medium group-hover:gap-2 transition-all">
+                  View Details
+                  <ArrowRight size={16} class="group-hover:translate-x-1 transition-transform" />
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Become a Sponsor CTA -->
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <div class="bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-orange-500/10 dark:from-purple-500/20 dark:via-pink-500/20 dark:to-orange-500/20 rounded-3xl p-8 sm:p-12 border border-purple-200 dark:border-purple-500/30 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white mb-4">
+          Want to Join These Amazing Sponsors?
+        </h2>
+        <p class="text-neutral-600 dark:text-neutral-300 mb-8 max-w-xl mx-auto">
+          Your sponsorship directly funds prizes for teams building humanitarian technology. Every dollar goes toward making a real difference.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/#sponsors"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:opacity-90 transition-opacity"
+          >
+            <DollarSign size={20} />
+            Become a Sponsor
+          </a>
+          <a
+            href="/"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-purple-400 dark:border-purple-500 text-purple-700 dark:text-purple-300 font-bold rounded-xl hover:bg-purple-500/10 transition-colors"
+          >
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</MainLayout>
