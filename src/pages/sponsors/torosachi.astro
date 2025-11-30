@@ -8,13 +8,13 @@ const sponsor = {
   name: "ToroSachi",
   amount: 2500,
   logo: "/images/sponsors/torosachi.png",
-  website: "#",
-  description: "ToroSachi is a proud supporter of humanitarian technology initiatives in Utah.",
-  longDescription: `ToroSachi believes in the power of technology to create positive change in our communities. As a founding sponsor of Vibe Code Utah, they're committed to supporting the next generation of innovators building solutions for humanitarian causes.
+  website: "https://torosachi.com",
+  description: "ToroSachi is Shopify's native subscription platform, powering recurring revenue for e-commerce brands.",
+  longDescription: `ToroSachi is a powerful subscription management platform built natively for Shopify, helping brands create and manage subscription products with ease. Their platform enables merchants to build recurring revenue streams while providing customers with flexible subscription options.
 
-Their generous contribution helps fund prizes, provide resources for participating teams, and ensure that groundbreaking humanitarian tech projects can come to life.
+As a founding sponsor of Vibe Code Utah, ToroSachi demonstrates their commitment to supporting innovation and the tech community. Their generous contribution helps fund prizes and resources for teams building humanitarian technology solutions.
 
-ToroSachi's support demonstrates their commitment to making a real difference in areas like healthcare, human rights, environmental sustainability, and emergency response.`,
+ToroSachi's support reflects their belief in the power of technology to create positive change, both in e-commerce and in addressing real-world humanitarian challenges.`,
   features: [
     { icon: "Sparkles", text: "Innovation Supporter" },
     { icon: "Heart", text: "Humanitarian Focus" },
@@ -38,9 +38,9 @@ ToroSachi's support demonstrates their commitment to making a real difference in
         </a>
 
         <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          <!-- Logo Placeholder -->
-          <div class="w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl shadow-xl flex items-center justify-center p-6 border border-neutral-200 dark:border-neutral-700">
-            <span class="text-4xl sm:text-5xl font-black text-white">TS</span>
+          <!-- Logo -->
+          <div class="w-48 h-48 sm:w-64 sm:h-64 bg-white dark:bg-neutral-800 rounded-2xl shadow-xl flex items-center justify-center p-6 border border-neutral-200 dark:border-neutral-700">
+            <img src={sponsor.logo} alt={sponsor.name} class="max-w-full max-h-full object-contain" />
           </div>
 
           <!-- Info -->
@@ -54,10 +54,19 @@ ToroSachi's support demonstrates their commitment to making a real difference in
             <p class="text-lg text-neutral-600 dark:text-neutral-300 mb-6 max-w-xl">
               {sponsor.description}
             </p>
-            <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+            <div class="flex flex-wrap gap-4 justify-center md:justify-start items-center">
               <div class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
                 ${sponsor.amount.toLocaleString()}
               </div>
+              <a
+                href={sponsor.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold rounded-xl hover:opacity-90 transition-opacity"
+              >
+                Visit Website
+                <ExternalLink size={18} />
+              </a>
             </div>
           </div>
         </div>
