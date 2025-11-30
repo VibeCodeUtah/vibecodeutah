@@ -1,6 +1,6 @@
 ---
 import Section from "@components/Section.astro";
-import { Users, Globe, TrendingUp, Send, CheckCircle, Sparkles, Heart, Zap } from "lucide-astro";
+import { Users, Globe, TrendingUp, Send, CheckCircle, Sparkles, Heart, Zap, Shield, Eye, Award } from "lucide-astro";
 
 let showThankYou = false;
 
@@ -26,10 +26,12 @@ if (Astro.request.method === "POST") {
             Become a Sponsor
           </h3>
           <p class="text-neutral-600 dark:text-neutral-100 leading-relaxed">
-            <span class="text-orange-600 dark:text-orange-400 font-semibold">100%</span> of your contribution goes directly to the prize pool. Support the
-            developers building the next generation of humanitarian tools.
+            <span class="text-orange-600 dark:text-orange-400 font-semibold">100%</span> of your contribution goes directly to the prize pool—no fees, no overhead, no exceptions. Every dollar you give lands in a builder's hands.
           </p>
-          <p class="text-neutral-500 dark:text-neutral-300 mt-4 text-sm">
+          <p class="text-neutral-600 dark:text-neutral-300 mt-3 text-sm leading-relaxed">
+            We track all contributions publicly and provide regular updates on the total prize pool. Your impact is transparent, measurable, and direct.
+          </p>
+          <p class="text-neutral-500 dark:text-neutral-400 mt-4 text-sm">
             Sponsors over <span class="text-orange-600 dark:text-orange-400 font-semibold">$1,000</span> get their logo featured on the Grand Finale stream and
             this page.
           </p>
@@ -74,6 +76,22 @@ if (Astro.request.method === "POST") {
 
     <!-- Right Column - Form -->
     <div class="relative">
+      <!-- Trust Badges -->
+      <div class="mb-6 grid grid-cols-3 gap-3">
+        <div class="bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30 rounded-xl p-3 flex flex-col items-center justify-center text-center">
+          <Shield class="text-green-600 dark:text-green-400 mb-1" size={20} />
+          <span class="text-xs font-bold text-green-700 dark:text-green-300">100% to Prizes</span>
+        </div>
+        <div class="bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/30 rounded-xl p-3 flex flex-col items-center justify-center text-center">
+          <Eye class="text-blue-600 dark:text-blue-400 mb-1" size={20} />
+          <span class="text-xs font-bold text-blue-700 dark:text-blue-300">Transparent</span>
+        </div>
+        <div class="bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/30 rounded-xl p-3 flex flex-col items-center justify-center text-center">
+          <Award class="text-purple-600 dark:text-purple-400 mb-1" size={20} />
+          <span class="text-xs font-bold text-purple-700 dark:text-purple-300">Tax Deductible</span>
+        </div>
+      </div>
+
       <!-- Glowing border effect -->
       <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 rounded-3xl blur opacity-10 dark:opacity-20"></div>
 
@@ -187,9 +205,15 @@ if (Astro.request.method === "POST") {
                 </span>
               </button>
 
-              <p class="text-xs text-center text-neutral-500 dark:text-neutral-600 mt-4">
-                We'll reach out to discuss sponsorship details.
-              </p>
+              <!-- Trust messaging -->
+              <div class="mt-5 pt-5 border-t border-neutral-200 dark:border-neutral-700">
+                <div class="flex items-start gap-3 text-xs text-neutral-600 dark:text-neutral-400">
+                  <Shield class="text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" size={16} />
+                  <p class="leading-relaxed">
+                    <span class="font-bold text-neutral-900 dark:text-white">Transparent fund tracking:</span> All contributions are publicly tracked. 100% goes directly to prizes—no administrative fees, no overhead. We'll provide updates on total prize pool and distribution.
+                  </p>
+                </div>
+              </div>
             </form>
           )
         }
