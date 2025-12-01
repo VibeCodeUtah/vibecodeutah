@@ -7,43 +7,55 @@
   }
 }
 
-/* Dark mode colors. */
+/* Dark mode colors - Vibrant Hackathon Vibe */
 :root {
-  --border: hsla(var(--border-neutral), 0.4);
-  --backdrop-color: #272727cc;
-  --sl-color-accent: #ff801f;
-  --sl-color-accent-high: #ffa057;
-  --sl-color-accent-low: #562800;
-  --sl-color-black: #181818;
-  --sl-color-gray-1: #eee;
-  --sl-color-gray-2: #c2c2c2;
-  --sl-color-gray-3: #8b8b8b;
-  --sl-color-gray-4: #585858;
-  --sl-color-gray-5: #383838;
-  --sl-color-gray-6: #272727;
+  --border: hsla(var(--border-purple), 0.4);
+  --backdrop-color: #0f0a1acc;
+  --sl-color-accent: #a855f7;
+  --sl-color-accent-high: #c084fc;
+  --sl-color-accent-low: #581c87;
+  --sl-color-black: #0f0a1a;
+  --sl-color-gray-1: #f0e6ff;
+  --sl-color-gray-2: #c4b5fd;
+  --sl-color-gray-3: #9b8acd;
+  --sl-color-gray-4: #6b5b95;
+  --sl-color-gray-5: #3d2e5c;
+  --sl-color-gray-6: #1e1433;
   --sl-color-white: #fff;
-  --list-marker-color: #fb923c;
-  --border-neutral: 0, 0%, 25.1%;
+  --list-marker-color: #a855f7;
+  --border-purple: 270, 50%, 30%;
+
+  /* Vibe gradient colors */
+  --vibe-cyan: #06b6d4;
+  --vibe-purple: #a855f7;
+  --vibe-orange: #f97316;
+  --vibe-gradient: linear-gradient(135deg, var(--vibe-cyan), var(--vibe-purple), var(--vibe-orange));
 }
 
-/* Light mode colors. */
+/* Light mode colors - Vibrant Hackathon Vibe */
 :root[data-theme="light"] {
-  --border: hsla(var(--border-yellow), 0.4);
-  --backdrop-color: #f6f6f699;
-  --sl-color-accent: #b73d00;
-  --sl-color-accent-high: #562800;
-  --sl-color-accent-low: #ffa057;
+  --border: hsla(var(--border-purple-light), 0.5);
+  --backdrop-color: #faf5ffcc;
+  --sl-color-accent: #9333ea;
+  --sl-color-accent-high: #581c87;
+  --sl-color-accent-low: #e9d5ff;
   --sl-color-black: #fff;
-  --sl-color-gray-1: #272727;
-  --sl-color-gray-2: #383838;
-  --sl-color-gray-3: #585858;
-  --sl-color-gray-4: #8b8b8b;
-  --sl-color-gray-5: #c2c2c2;
-  --sl-color-gray-6: #eee;
-  --sl-color-gray-7: #f6f6f6;
-  --sl-color-white: #181818;
-  --list-marker-color: #fb923c;
-  --border-yellow: 54.9, 96.7%, 88%;
+  --sl-color-gray-1: #1e1433;
+  --sl-color-gray-2: #3d2e5c;
+  --sl-color-gray-3: #6b5b95;
+  --sl-color-gray-4: #9b8acd;
+  --sl-color-gray-5: #ddd6fe;
+  --sl-color-gray-6: #f3e8ff;
+  --sl-color-gray-7: #faf5ff;
+  --sl-color-white: #1e1433;
+  --list-marker-color: #9333ea;
+  --border-purple-light: 270, 60%, 85%;
+
+  /* Vibe gradient colors */
+  --vibe-cyan: #0891b2;
+  --vibe-purple: #9333ea;
+  --vibe-orange: #ea580c;
+  --vibe-gradient: linear-gradient(135deg, var(--vibe-cyan), var(--vibe-purple), var(--vibe-orange));
 }
 
 header {
@@ -116,30 +128,97 @@ article.card {
   border-color: var(--sl-color-gray-4) !important;
 }
 
+/* Vibrant aside styles */
 .starlight-aside--tip {
-  background: linear-gradient(45deg, #ff512f, #f09819);
-  border: none;
-  border-radius: 0.5rem;
-  color: #66350c;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.starlight-aside--tip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--vibe-orange), var(--vibe-purple));
 }
 
 .starlight-aside--note {
-  background: linear-gradient(45deg, #00b4db, #2193b0);
-  border: none;
-  border-radius: 0.5rem;
-  color: #004558;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.starlight-aside--note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--vibe-cyan), var(--vibe-purple));
+}
+
+.starlight-aside--caution {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.starlight-aside--caution::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--vibe-purple), #ec4899);
+}
+
+.starlight-aside--danger {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(249, 115, 22, 0.15));
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.starlight-aside--danger::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ef4444, var(--vibe-orange));
 }
 
 .starlight-aside__icon {
-  transform: scale(0.8);
+  transform: scale(0.85);
 }
 
 .starlight-aside--tip .starlight-aside__title {
-  color: #ffe0c2;
+  color: var(--vibe-orange);
 }
 
 .starlight-aside--note .starlight-aside__title {
-  color: #bbf3fef7;
+  color: var(--vibe-cyan);
+}
+
+.starlight-aside--caution .starlight-aside__title {
+  color: var(--vibe-purple);
+}
+
+.starlight-aside--danger .starlight-aside__title {
+  color: #ef4444;
 }
 
 .sl-markdown-content ul:not(:where(.not-content *)) {
@@ -188,4 +267,259 @@ article.card {
   header.header {
     padding-inline: 1.5rem !important;
   }
+}
+
+/* ========================================
+   VIBE HACKATHON ENHANCEMENTS
+   ======================================== */
+
+/* Hero section gradient background */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(249, 115, 22, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero title gradient */
+.hero h1 {
+  background: linear-gradient(135deg, var(--vibe-cyan), var(--vibe-purple), var(--vibe-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Hero tagline */
+.hero .tagline {
+  color: var(--sl-color-gray-2);
+}
+
+/* Primary action button - gradient style */
+.hero .action.primary {
+  background: linear-gradient(135deg, var(--vibe-cyan), var(--vibe-purple), var(--vibe-orange));
+  background-size: 200% 200%;
+  border: none;
+  color: white !important;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .action.primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.hero .action.primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 30px rgba(168, 85, 247, 0.4),
+    0 0 20px rgba(6, 182, 212, 0.3);
+  animation: gradient-shift 3s ease infinite;
+}
+
+.hero .action.primary:hover::before {
+  transform: translateX(100%);
+}
+
+/* Secondary action button */
+.hero .action.minimal {
+  border: 2px solid var(--vibe-purple);
+  color: var(--vibe-purple);
+  transition: all 0.3s ease;
+}
+
+.hero .action.minimal:hover {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: var(--vibe-cyan);
+  color: var(--vibe-cyan);
+  transform: translateY(-2px);
+}
+
+/* Enhanced cards with gradient borders */
+article.card {
+  background: var(--sl-color-bg);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+article.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--vibe-cyan), var(--vibe-purple), var(--vibe-orange));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+article.card:hover::before {
+  opacity: 1;
+}
+
+article.card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 10px 40px rgba(168, 85, 247, 0.15),
+    0 0 20px rgba(6, 182, 212, 0.1);
+}
+
+/* Card icons with gradient */
+article.card .icon {
+  color: var(--vibe-purple);
+}
+
+article.card:nth-child(1) .icon { color: var(--vibe-cyan); }
+article.card:nth-child(2) .icon { color: var(--vibe-orange); }
+article.card:nth-child(3) .icon { color: var(--vibe-purple); }
+article.card:nth-child(4) .icon { color: #ec4899; }
+
+/* Card titles */
+article.card .title {
+  color: var(--sl-color-white);
+  font-weight: 700;
+}
+
+/* Sidebar enhancements */
+#starlight__sidebar {
+  background: linear-gradient(180deg, var(--sl-color-bg) 0%, rgba(168, 85, 247, 0.03) 100%);
+}
+
+.sidebar-content a[aria-current="page"] {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), transparent);
+  border-left: 3px solid var(--vibe-purple);
+  color: var(--vibe-purple);
+}
+
+/* Right sidebar (table of contents) */
+.right-sidebar a:hover {
+  color: var(--vibe-purple);
+}
+
+/* Code blocks */
+pre {
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 0.75rem;
+}
+
+pre:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+/* Links */
+.sl-markdown-content a:not(.card) {
+  color: var(--vibe-purple);
+  text-decoration-color: rgba(168, 85, 247, 0.3);
+  transition: all 0.2s ease;
+}
+
+.sl-markdown-content a:not(.card):hover {
+  color: var(--vibe-cyan);
+  text-decoration-color: var(--vibe-cyan);
+}
+
+/* Pagination links */
+.pagination-links a {
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  transition: all 0.3s ease;
+}
+
+.pagination-links a:hover {
+  border-color: var(--vibe-purple);
+  background: rgba(168, 85, 247, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Search */
+site-search button {
+  border: 1px solid rgba(168, 85, 247, 0.3) !important;
+  transition: all 0.3s ease;
+}
+
+site-search button:hover {
+  border-color: var(--vibe-purple) !important;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sl-color-gray-6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--vibe-cyan), var(--vibe-purple));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--vibe-purple), var(--vibe-orange));
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(168, 85, 247, 0.3);
+  color: var(--sl-color-white);
+}
+
+/* Animated gradient border for main content */
+.main-frame {
+  position: relative;
+}
+
+.main-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--vibe-cyan), var(--vibe-purple), var(--vibe-orange), var(--vibe-cyan));
+  background-size: 300% 100%;
+  animation: gradient-flow 8s linear infinite;
+}
+
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
 }
