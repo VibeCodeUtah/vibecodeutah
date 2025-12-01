@@ -151,23 +151,49 @@ const previewPitch = team.elevatorPitch.length > 120
       </button>
     </div>
 
-    <!-- Team members -->
+    <!-- Team members or Adopt CTA -->
     <div class="border-t border-neutral-200 dark:border-neutral-700 pt-4 mt-6">
-      <p class="text-xs text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-3 text-center">
-        Team Members
-      </p>
-      <div class="flex flex-wrap justify-center gap-2">
-        {team.members.map((member) => (
-          <div class="flex items-center gap-2 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-700/50 rounded-full">
-            <div class={`w-6 h-6 rounded-full ${colors.badge} flex items-center justify-center text-xs font-bold`}>
-              {member.charAt(0).toUpperCase()}
-            </div>
-            <span class="text-sm text-neutral-700 dark:text-neutral-200">
-              {member}
+      {team.isExample ? (
+        <!-- Example Team - Adopt CTA -->
+        <div class="text-center">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 border border-dashed border-purple-400/50 mb-3">
+            <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+              Example Team
             </span>
           </div>
-        ))}
-      </div>
+          <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">
+            This team is waiting for heroes like you!
+          </p>
+          <a
+            href="/register"
+            class={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white font-semibold text-sm hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25`}
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            Adopt This Team
+          </a>
+        </div>
+      ) : (
+        <!-- Real Team - Show Members -->
+        <>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-3 text-center">
+            Team Members
+          </p>
+          <div class="flex flex-wrap justify-center gap-2">
+            {team.members.map((member) => (
+              <div class="flex items-center gap-2 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-700/50 rounded-full">
+                <div class={`w-6 h-6 rounded-full ${colors.badge} flex items-center justify-center text-xs font-bold`}>
+                  {member.charAt(0).toUpperCase()}
+                </div>
+                <span class="text-sm text-neutral-700 dark:text-neutral-200">
+                  {member}
+                </span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   </div>
 </article>
