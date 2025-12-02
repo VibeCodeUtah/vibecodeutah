@@ -195,7 +195,7 @@ const previewPitch = team.elevatorPitch.length > 120
             {adoptMessage}
           </p>
           <a
-            href="/register"
+            href={`/join?team=${team.id}`}
             class="adopt-btn group/btn relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30"
           >
             <!-- Pulse ring animation -->

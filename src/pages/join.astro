@@ -2,10 +2,18 @@
 import MainLayout from "@/layouts/MainLayout.astro";
 import Section from "@components/Section.astro";
 import { SITE } from "@data/constants";
-import { Rocket, Users, Lightbulb, Mail, Phone, ChevronRight } from "lucide-astro";
+import teams from "@data/teams";
+import { Rocket, Users, Lightbulb, Mail, Phone, ChevronRight, Star, Sparkles } from "lucide-astro";
 
 // Form submits to our API which saves to Supabase
 const formAction = "/api/register";
+
+// Get adoptable teams
+const adoptableTeams = teams.filter(t => t.isExample);
+
+// Check if a team was pre-selected via query param
+const selectedTeamId = Astro.url.searchParams.get('team');
+const selectedTeam = selectedTeamId ? teams.find(t => t.id === selectedTeamId) : null;
 ---
 
 <MainLayout
@@ -71,9 +79,120 @@ const formAction = "/api/register";
       >
         <!-- Hidden field to identify form type -->
         <input type="hidden" name="_subject" value="New Team Registration - Vibe Code Utah" />
+        <input type="hidden" name="adopted-team-id" id="adopted-team-id" value={selectedTeamId || ""} />
 
-        <!-- Team Name -->
-        <div>
+        <!-- Team Selection: Adopt or Create -->
+        <div class="space-y-4">
+          <label class="block text-sm font-bold text-neutral-700 dark:text-neutral-200">
+            How would you like to join?
+          </label>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <!-- Adopt a Team Option -->
+            <label
+              class={`team-option-card relative flex flex-col p-5 rounded-xl border-2 cursor-pointer transition-all duration-300 ${selectedTeam ? 'border-purple-500 bg-purple-50 dark:bg-purple-500/10' : 'border-neutral-200 dark:border-neutral-600 hover:border-purple-300 dark:hover:border-purple-500/50'}`}
+            >
+              <input
+                type="radio"
+                name="join-type"
+                value="adopt"
+                class="sr-only"
+                checked={!!selectedTeam}
+                id="join-adopt"
+              />
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 flex items-center justify-center text-white">
+                  <Star size={20} />
+                </div>
+                <div>
+                  <span class="font-bold text-neutral-900 dark:text-white">Adopt a Team</span>
+                  <span class="ml-2 px-2 py-0.5 text-xs font-semibold rounded-full bg-purple-100 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400">
+                    {adoptableTeams.length} available
+                  </span>
+                </div>
+              </div>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">
+                Grab an existing idea with a cool name and project pitch already set up!
+              </p>
+              <div class="absolute top-3 right-3 w-5 h-5 rounded-full border-2 border-purple-500 flex items-center justify-center check-indicator">
+                <div class="w-2.5 h-2.5 rounded-full bg-purple-500 scale-0 transition-transform"></div>
+              </div>
+            </label>
+
+            <!-- Create Your Own Option -->
+            <label
+              class={`team-option-card relative flex flex-col p-5 rounded-xl border-2 cursor-pointer transition-all duration-300 ${!selectedTeam ? 'border-orange-500 bg-orange-50 dark:bg-orange-500/10' : 'border-neutral-200 dark:border-neutral-600 hover:border-orange-300 dark:hover:border-orange-500/50'}`}
+            >
+              <input
+                type="radio"
+                name="join-type"
+                value="create"
+                class="sr-only"
+                checked={!selectedTeam}
+                id="join-create"
+              />
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center text-white">
+                  <Sparkles size={20} />
+                </div>
+                <span class="font-bold text-neutral-900 dark:text-white">Create Your Own</span>
+              </div>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">
+                Start fresh with your own team name and project idea!
+              </p>
+              <div class="absolute top-3 right-3 w-5 h-5 rounded-full border-2 border-orange-500 flex items-center justify-center check-indicator">
+                <div class="w-2.5 h-2.5 rounded-full bg-orange-500 scale-0 transition-transform"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Adopt Team Selector (shown when adopting) -->
+        <div id="adopt-selector" class={selectedTeam ? '' : 'hidden'}>
+          <label for="adopt-team" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
+            Select a Team to Adopt <span class="text-red-500">*</span>
+          </label>
+          <select
+            name="adopt-team"
+            id="adopt-team"
+            class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all"
+          >
+            <option value="">Choose a team...</option>
+            {adoptableTeams.map(team => (
+              <option
+                value={team.id}
+                selected={team.id === selectedTeamId}
+                data-name={team.name}
+                data-pitch={team.elevatorPitch}
+                data-project={team.projectName}
+              >
+                {team.name} ({team.category})
+              </option>
+            ))}
+          </select>
+
+          <!-- Selected Team Preview -->
+          {selectedTeam && (
+            <div id="team-preview" class="mt-4 p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 border border-purple-300 dark:border-purple-500/50">
+              <div class="flex items-start gap-4">
+                <img
+                  src={selectedTeam.tokenImage}
+                  alt={selectedTeam.name}
+                  class="w-16 h-16 rounded-full object-cover ring-2 ring-purple-400"
+                  id="preview-image"
+                />
+                <div class="flex-1">
+                  <h4 class="font-bold text-neutral-900 dark:text-white" id="preview-name">{selectedTeam.name}</h4>
+                  <p class="text-sm text-purple-600 dark:text-purple-400 mb-1" id="preview-project">Project: {selectedTeam.projectName}</p>
+                  <p class="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2" id="preview-pitch">{selectedTeam.elevatorPitch}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <!-- Team Name (shown when creating own team) -->
+        <div id="team-name-section" class={selectedTeam ? 'hidden' : ''}>
           <label for="team-name" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
             Team Name <span class="text-red-500">*</span>
           </label>
@@ -81,7 +200,6 @@ const formAction = "/api/register";
             type="text"
             name="team-name"
             id="team-name"
-            required
             class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-purple-500 dark:focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all text-lg"
             placeholder="The Hot Yetis, Hungry Hippos, etc."
           />
@@ -136,8 +254,8 @@ const formAction = "/api/register";
           <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400">One name per line. Solo hackers welcome too!</p>
         </div>
 
-        <!-- Project Idea -->
-        <div>
+        <!-- Project Idea (shown when creating own team) -->
+        <div id="project-idea-section" class={selectedTeam ? 'hidden' : ''}>
           <label for="project-idea" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
             Your Idea (Elevator Pitch)
           </label>
@@ -176,3 +294,137 @@ const formAction = "/api/register";
     </div>
   </div>
 </MainLayout>
+
+<script define:vars={{ teamsData: adoptableTeams }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const joinAdopt = document.getElementById('join-adopt');
+    const joinCreate = document.getElementById('join-create');
+    const adoptSelector = document.getElementById('adopt-selector');
+    const teamNameSection = document.getElementById('team-name-section');
+    const projectIdeaSection = document.getElementById('project-idea-section');
+    const adoptTeamSelect = document.getElementById('adopt-team');
+    const adoptedTeamIdInput = document.getElementById('adopted-team-id');
+    const teamNameInput = document.getElementById('team-name');
+    const optionCards = document.querySelectorAll('.team-option-card');
+
+    // Team data from server
+    const teams = teamsData;
+
+    function updateOptionCardStyles() {
+      optionCards.forEach(card => {
+        const radio = card.querySelector('input[type="radio"]');
+        const isAdopt = radio.id === 'join-adopt';
+        const checkDot = card.querySelector('.check-indicator div');
+
+        if (radio.checked) {
+          card.classList.remove('border-neutral-200', 'dark:border-neutral-600');
+          card.classList.add(
+            isAdopt ? 'border-purple-500' : 'border-orange-500',
+            isAdopt ? 'bg-purple-50' : 'bg-orange-50',
+            isAdopt ? 'dark:bg-purple-500/10' : 'dark:bg-orange-500/10'
+          );
+          checkDot.classList.add('scale-100');
+          checkDot.classList.remove('scale-0');
+        } else {
+          card.classList.add('border-neutral-200', 'dark:border-neutral-600');
+          card.classList.remove(
+            'border-purple-500', 'border-orange-500',
+            'bg-purple-50', 'bg-orange-50',
+            'dark:bg-purple-500/10', 'dark:bg-orange-500/10'
+          );
+          checkDot.classList.remove('scale-100');
+          checkDot.classList.add('scale-0');
+        }
+      });
+    }
+
+    function showAdoptMode() {
+      adoptSelector?.classList.remove('hidden');
+      teamNameSection?.classList.add('hidden');
+      projectIdeaSection?.classList.add('hidden');
+      if (teamNameInput) teamNameInput.removeAttribute('required');
+    }
+
+    function showCreateMode() {
+      adoptSelector?.classList.add('hidden');
+      teamNameSection?.classList.remove('hidden');
+      projectIdeaSection?.classList.remove('hidden');
+      if (teamNameInput) teamNameInput.setAttribute('required', 'required');
+      if (adoptedTeamIdInput) adoptedTeamIdInput.value = '';
+    }
+
+    function updateTeamPreview(teamId) {
+      const team = teams.find(t => t.id === teamId);
+      let preview = document.getElementById('team-preview');
+
+      if (!team) {
+        if (preview) preview.remove();
+        if (adoptedTeamIdInput) adoptedTeamIdInput.value = '';
+        return;
+      }
+
+      if (adoptedTeamIdInput) adoptedTeamIdInput.value = teamId;
+
+      if (!preview) {
+        preview = document.createElement('div');
+        preview.id = 'team-preview';
+        preview.className = 'mt-4 p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 border border-purple-300 dark:border-purple-500/50';
+        adoptSelector?.appendChild(preview);
+      }
+
+      preview.innerHTML = `
+        <div class="flex items-start gap-4">
+          <img
+            src="${team.tokenImage}"
+            alt="${team.name}"
+            class="w-16 h-16 rounded-full object-cover ring-2 ring-purple-400"
+          />
+          <div class="flex-1">
+            <h4 class="font-bold text-neutral-900 dark:text-white">${team.name}</h4>
+            <p class="text-sm text-purple-600 dark:text-purple-400 mb-1">Project: ${team.projectName}</p>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">${team.elevatorPitch}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // Event listeners
+    joinAdopt?.addEventListener('change', () => {
+      showAdoptMode();
+      updateOptionCardStyles();
+    });
+
+    joinCreate?.addEventListener('change', () => {
+      showCreateMode();
+      updateOptionCardStyles();
+    });
+
+    adoptTeamSelect?.addEventListener('change', (e) => {
+      updateTeamPreview(e.target.value);
+    });
+
+    // Initialize styles
+    updateOptionCardStyles();
+  });
+</script>
+
+<style>
+  .team-option-card {
+    transition: all 0.3s ease;
+  }
+
+  .team-option-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .check-indicator div {
+    transition: transform 0.2s ease;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
