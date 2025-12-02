@@ -8,6 +8,9 @@ import { SITE } from "@data/constants";
 // Get unique categories from actual teams + "All"
 const uniqueCategories = [...new Set(teams.map(t => t.category))];
 const categories = ["All", ...uniqueCategories.sort()];
+
+// Count adoptable teams
+const adoptableCount = teams.filter(t => t.isExample).length;
 ---
 
 <MainLayout
@@ -26,6 +29,39 @@ const categories = ["All", ...uniqueCategories.sort()];
   <!-- Filter and Sort Controls -->
   <div class="max-w-6xl mx-auto px-4 md:px-8 pb-8">
     <div class="bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-6 mb-8">
+      <!-- Adoptable Teams Banner -->
+      {adoptableCount > 0 && (
+        <div class="mb-6 p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 border border-dashed border-purple-400/50">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="flex -space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-lg">
+                  {adoptableCount}
+                </div>
+              </div>
+              <div>
+                <p class="font-semibold text-neutral-800 dark:text-white">
+                  Teams Available for Adoption!
+                </p>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">
+                  Grab an existing idea and make it your own
+                </p>
+              </div>
+            </div>
+            <button
+              id="show-adoptable-btn"
+              class="adoptable-filter-btn flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white shadow-lg hover:opacity-90 transition-all duration-300 hover:scale-105"
+              data-filter="adoptable"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+              </svg>
+              Show Adoptable Teams
+            </button>
+          </div>
+        </div>
+      )}
+
       <!-- Filter Buttons -->
       <div class="mb-6">
         <h3 class="text-sm font-semibold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider mb-3">
@@ -160,40 +196,17 @@ const categories = ["All", ...uniqueCategories.sort()];
   // Filter and sort functionality
   document.addEventListener("DOMContentLoaded", () => {
     const filterButtons = document.querySelectorAll(".filter-btn");
+    const adoptableBtn = document.getElementById("show-adoptable-btn");
     const sortSelect = document.getElementById("sort-select") as HTMLSelectElement;
     const teamsGrid = document.getElementById("teams-grid");
     const noResults = document.getElementById("no-results");
     let currentCategory = "All";
+    let showOnlyAdoptable = false;
 
-    // Filter functionality
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        // Update active state
-        filterButtons.forEach((btn) => {
-          btn.classList.remove(
-            "bg-gradient-to-r",
-            "from-cyan-500",
-            "via-purple-500",
-            "to-orange-500",
-            "text-white",
-            "shadow-lg",
-            "active"
-          );
-          btn.classList.add(
-            "bg-neutral-100",
-            "dark:bg-neutral-700",
-            "text-neutral-700",
-            "dark:text-neutral-300"
-          );
-        });
-
-        button.classList.remove(
-          "bg-neutral-100",
-          "dark:bg-neutral-700",
-          "text-neutral-700",
-          "dark:text-neutral-300"
-        );
-        button.classList.add(
+    // Helper to update filter button styles
+    function updateFilterButtonStyles(activeButton: Element | null) {
+      filterButtons.forEach((btn) => {
+        btn.classList.remove(
           "bg-gradient-to-r",
           "from-cyan-500",
           "via-purple-500",
@@ -202,11 +215,82 @@ const categories = ["All", ...uniqueCategories.sort()];
           "shadow-lg",
           "active"
         );
+        btn.classList.add(
+          "bg-neutral-100",
+          "dark:bg-neutral-700",
+          "text-neutral-700",
+          "dark:text-neutral-300"
+        );
+      });
 
-        // Filter teams
+      if (activeButton) {
+        activeButton.classList.remove(
+          "bg-neutral-100",
+          "dark:bg-neutral-700",
+          "text-neutral-700",
+          "dark:text-neutral-300"
+        );
+        activeButton.classList.add(
+          "bg-gradient-to-r",
+          "from-cyan-500",
+          "via-purple-500",
+          "to-orange-500",
+          "text-white",
+          "shadow-lg",
+          "active"
+        );
+      }
+    }
+
+    // Helper to update adoptable button style
+    function updateAdoptableButtonStyle() {
+      if (!adoptableBtn) return;
+
+      if (showOnlyAdoptable) {
+        adoptableBtn.innerHTML = `
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          Show All Teams
+        `;
+      } else {
+        adoptableBtn.innerHTML = `
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+          </svg>
+          Show Adoptable Teams
+        `;
+      }
+    }
+
+    // Filter functionality
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        showOnlyAdoptable = false;
+        updateAdoptableButtonStyle();
+        updateFilterButtonStyles(button);
         currentCategory = button.getAttribute("data-category") || "All";
         filterTeams();
       });
+    });
+
+    // Adoptable filter functionality
+    adoptableBtn?.addEventListener("click", () => {
+      showOnlyAdoptable = !showOnlyAdoptable;
+      updateAdoptableButtonStyle();
+
+      if (showOnlyAdoptable) {
+        // Remove active state from category buttons when showing adoptable
+        updateFilterButtonStyles(null);
+        currentCategory = "All";
+      } else {
+        // Reset to "All" filter
+        const allButton = document.querySelector('.filter-btn[data-category="All"]');
+        updateFilterButtonStyles(allButton);
+        currentCategory = "All";
+      }
+
+      filterTeams();
     });
 
     // Sort functionality
@@ -220,8 +304,21 @@ const categories = ["All", ...uniqueCategories.sort()];
 
       teamCards.forEach((card) => {
         const cardCategory = card.getAttribute("data-category");
+        const isExample = card.getAttribute("data-is-example") === "true";
 
-        if (currentCategory === "All" || cardCategory === currentCategory) {
+        let shouldShow = true;
+
+        // Category filter
+        if (currentCategory !== "All" && cardCategory !== currentCategory) {
+          shouldShow = false;
+        }
+
+        // Adoptable filter
+        if (showOnlyAdoptable && !isExample) {
+          shouldShow = false;
+        }
+
+        if (shouldShow) {
           (card as HTMLElement).style.display = "block";
           visibleCount++;
         } else {

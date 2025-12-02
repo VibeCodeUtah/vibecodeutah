@@ -70,6 +70,20 @@ const categoryColors = {
 
 const colors = categoryColors[team.category as keyof typeof categoryColors] || categoryColors.default;
 
+// Category-specific adoption messages
+const adoptMessages: Record<string, string> = {
+  "Food Security": "Champion the fight against hunger!",
+  "Healthcare": "Help build healthier communities!",
+  "Education": "Empower minds, change futures!",
+  "Disaster Response": "Be ready when it matters most!",
+  "Economic Empowerment": "Build pathways to prosperity!",
+  "Environmental": "Protect our planet's future!",
+  "Accessibility": "Make the world accessible to all!",
+  "Human Rights": "Stand up for human dignity!",
+};
+
+const adoptMessage = adoptMessages[team.category] || "This team is waiting for heroes like you!";
+
 // Short preview of elevator pitch
 const previewPitch = team.elevatorPitch.length > 120
   ? team.elevatorPitch.substring(0, 117) + "..."
@@ -77,10 +91,20 @@ const previewPitch = team.elevatorPitch.length > 120
 ---
 
 <article
-  class={`team-card group relative p-6 rounded-2xl bg-white dark:bg-neutral-800 border ${colors.border} transition-all duration-500 hover:shadow-xl dark:hover:shadow-2xl`}
+  class={`team-card group relative p-6 rounded-2xl bg-white dark:bg-neutral-800 border ${colors.border} transition-all duration-500 hover:shadow-xl dark:hover:shadow-2xl overflow-hidden`}
   data-team-id={team.id}
   data-category={team.category}
+  data-is-example={team.isExample ? "true" : "false"}
 >
+  <!-- Corner ribbon for adoptable teams -->
+  {team.isExample && (
+    <div class="absolute -right-12 top-6 rotate-45 z-20">
+      <div class="adopt-ribbon bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white text-xs font-bold py-1.5 px-12 shadow-lg">
+        AVAILABLE!
+      </div>
+    </div>
+  )}
+
   <!-- Gradient overlay on hover -->
   <div
     class={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
@@ -157,21 +181,29 @@ const previewPitch = team.elevatorPitch.length > 120
         <!-- Example Team - Adopt CTA -->
         <div class="text-center">
           <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 border border-dashed border-purple-400/50 mb-3">
+            <svg class="w-4 h-4 text-purple-500 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+            </svg>
             <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-              Example Team
+              Looking for Heroes
             </span>
+            <svg class="w-4 h-4 text-purple-500 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+            </svg>
           </div>
-          <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-3">
-            This team is waiting for heroes like you!
+          <p class="text-sm text-neutral-600 dark:text-neutral-300 mb-4 font-medium">
+            {adoptMessage}
           </p>
           <a
             href="/register"
-            class={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white font-semibold text-sm hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25`}
+            class="adopt-btn group/btn relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30"
           >
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- Pulse ring animation -->
+            <span class="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 animate-ping opacity-20"></span>
+            <svg class="relative w-5 h-5 transition-transform duration-300 group-hover/btn:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
-            Adopt This Team
+            <span class="relative">Adopt This Team</span>
           </a>
         </div>
       ) : (
@@ -226,6 +258,57 @@ const previewPitch = team.elevatorPitch.length > 120
 
   .chevron-icon.rotated {
     transform: rotate(180deg);
+  }
+
+  /* Corner ribbon shimmer effect */
+  .adopt-ribbon {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .adopt-ribbon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Subtle pulse for adopt button - less aggressive than default ping */
+  .adopt-btn span.animate-ping {
+    animation: subtlePulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes subtlePulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.2;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.2;
+    }
   }
 </style>
 
