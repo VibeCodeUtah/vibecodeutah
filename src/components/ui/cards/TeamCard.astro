@@ -8,63 +8,63 @@ interface Props {
 
 const { team } = Astro.props;
 
-// Category color mapping
+// Category color mapping - simplified to neutral with orange accent
 const categoryColors = {
   "Food Security": {
-    border: "border-green-200 dark:border-green-500/50 hover:border-green-400",
-    badge: "bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-300",
-    gradient: "from-green-500/5 dark:from-green-500/10",
-    text: "text-green-600 dark:text-green-400",
-    ring: "ring-green-400/50",
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
+    badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
+    gradient: "from-orange-500/5 dark:from-orange-500/10",
+    text: "text-orange-600 dark:text-orange-400",
+    ring: "ring-orange-400/30",
   },
   "Healthcare": {
-    border: "border-cyan-200 dark:border-cyan-500/50 hover:border-cyan-400",
-    badge: "bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300",
-    gradient: "from-cyan-500/5 dark:from-cyan-500/10",
-    text: "text-cyan-600 dark:text-cyan-400",
-    ring: "ring-cyan-400/50",
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
+    badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
+    gradient: "from-orange-500/5 dark:from-orange-500/10",
+    text: "text-orange-600 dark:text-orange-400",
+    ring: "ring-orange-400/30",
   },
   "Education": {
-    border: "border-purple-200 dark:border-purple-500/50 hover:border-purple-400",
-    badge: "bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300",
-    gradient: "from-purple-500/5 dark:from-purple-500/10",
-    text: "text-purple-600 dark:text-purple-400",
-    ring: "ring-purple-400/50",
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
+    badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
+    gradient: "from-orange-500/5 dark:from-orange-500/10",
+    text: "text-orange-600 dark:text-orange-400",
+    ring: "ring-orange-400/30",
   },
   "Disaster Response": {
-    border: "border-orange-200 dark:border-orange-500/50 hover:border-orange-400",
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
     badge: "bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-300",
     gradient: "from-orange-500/5 dark:from-orange-500/10",
     text: "text-orange-600 dark:text-orange-400",
-    ring: "ring-orange-400/50",
+    ring: "ring-orange-400/30",
   },
   "Economic Empowerment": {
-    border: "border-yellow-200 dark:border-yellow-500/50 hover:border-yellow-400",
-    badge: "bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-300",
-    gradient: "from-yellow-500/5 dark:from-yellow-500/10",
-    text: "text-yellow-600 dark:text-yellow-400",
-    ring: "ring-yellow-400/50",
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
+    badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
+    gradient: "from-orange-500/5 dark:from-orange-500/10",
+    text: "text-orange-600 dark:text-orange-400",
+    ring: "ring-orange-400/30",
   },
   "Environmental": {
-    border: "border-teal-200 dark:border-teal-500/50 hover:border-teal-400",
-    badge: "bg-teal-100 dark:bg-teal-500/20 text-teal-700 dark:text-teal-300",
-    gradient: "from-teal-500/5 dark:from-teal-500/10",
-    text: "text-teal-600 dark:text-teal-400",
-    ring: "ring-teal-400/50",
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
+    badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
+    gradient: "from-orange-500/5 dark:from-orange-500/10",
+    text: "text-orange-600 dark:text-orange-400",
+    ring: "ring-orange-400/30",
   },
   "Accessibility": {
-    border: "border-indigo-200 dark:border-indigo-500/50 hover:border-indigo-400",
-    badge: "bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300",
-    gradient: "from-indigo-500/5 dark:from-indigo-500/10",
-    text: "text-indigo-600 dark:text-indigo-400",
-    ring: "ring-indigo-400/50",
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
+    badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
+    gradient: "from-orange-500/5 dark:from-orange-500/10",
+    text: "text-orange-600 dark:text-orange-400",
+    ring: "ring-orange-400/30",
   },
   default: {
-    border: "border-neutral-200 dark:border-neutral-600 hover:border-neutral-400",
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
     badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
     gradient: "from-neutral-500/5 dark:from-neutral-500/10",
     text: "text-neutral-600 dark:text-neutral-400",
-    ring: "ring-neutral-400/50",
+    ring: "ring-neutral-400/30",
   },
 };
 
@@ -99,7 +99,7 @@ const previewPitch = team.elevatorPitch.length > 120
   <!-- Corner ribbon for adoptable teams -->
   {team.isExample && (
     <div class="absolute -right-12 top-6 rotate-45 z-20">
-      <div class="adopt-ribbon bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white text-xs font-bold py-1.5 px-12 shadow-lg">
+      <div class="adopt-ribbon bg-orange-500 text-white text-xs font-bold py-1.5 px-12 shadow-lg">
         AVAILABLE!
       </div>
     </div>
@@ -117,7 +117,7 @@ const previewPitch = team.elevatorPitch.length > 120
     <div class="flex justify-center mb-6">
       <div class="relative">
         <!-- Glow effect -->
-        <div class={`absolute -inset-2 bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
+        <div class={`absolute -inset-2 bg-orange-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
         <!-- Token image -->
         <div class={`relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden ring-4 ${colors.ring} group-hover:ring-8 transition-all duration-300 bg-white dark:bg-neutral-900`}>
           <img
@@ -180,14 +180,14 @@ const previewPitch = team.elevatorPitch.length > 120
       {team.isExample ? (
         <!-- Example Team - Adopt CTA -->
         <div class="text-center">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 border border-dashed border-purple-400/50 mb-3">
-            <svg class="w-4 h-4 text-purple-500 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 dark:bg-orange-500/10 border border-dashed border-orange-400/50 mb-3">
+            <svg class="w-4 h-4 text-orange-500 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
             </svg>
-            <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+            <span class="text-xs font-semibold uppercase tracking-wider text-orange-600 dark:text-orange-400">
               Looking for Heroes
             </span>
-            <svg class="w-4 h-4 text-purple-500 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-orange-500 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
             </svg>
           </div>
@@ -196,10 +196,10 @@ const previewPitch = team.elevatorPitch.length > 120
           </p>
           <a
             href={`/join?team=${team.id}`}
-            class="adopt-btn group/btn relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30"
+            class="adopt-btn group/btn relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-orange-500 text-white font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-orange-500/30 hover:bg-orange-400"
           >
             <!-- Pulse ring animation -->
-            <span class="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 animate-ping opacity-20"></span>
+            <span class="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-20"></span>
             <svg class="relative w-5 h-5 transition-transform duration-300 group-hover/btn:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>

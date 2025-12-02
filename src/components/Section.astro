@@ -9,11 +9,12 @@ interface Props {
 
 const { title, subtitle, className = "", id = "", gradient = "none" } = Astro.props;
 
+// Simplified color mapping - all use orange accent for consistency
 const gradientColors = {
-  cyan: "from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400",
-  purple: "from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400",
-  orange: "from-orange-500 to-yellow-500 dark:from-orange-400 dark:to-yellow-400",
-  none: "from-cyan-500 via-purple-500 to-orange-500 dark:from-cyan-400 dark:via-purple-400 dark:to-orange-400",
+  cyan: "from-orange-500 to-orange-400 dark:from-orange-400 dark:to-orange-300",
+  purple: "from-orange-500 to-orange-400 dark:from-orange-400 dark:to-orange-300",
+  orange: "from-orange-500 to-orange-400 dark:from-orange-400 dark:to-orange-300",
+  none: "from-neutral-800 to-neutral-700 dark:from-white dark:to-neutral-200",
 };
 ---
 
