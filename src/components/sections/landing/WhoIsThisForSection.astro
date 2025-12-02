@@ -1,0 +1,169 @@
+---
+import { Code, Heart, Lightbulb, Users, Sparkles, GraduationCap } from "lucide-astro";
+
+const audiences = [
+  {
+    icon: "Code",
+    title: "Developers",
+    subtitle: "Any skill level",
+    description: "From first-timers to senior engineers. If you can write 'Hello World', you can build something that matters.",
+    color: "cyan",
+    examples: ["Junior devs wanting real-world experience", "Senior devs wanting to give back", "Self-taught coders ready to prove themselves"]
+  },
+  {
+    icon: "Lightbulb",
+    title: "Problem Solvers",
+    subtitle: "Ideas welcome",
+    description: "Got a solution to a real problem? We'll help you build it. No coding experience required to start.",
+    color: "purple",
+    examples: ["NGO workers who see gaps", "Healthcare pros with efficiency ideas", "Anyone frustrated by 'why doesn't this exist?'"]
+  },
+  {
+    icon: "Heart",
+    title: "Impact Seekers",
+    subtitle: "Code with conscience",
+    description: "Tired of building products that don't matter? Here's your chance to build something that actually helps people.",
+    color: "orange",
+    examples: ["Career changers seeking purpose", "Students wanting meaningful projects", "Tech workers ready to use skills for good"]
+  },
+];
+
+const notFor = [
+  "Looking to get rich quick",
+  "Want to build the next social media app",
+  "Think AI will do all the work"
+];
+---
+
+<section class="relative py-20 md:py-28 px-4 md:px-8 bg-white dark:bg-neutral-900 overflow-hidden" id="who-is-this-for">
+  <!-- Subtle background pattern -->
+  <div class="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0); background-size: 40px 40px;"></div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 text-sm font-semibold mb-6">
+        <Users size={16} />
+        Find Your Place
+      </span>
+      <h2 class="text-4xl md:text-5xl font-black text-neutral-900 dark:text-white mb-4">
+        Is This <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500">For You?</span>
+      </h2>
+      <p class="text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+        Spoiler: If you're reading this, probably yes.
+      </p>
+    </div>
+
+    <!-- Audience Cards -->
+    <div class="grid md:grid-cols-3 gap-6 mb-16">
+      {audiences.map((audience, index) => (
+        <div
+          class={`group relative p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-800 border-2 border-transparent hover:border-${audience.color}-400 dark:hover:border-${audience.color}-500/50 transition-all duration-500 hover:shadow-xl dark:hover:shadow-2xl hover:-translate-y-1`}
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <!-- Icon -->
+          <div class={`w-14 h-14 rounded-xl bg-gradient-to-br from-${audience.color}-500 to-${audience.color}-600 flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+            {audience.icon === "Code" && <Code size={28} />}
+            {audience.icon === "Lightbulb" && <Lightbulb size={28} />}
+            {audience.icon === "Heart" && <Heart size={28} />}
+          </div>
+
+          <!-- Title & Subtitle -->
+          <div class="mb-4">
+            <h3 class="text-2xl font-bold text-neutral-900 dark:text-white mb-1">
+              {audience.title}
+            </h3>
+            <span class={`text-sm font-semibold text-${audience.color}-600 dark:text-${audience.color}-400`}>
+              {audience.subtitle}
+            </span>
+          </div>
+
+          <!-- Description -->
+          <p class="text-neutral-600 dark:text-neutral-400 mb-5 leading-relaxed">
+            {audience.description}
+          </p>
+
+          <!-- Examples -->
+          <div class="space-y-2">
+            {audience.examples.map(example => (
+              <div class="flex items-start gap-2 text-sm text-neutral-500 dark:text-neutral-400">
+                <Sparkles size={14} class={`text-${audience.color}-500 mt-0.5 shrink-0`} />
+                <span>{example}</span>
+              </div>
+            ))}
+          </div>
+
+          <!-- Hover glow -->
+          <div class={`absolute inset-0 rounded-2xl bg-gradient-to-br from-${audience.color}-500/0 to-${audience.color}-500/0 group-hover:from-${audience.color}-500/5 group-hover:to-transparent transition-all duration-500 pointer-events-none`}></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Note -->
+    <div class="text-center">
+      <div class="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-8 p-6 rounded-2xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 flex items-center justify-center">
+            <GraduationCap size={20} class="text-white" />
+          </div>
+          <div class="text-left">
+            <p class="font-bold text-neutral-900 dark:text-white">No experience required</p>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400">AI tools level the playing field</p>
+          </div>
+        </div>
+
+        <div class="hidden sm:block w-px h-12 bg-neutral-300 dark:bg-neutral-600"></div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 flex items-center justify-center">
+            <Users size={20} class="text-white" />
+          </div>
+          <div class="text-left">
+            <p class="font-bold text-neutral-900 dark:text-white">Solo or team up to 4</p>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400">Work your way</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Tailwind doesn't support dynamic classes, so we need these */
+  .from-cyan-500 { --tw-gradient-from: #06b6d4; }
+  .to-cyan-600 { --tw-gradient-to: #0891b2; }
+  .from-purple-500 { --tw-gradient-from: #a855f7; }
+  .to-purple-600 { --tw-gradient-to: #9333ea; }
+  .from-orange-500 { --tw-gradient-from: #f97316; }
+  .to-orange-600 { --tw-gradient-to: #ea580c; }
+
+  .text-cyan-600 { color: #0891b2; }
+  .text-purple-600 { color: #9333ea; }
+  .text-orange-600 { color: #ea580c; }
+
+  .text-cyan-500 { color: #06b6d4; }
+  .text-purple-500 { color: #a855f7; }
+  .text-orange-500 { color: #f97316; }
+
+  .dark .text-cyan-400 { color: #22d3ee; }
+  .dark .text-purple-400 { color: #c084fc; }
+  .dark .text-orange-400 { color: #fb923c; }
+
+  .hover\:border-cyan-400:hover { border-color: #22d3ee; }
+  .hover\:border-purple-400:hover { border-color: #c084fc; }
+  .hover\:border-orange-400:hover { border-color: #fb923c; }
+
+  .dark .hover\:border-cyan-500\/50:hover { border-color: rgba(6, 182, 212, 0.5); }
+  .dark .hover\:border-purple-500\/50:hover { border-color: rgba(168, 85, 247, 0.5); }
+  .dark .hover\:border-orange-500\/50:hover { border-color: rgba(249, 115, 22, 0.5); }
+
+  .group-hover\:from-cyan-500\/5:hover { --tw-gradient-from: rgba(6, 182, 212, 0.05); }
+  .group-hover\:from-purple-500\/5:hover { --tw-gradient-from: rgba(168, 85, 247, 0.05); }
+  .group-hover\:from-orange-500\/5:hover { --tw-gradient-from: rgba(249, 115, 22, 0.05); }
+
+  .bg-cyan-500 { background-color: #06b6d4; }
+  .bg-purple-500 { background-color: #a855f7; }
+  .bg-orange-500 { background-color: #f97316; }
+</style>

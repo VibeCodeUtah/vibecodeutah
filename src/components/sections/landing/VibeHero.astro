@@ -130,17 +130,27 @@ const milestones = [
       </div>
 
       <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
-        <button class="hero-button group relative overflow-hidden bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50 active:scale-95 sm:hover:scale-105 flex items-center justify-center gap-2">
+        <a href="/join" class="hero-button group relative overflow-hidden bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50 active:scale-95 sm:hover:scale-105 flex items-center justify-center gap-2">
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
           <Terminal size={18} class="relative z-10 sm:size-5" />
           <span class="relative z-10">Start Hacking</span>
-        </button>
+        </a>
         <a
           href="#sponsors"
           class="hero-button group border-2 border-purple-400 dark:border-purple-500/50 text-neutral-700 dark:text-neutral-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-bold hover:border-purple-500 dark:hover:border-purple-400 hover:text-purple-600 dark:hover:text-white transition-all duration-300 flex items-center justify-center gap-2 hover:bg-purple-500/10 active:scale-95"
         >
           <DollarSign size={18} class="sm:size-5" />
           Fuel the Pot
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="mt-12 sm:mt-16 flex flex-col items-center animate-bounce-slow">
+        <span class="text-xs text-neutral-500 dark:text-neutral-400 uppercase tracking-widest mb-2 font-medium">Scroll to explore</span>
+        <a href="#who-is-this-for" class="group flex flex-col items-center">
+          <div class="w-6 h-10 rounded-full border-2 border-neutral-300 dark:border-neutral-600 flex items-start justify-center p-1 group-hover:border-purple-500 transition-colors">
+            <div class="w-1.5 h-2.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-orange-500 rounded-full animate-scroll-indicator"></div>
+          </div>
         </a>
       </div>
     </div>
@@ -419,6 +429,39 @@ const milestones = [
 
 <style>
   /* Minimal styles - most styling is handled by Tailwind */
+
+  /* Scroll indicator animations */
+  @keyframes scroll-indicator {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(12px);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-scroll-indicator {
+    animation: scroll-indicator 1.5s ease-in-out infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
 </style>
 
 <script>
