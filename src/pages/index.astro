@@ -9,8 +9,34 @@ import SponsorsSection from "@components/sections/landing/SponsorsSection.astro"
 // Get adoptable teams
 const adoptableTeams = teams.filter(t => t.isExample);
 
-// Donors data for prize pool display
-const raisedAmount = 11000;
+// Donors data for the funding thermometer
+const donors = [
+  { name: "ToroSachi", amount: 2500, color: "from-cyan-400 to-blue-500", slug: "torosachi", logo: "/images/sponsors/torosachi.png" },
+  { name: "SignaPay SE", amount: 2500, color: "from-purple-500 to-pink-500", slug: "signapay-se", logo: "/images/sponsors/signapay-se.png" },
+  { name: "Backyard Bookkeeper", amount: 6000, color: "from-green-500 to-emerald-500", slug: "backyard-bookkeeper", logo: "/images/sponsors/backyard-bookkeeper.webp", note: "$1,000 + Bookkeeping Package ($5,000 value)" },
+  { name: "This Could Be You!", amount: 0, color: "from-orange-500/50 to-yellow-500/50", isPlaceholder: true },
+];
+
+// Calculate raised amount from actual donors (excluding placeholders)
+const raisedAmount = donors.filter(d => !d.isPlaceholder).reduce((sum, d) => sum + d.amount, 0);
+const goalAmount = 100000;
+const progressPercent = (raisedAmount / goalAmount) * 100;
+
+const formatMoney = (amount: number) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(amount);
+};
+
+// Milestones for the funding thermometer
+const milestones = [
+  { amount: 25000, label: "$25K" },
+  { amount: 50000, label: "$50K" },
+  { amount: 75000, label: "$75K" },
+  { amount: 100000, label: "$100K" },
+];
 ---
 
 <MainLayout>
@@ -334,6 +360,101 @@ const raisedAmount = 11000;
         <a href="#" onclick="document.getElementById('email').focus(); return false;" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg transition-all hover:shadow-lg hover:shadow-orange-500/30">
           Register Now — It's Free <ArrowRight size={20} />
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIZE POOL GOAL INDICATOR -->
+  <section class="py-16 bg-neutral-100 dark:bg-neutral-800" id="prizes">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-black text-neutral-900 dark:text-white mb-2">
+          Community <span class="text-orange-500">Prize Pool</span>
+        </h2>
+        <p class="text-neutral-600 dark:text-neutral-400">Every donation grows the pot. Every dollar goes to builders.</p>
+      </div>
+
+      <!-- Funding Thermometer -->
+      <div class="bg-white dark:bg-neutral-900 rounded-2xl p-6 md:p-8 border border-neutral-200 dark:border-neutral-700 shadow-lg">
+        <div class="flex items-end justify-between mb-4">
+          <div class="text-left">
+            <span class="block text-xs text-neutral-500 uppercase tracking-widest mb-1">Raised</span>
+            <span class="text-3xl md:text-5xl font-black text-orange-500">
+              <span class="animate-counter" data-target={raisedAmount} data-prefix="$">{formatMoney(raisedAmount)}</span>
+            </span>
+          </div>
+          <div class="text-right">
+            <span class="block text-xs text-neutral-500 uppercase tracking-widest mb-1">Goal</span>
+            <span class="text-xl md:text-2xl font-mono text-neutral-600 dark:text-neutral-400">{formatMoney(goalAmount)}</span>
+          </div>
+        </div>
+
+        <!-- Progress Bar with milestones -->
+        <div class="relative">
+          <!-- Milestone markers -->
+          <div class="hidden sm:flex absolute -top-6 w-full justify-between text-xs text-neutral-500">
+            {milestones.map((m) => (
+              <span
+                class={`${m.amount <= raisedAmount ? 'text-orange-500 font-bold' : ''}`}
+                style={`position: absolute; left: ${(m.amount / goalAmount) * 100}%; transform: translateX(-50%);`}
+              >
+                {m.label}
+              </span>
+            ))}
+          </div>
+
+          <div class="progress-bar-container h-8 sm:h-10 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden border-2 border-neutral-300 dark:border-neutral-600 relative flex shadow-inner">
+            <!-- Animated gradient fill -->
+            {donors.filter(d => !d.isPlaceholder).map((donor, i) => (
+              <div
+                class={`progress-segment h-full bg-gradient-to-r ${donor.color} transition-all duration-1000 ease-out relative group cursor-pointer`}
+                style={`width: ${(donor.amount / goalAmount) * 100}%`}
+                title={`${donor.name} - ${formatMoney(donor.amount)}`}
+              >
+                <div class="absolute inset-0 hidden sm:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="text-xs font-bold text-white drop-shadow-lg">{formatMoney(donor.amount)}</span>
+                </div>
+              </div>
+            ))}
+
+            <!-- Milestone tick marks -->
+            {milestones.map((m) => (
+              <div
+                class="absolute top-0 bottom-0 w-0.5 bg-neutral-400/50 dark:bg-neutral-500/50"
+                style={`left: ${(m.amount / goalAmount) * 100}%;`}
+              />
+            ))}
+          </div>
+
+          <!-- Donor Legend -->
+          <div class="mt-4 flex flex-wrap justify-center gap-3 text-sm">
+            {donors.filter(d => !d.isPlaceholder).map((donor) => (
+              donor.slug ? (
+                <a href={`/sponsors/${donor.slug}`} class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-600 hover:border-orange-400 transition-colors">
+                  <div class={`w-3 h-3 bg-gradient-to-r ${donor.color} rounded-full`}></div>
+                  {donor.logo && (
+                    <img src={donor.logo} alt={donor.name} class="h-5 w-auto object-contain" />
+                  )}
+                  <span class="text-neutral-700 dark:text-neutral-300 hover:text-orange-600 dark:hover:text-orange-400">{donor.name}</span>
+                  <span class="text-orange-600 dark:text-orange-400 font-bold">{formatMoney(donor.amount)}</span>
+                </a>
+              ) : (
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-600">
+                  <div class={`w-3 h-3 bg-gradient-to-r ${donor.color} rounded-full`}></div>
+                  <span class="text-neutral-700 dark:text-neutral-300">{donor.name}</span>
+                  <span class="text-orange-600 dark:text-orange-400 font-bold">{formatMoney(donor.amount)}</span>
+                </div>
+              )
+            ))}
+          </div>
+        </div>
+
+        <p class="mt-6 text-center text-neutral-600 dark:text-neutral-400 text-sm flex items-center justify-center gap-2 flex-wrap">
+          <span class="text-orange-500 font-bold">{progressPercent.toFixed(1)}%</span>
+          <span>of goal reached</span>
+          <span class="hidden sm:inline">•</span>
+          <a href="#sponsors" class="text-orange-600 dark:text-orange-400 hover:underline font-semibold">Become a Sponsor</a>
+        </p>
       </div>
     </div>
   </section>
