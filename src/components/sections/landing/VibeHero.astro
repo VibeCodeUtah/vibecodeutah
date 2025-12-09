@@ -124,24 +124,42 @@ const milestones = [
         15 Days. Global Online Challenge. Real Impact.
       </p>
 
-      <div class="countdown-container relative mt-8">
+      <!-- Team Signup Urgency Banner -->
+      <div class="mt-6 sm:mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 dark:bg-orange-500/20 border border-orange-300 dark:border-orange-500/40 animate-pulse-slow">
+        <span class="flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-orange-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+        </span>
+        <span class="text-sm font-bold text-orange-700 dark:text-orange-300">6 Teams Available for Adoption</span>
+        <span class="text-orange-600 dark:text-orange-400">—</span>
+        <span class="text-sm text-orange-600 dark:text-orange-400">Claim yours now!</span>
+      </div>
+
+      <div class="countdown-container relative mt-6">
         <div class="absolute inset-0 bg-orange-500/5 dark:bg-orange-500/10 blur-xl rounded-lg"></div>
         <Countdown />
       </div>
 
       <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
-        <a href="/join" class="hero-button group relative overflow-hidden bg-orange-500 hover:bg-orange-600 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/50 active:scale-95 sm:hover:scale-105 flex items-center justify-center gap-2">
+        <a href="/join" class="hero-button group relative overflow-hidden bg-orange-500 hover:bg-orange-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl text-lg sm:text-xl font-bold transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/50 active:scale-95 sm:hover:scale-105 flex items-center justify-center gap-2">
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-          <Terminal size={18} class="relative z-10 sm:size-5" />
-          <span class="relative z-10">Start Hacking</span>
+          <Terminal size={20} class="relative z-10 sm:size-6" />
+          <span class="relative z-10">Register Your Team</span>
         </a>
         <a
-          href="#sponsors"
-          class="hero-button group border-2 border-purple-400 dark:border-purple-500/50 text-neutral-700 dark:text-neutral-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-bold hover:border-purple-500 dark:hover:border-purple-400 hover:text-purple-600 dark:hover:text-white transition-all duration-300 flex items-center justify-center gap-2 hover:bg-purple-500/10 active:scale-95"
+          href="#teams"
+          class="hero-button group border-2 border-orange-400 dark:border-orange-500/50 text-neutral-700 dark:text-neutral-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-bold hover:border-orange-500 dark:hover:border-orange-400 hover:text-orange-600 dark:hover:text-white transition-all duration-300 flex items-center justify-center gap-2 hover:bg-orange-500/10 active:scale-95"
         >
-          <DollarSign size={18} class="sm:size-5" />
-          Fuel the Pot
+          <Zap size={18} class="sm:size-5" />
+          Browse Teams to Adopt
         </a>
+      </div>
+
+      <!-- Quick benefits -->
+      <div class="mt-6 flex flex-wrap justify-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
+        <span class="flex items-center gap-1.5"><CheckCircle size={14} class="text-green-500" /> Free to join</span>
+        <span class="flex items-center gap-1.5"><CheckCircle size={14} class="text-green-500" /> Any skill level</span>
+        <span class="flex items-center gap-1.5"><CheckCircle size={14} class="text-green-500" /> Solo or team</span>
       </div>
 
       <!-- Scroll Indicator -->
@@ -461,6 +479,15 @@ const milestones = [
 
   .animate-bounce-slow {
     animation: bounce-slow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 </style>
 

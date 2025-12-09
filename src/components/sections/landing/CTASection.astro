@@ -1,5 +1,8 @@
 ---
-import { Code, Heart, Megaphone, ArrowRight } from "lucide-astro";
+import { Code, Heart, Megaphone, ArrowRight, Users, Zap, CheckCircle } from "lucide-astro";
+import teams from "@data/teams";
+
+const adoptableTeams = teams.filter(t => t.isExample);
 ---
 
 <section id="cta" class="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
@@ -11,48 +14,64 @@ import { Code, Heart, Megaphone, ArrowRight } from "lucide-astro";
   <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-neutral-500/5 to-orange-500/5 animate-gradient-shift"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto">
+    <!-- Urgency Banner -->
+    <div class="flex justify-center mb-8">
+      <div class="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-orange-500/20 border border-orange-500/40">
+        <span class="flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-2.5 w-2.5 rounded-full bg-orange-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
+        </span>
+        <span class="text-sm sm:text-base font-bold text-orange-300">{adoptableTeams.length} Teams Available for Adoption</span>
+      </div>
+    </div>
+
     <!-- Header -->
     <div class="text-center mb-10 sm:mb-12 md:mb-16 cta-header">
       <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 sm:mb-6 text-white tracking-tight leading-tight">
-        Build something that<br/>actually matters.
+        Ready to join?<br/><span class="text-orange-500">Claim your team now.</span>
       </h2>
       <div class="max-w-3xl mx-auto space-y-2 sm:space-y-3">
         <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-300 leading-relaxed">
-          15 days. Real problems. Real impact.
+          15 days. Real problems. Real impact. <span class="text-orange-400 font-bold">$5K+ in prizes.</span>
         </p>
-        <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-400 font-bold">
-          Join builders creating humanitarian tech that changes lives.
+        <p class="text-base sm:text-lg md:text-xl text-neutral-400">
+          Skip the brainstorming — adopt a pre-built team idea and start hacking immediately.
         </p>
       </div>
     </div>
 
     <!-- Three CTA Tracks -->
     <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-12 md:mb-16">
-      <!-- For Builders -->
+      <!-- Register Your Team - Primary CTA -->
       <div class="cta-card group relative sm:col-span-2 md:col-span-1">
         <div class="absolute -inset-px bg-gradient-to-b from-orange-500/50 to-orange-500/0 rounded-xl sm:rounded-2xl"></div>
         <div class="relative bg-neutral-800 rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 h-full flex flex-col border-t-4 border-orange-500">
+          <!-- Badge -->
+          <div class="absolute -top-3 left-6 px-3 py-1 bg-orange-500 text-white text-xs font-bold rounded-full">
+            Most Popular
+          </div>
+
           <!-- Icon -->
           <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-4 sm:mb-5 md:mb-6 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform duration-300">
-            <Code size={24} class="sm:size-7 md:size-8" strokeWidth={2.5} />
+            <Users size={24} class="sm:size-7 md:size-8" strokeWidth={2.5} />
           </div>
 
           <!-- Title -->
-          <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-5 md:mb-6">Join the Hackathon</h3>
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-5 md:mb-6">Register Your Team</h3>
 
-          <!-- Requirements -->
+          <!-- Benefits -->
           <div class="space-y-2 sm:space-y-3 mb-5 sm:mb-6 md:mb-8 flex-grow">
             <div class="flex items-start gap-2 sm:gap-3">
-              <div class="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5 sm:mt-2 shrink-0"></div>
-              <p class="text-sm sm:text-base text-neutral-300">Can code (any level)</p>
+              <CheckCircle size={16} class="text-green-400 mt-0.5 shrink-0" />
+              <p class="text-sm sm:text-base text-neutral-300">Adopt a pre-built project idea</p>
             </div>
             <div class="flex items-start gap-2 sm:gap-3">
-              <div class="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5 sm:mt-2 shrink-0"></div>
-              <p class="text-sm sm:text-base text-neutral-300">Give a damn</p>
+              <CheckCircle size={16} class="text-green-400 mt-0.5 shrink-0" />
+              <p class="text-sm sm:text-base text-neutral-300">Solo or team (any size)</p>
             </div>
             <div class="flex items-start gap-2 sm:gap-3">
-              <div class="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5 sm:mt-2 shrink-0"></div>
-              <p class="text-sm sm:text-base text-neutral-300 font-bold">That's it</p>
+              <CheckCircle size={16} class="text-green-400 mt-0.5 shrink-0" />
+              <p class="text-sm sm:text-base text-neutral-300 font-bold">Start building today</p>
             </div>
           </div>
 
@@ -61,7 +80,7 @@ import { Code, Heart, Megaphone, ArrowRight } from "lucide-astro";
             <div class="absolute inset-0 bg-orange-500 group-hover/btn:bg-orange-400 transition-colors"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
             <span class="relative z-10 flex items-center justify-center gap-2 text-white text-base sm:text-lg">
-              Start Building
+              Register Now — Free
               <ArrowRight size={18} class="sm:size-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
             </span>
           </a>
@@ -132,9 +151,13 @@ import { Code, Heart, Megaphone, ArrowRight } from "lucide-astro";
       <div class="inline-block relative">
         <div class="absolute -inset-2 bg-orange-500/20 blur-lg rounded-lg"></div>
         <p class="relative text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-          No pitch deck required.
+          No pitch deck required. Just register.
         </p>
       </div>
+      <a href="/join" class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 font-bold transition-colors">
+        <span>Register your team now</span>
+        <ArrowRight size={18} />
+      </a>
       <p class="text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] text-neutral-500 font-bold">
         QUIET GIANTS — CODE WITH A CONSCIENCE
       </p>
