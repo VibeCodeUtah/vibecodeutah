@@ -1,27 +1,425 @@
 ---
 // Import the necessary components
 import MainLayout from "@/layouts/MainLayout.astro";
-import VibeHero from "@components/sections/landing/VibeHero.astro";
-import WhoIsThisForSection from "@components/sections/landing/WhoIsThisForSection.astro";
-import VideoSection from "@components/sections/landing/VideoSection.astro";
-import MissionShowcaseSection from "@components/sections/landing/MissionShowcaseSection.astro";
-import ImpactStatsSection from "@components/sections/landing/ImpactStatsSection.astro";
-import TeamsSection from "@components/sections/landing/TeamsSection.astro";
-import RulesSection from "@components/sections/landing/RulesSection.astro";
+import { Terminal, Users, Zap, CheckCircle, Clock, Star, Sparkles, Mail, Phone, ChevronRight, Play, Heart, Lightbulb, Code, Trophy, ArrowRight } from "lucide-astro";
+import teams from "@data/teams";
+import Countdown from "@components/Countdown.astro";
 import SponsorsSection from "@components/sections/landing/SponsorsSection.astro";
-import TimelineSection from "@components/sections/landing/TimelineSection.astro";
-import CTASection from "@components/sections/landing/CTASection.astro";
+
+// Get adoptable teams
+const adoptableTeams = teams.filter(t => t.isExample);
+
+// Donors data for prize pool display
+const raisedAmount = 11000;
 ---
 
 <MainLayout>
-  <VibeHero />
-  <WhoIsThisForSection />
-  <VideoSection />
-  <MissionShowcaseSection />
-  <ImpactStatsSection />
-  <TeamsSection />
-  <RulesSection />
+  <!-- HERO WITH EMBEDDED REGISTRATION -->
+  <section class="relative min-h-screen bg-neutral-900 overflow-hidden">
+    <!-- Background video (muted, subtle) -->
+    <div class="absolute inset-0 opacity-20">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="w-full h-full object-cover"
+        poster="/vcu-hero.png"
+      >
+        <source src="/videos/hero-ad.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-900/80 via-neutral-900/90 to-neutral-900"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-16">
+      <!-- Top bar with urgency -->
+      <div class="flex justify-center mb-8">
+        <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/40">
+          <span class="flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-orange-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+          </span>
+          <span class="text-sm font-bold text-orange-300">Registration Open — {adoptableTeams.length} Teams Available</span>
+        </div>
+      </div>
+
+      <!-- Two column layout: Story + Form -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+
+        <!-- LEFT: Story & Value Prop -->
+        <div class="text-center lg:text-left">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 tracking-tight leading-tight">
+            Hack for<br/>
+            <span class="text-orange-500">Humanitarian</span>
+          </h1>
+
+          <p class="text-lg md:text-xl text-neutral-300 mb-6 max-w-lg mx-auto lg:mx-0">
+            15 days. Real problems. Real impact. Build AI-powered solutions that actually help people.
+          </p>
+
+          <!-- Key stats -->
+          <div class="grid grid-cols-3 gap-4 mb-8 max-w-md mx-auto lg:mx-0">
+            <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl md:text-3xl font-black text-orange-500">${(raisedAmount/1000).toFixed(0)}K+</div>
+              <div class="text-xs text-neutral-400">In Prizes</div>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl md:text-3xl font-black text-white">15</div>
+              <div class="text-xs text-neutral-400">Days</div>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl md:text-3xl font-black text-white">100%</div>
+              <div class="text-xs text-neutral-400">Remote</div>
+            </div>
+          </div>
+
+          <!-- Who it's for -->
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3 text-neutral-300">
+              <CheckCircle size={20} class="text-green-400 shrink-0" />
+              <span><strong class="text-white">Developers</strong> — any skill level, AI tools welcome</span>
+            </div>
+            <div class="flex items-center gap-3 text-neutral-300">
+              <CheckCircle size={20} class="text-green-400 shrink-0" />
+              <span><strong class="text-white">Solo or teams</strong> — up to 4 people</span>
+            </div>
+            <div class="flex items-center gap-3 text-neutral-300">
+              <CheckCircle size={20} class="text-green-400 shrink-0" />
+              <span><strong class="text-white">Free to join</strong> — no experience required</span>
+            </div>
+          </div>
+
+          <!-- Countdown -->
+          <div class="mb-8">
+            <Countdown />
+          </div>
+
+          <!-- Video teaser (small) -->
+          <div class="hidden lg:block">
+            <a href="#video" class="group inline-flex items-center gap-3 text-neutral-400 hover:text-white transition-colors">
+              <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-orange-500 transition-colors">
+                <Play size={20} class="ml-0.5" />
+              </div>
+              <span class="text-sm">Watch what we're building</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT: Registration Form -->
+        <div class="bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl overflow-hidden border border-neutral-200 dark:border-neutral-700">
+          <!-- Form Header -->
+          <div class="bg-neutral-900 p-5 md:p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-xl md:text-2xl font-bold text-white">Register Your Team</h2>
+                <p class="text-neutral-400 text-sm">Takes 2 minutes. Start building today.</p>
+              </div>
+              <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/20 border border-green-500/30">
+                <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                <span class="text-xs font-medium text-green-400">Open</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Body -->
+          <form action="/api/register" method="POST" class="p-5 md:p-6 space-y-5" id="homepage-registration-form">
+            <input type="hidden" name="_subject" value="New Team Registration - Vibe Code Utah" />
+            <input type="hidden" name="adopted-team-id" id="adopted-team-id" value="" />
+
+            <!-- Join Type Toggle -->
+            <div class="grid grid-cols-2 gap-3">
+              <label class="join-type-card relative flex flex-col items-center p-4 rounded-xl border-2 border-orange-500 bg-orange-50 dark:bg-orange-500/10 cursor-pointer transition-all">
+                <input type="radio" name="join-type" value="adopt" class="sr-only" checked id="join-adopt" />
+                <Star size={24} class="text-orange-500 mb-2" />
+                <span class="font-bold text-sm text-neutral-900 dark:text-white">Adopt a Team</span>
+                <span class="text-xs text-orange-600 dark:text-orange-400">{adoptableTeams.length} available</span>
+                <div class="absolute top-2 right-2 w-4 h-4 rounded-full bg-orange-500 flex items-center justify-center">
+                  <CheckCircle size={10} class="text-white" />
+                </div>
+              </label>
+              <label class="join-type-card relative flex flex-col items-center p-4 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:border-neutral-300 dark:hover:border-neutral-500 transition-all">
+                <input type="radio" name="join-type" value="create" class="sr-only" id="join-create" />
+                <Sparkles size={24} class="text-neutral-400 mb-2" />
+                <span class="font-bold text-sm text-neutral-900 dark:text-white">Create Own</span>
+                <span class="text-xs text-neutral-500">Your idea</span>
+                <div class="absolute top-2 right-2 w-4 h-4 rounded-full border-2 border-neutral-300 dark:border-neutral-500 hidden check-mark"></div>
+              </label>
+            </div>
+
+            <!-- Team Selection (for adopt) -->
+            <div id="team-selector" class="space-y-3">
+              <label class="block text-sm font-bold text-neutral-700 dark:text-neutral-200">
+                Pick a team <span class="text-red-500">*</span>
+              </label>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="team-cards">
+                {adoptableTeams.map((team, i) => (
+                  <button
+                    type="button"
+                    class={`team-pick-btn group p-2 rounded-lg border-2 transition-all text-center ${i === 0 ? 'border-orange-500 bg-orange-50 dark:bg-orange-500/10' : 'border-neutral-200 dark:border-neutral-600 hover:border-orange-300'}`}
+                    data-team-id={team.id}
+                    data-team-name={team.name}
+                  >
+                    <img src={team.tokenImage} alt={team.name} class="w-10 h-10 rounded-full mx-auto mb-1 ring-2 ring-neutral-200 dark:ring-neutral-600 group-hover:ring-orange-400" />
+                    <p class="text-xs font-medium text-neutral-900 dark:text-white truncate">{team.name.split(' ').slice(0, 3).join(' ')}</p>
+                  </button>
+                ))}
+              </div>
+              <input type="hidden" name="adopt-team" id="adopt-team-input" value={adoptableTeams[0]?.id || ''} />
+            </div>
+
+            <!-- Team Name (for create - hidden by default) -->
+            <div id="team-name-field" class="hidden">
+              <label for="team-name" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
+                Team Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="team-name"
+                id="team-name"
+                class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all"
+                placeholder="The Awesome Team"
+              />
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
+                Email <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all"
+                placeholder="you@email.com"
+              />
+            </div>
+
+            <!-- Team Members -->
+            <div>
+              <label for="team-members" class="block text-sm font-bold text-neutral-700 dark:text-neutral-200 mb-2">
+                Team Members <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                name="team-members"
+                id="team-members"
+                required
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all resize-none text-sm"
+                placeholder="Your name (one per line)&#10;Teammate name"
+              ></textarea>
+              <p class="text-xs text-neutral-500 mt-1">Solo hackers welcome!</p>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="w-full group relative overflow-hidden rounded-xl px-6 py-4 text-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/30 active:scale-[0.98]"
+            >
+              <div class="absolute inset-0 bg-orange-500"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <span class="relative z-10 flex items-center justify-center gap-2 text-white">
+                Register My Team
+                <ChevronRight size={20} class="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </button>
+
+            <!-- Trust badges -->
+            <div class="flex justify-center gap-4 text-xs text-neutral-500">
+              <span class="flex items-center gap-1"><CheckCircle size={12} class="text-green-500" /> Free</span>
+              <span class="flex items-center gap-1"><CheckCircle size={12} class="text-green-500" /> No credit card</span>
+              <span class="flex items-center gap-1"><CheckCircle size={12} class="text-green-500" /> Instant access</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAMS PREVIEW (compact) -->
+  <section class="py-16 bg-white dark:bg-neutral-900" id="teams">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-black text-neutral-900 dark:text-white mb-3">
+          Teams Ready to <span class="text-orange-500">Adopt</span>
+        </h2>
+        <p class="text-neutral-600 dark:text-neutral-400">Grab a pre-built project idea and start hacking today</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
+        {adoptableTeams.slice(0, 3).map(team => (
+          <div class="group p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-500/50 transition-all hover:shadow-lg">
+            <div class="flex items-center gap-4 mb-4">
+              <img src={team.tokenImage} alt={team.name} class="w-14 h-14 rounded-full ring-2 ring-orange-200 dark:ring-orange-500/30" />
+              <div>
+                <h3 class="font-bold text-neutral-900 dark:text-white">{team.name}</h3>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400">{team.category}</span>
+              </div>
+            </div>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-3 mb-4">{team.elevatorPitch}</p>
+            <a href={`/join?team=${team.id}`} class="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300">
+              Adopt this team <ArrowRight size={14} />
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center">
+        <a href="/teams" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 font-semibold hover:border-orange-400 hover:text-orange-600 dark:hover:text-orange-400 transition-all">
+          View all {adoptableTeams.length} teams <ArrowRight size={18} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO (single, compact) -->
+  <section class="py-16 bg-neutral-100 dark:bg-neutral-800" id="video">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-black text-neutral-900 dark:text-white mb-2">See the Vision</h2>
+        <p class="text-neutral-600 dark:text-neutral-400">Watch what we're building together</p>
+      </div>
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+        <video
+          class="w-full aspect-video"
+          poster="/vcu-hero.png"
+          controls
+          playsinline
+        >
+          <source src="/videos/promo.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY JOIN (compact) -->
+  <section class="py-16 bg-white dark:bg-neutral-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-black text-neutral-900 dark:text-white mb-3">
+          Why <span class="text-orange-500">Join?</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="text-center p-6">
+          <div class="w-16 h-16 rounded-2xl bg-orange-500 flex items-center justify-center mx-auto mb-4">
+            <Code size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-2">Build Real Skills</h3>
+          <p class="text-neutral-600 dark:text-neutral-400">Ship a real project in 15 days. Use AI tools. Learn by doing.</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="w-16 h-16 rounded-2xl bg-orange-500 flex items-center justify-center mx-auto mb-4">
+            <Heart size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-2">Make Real Impact</h3>
+          <p class="text-neutral-600 dark:text-neutral-400">Build software that helps people. Humanitarian projects that matter.</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="w-16 h-16 rounded-2xl bg-orange-500 flex items-center justify-center mx-auto mb-4">
+            <Trophy size={32} class="text-white" />
+          </div>
+          <h3 class="text-xl font-bold text-neutral-900 dark:text-white mb-2">Win Real Prizes</h3>
+          <p class="text-neutral-600 dark:text-neutral-400">${(raisedAmount/1000).toFixed(0)}K+ prize pool. Multiple categories. Everyone has a shot.</p>
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="text-center">
+        <a href="#" onclick="document.getElementById('email').focus(); return false;" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg transition-all hover:shadow-lg hover:shadow-orange-500/30">
+          Register Now — It's Free <ArrowRight size={20} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors -->
   <SponsorsSection />
-  <TimelineSection />
-  <CTASection />
 </MainLayout>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const joinAdopt = document.getElementById('join-adopt') as HTMLInputElement;
+    const joinCreate = document.getElementById('join-create') as HTMLInputElement;
+    const teamSelector = document.getElementById('team-selector');
+    const teamNameField = document.getElementById('team-name-field');
+    const teamNameInput = document.getElementById('team-name') as HTMLInputElement;
+    const adoptTeamInput = document.getElementById('adopt-team-input') as HTMLInputElement;
+    const adoptedTeamIdInput = document.getElementById('adopted-team-id') as HTMLInputElement;
+    const teamPickBtns = document.querySelectorAll('.team-pick-btn');
+    const joinTypeCards = document.querySelectorAll('.join-type-card');
+
+    // Handle join type toggle
+    function updateJoinType() {
+      const isAdopt = joinAdopt?.checked;
+
+      joinTypeCards.forEach(card => {
+        const radio = card.querySelector('input[type="radio"]') as HTMLInputElement;
+        const checkMark = card.querySelector('.check-mark');
+
+        if (radio?.checked) {
+          card.classList.add('border-orange-500', 'bg-orange-50', 'dark:bg-orange-500/10');
+          card.classList.remove('border-neutral-200', 'dark:border-neutral-600');
+          if (checkMark) {
+            checkMark.classList.remove('hidden');
+            checkMark.classList.add('bg-orange-500');
+          }
+        } else {
+          card.classList.remove('border-orange-500', 'bg-orange-50', 'dark:bg-orange-500/10');
+          card.classList.add('border-neutral-200', 'dark:border-neutral-600');
+          if (checkMark) checkMark.classList.add('hidden');
+        }
+      });
+
+      if (isAdopt) {
+        teamSelector?.classList.remove('hidden');
+        teamNameField?.classList.add('hidden');
+        if (teamNameInput) teamNameInput.removeAttribute('required');
+      } else {
+        teamSelector?.classList.add('hidden');
+        teamNameField?.classList.remove('hidden');
+        if (teamNameInput) teamNameInput.setAttribute('required', 'required');
+        if (adoptTeamInput) adoptTeamInput.value = '';
+        if (adoptedTeamIdInput) adoptedTeamIdInput.value = '';
+      }
+    }
+
+    joinAdopt?.addEventListener('change', updateJoinType);
+    joinCreate?.addEventListener('change', updateJoinType);
+
+    // Handle team selection
+    teamPickBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const teamId = (btn as HTMLElement).dataset.teamId;
+
+        teamPickBtns.forEach(b => {
+          b.classList.remove('border-orange-500', 'bg-orange-50', 'dark:bg-orange-500/10');
+          b.classList.add('border-neutral-200', 'dark:border-neutral-600');
+        });
+
+        btn.classList.add('border-orange-500', 'bg-orange-50', 'dark:bg-orange-500/10');
+        btn.classList.remove('border-neutral-200', 'dark:border-neutral-600');
+
+        if (adoptTeamInput) adoptTeamInput.value = teamId || '';
+        if (adoptedTeamIdInput) adoptedTeamIdInput.value = teamId || '';
+      });
+    });
+
+    // Initialize
+    updateJoinType();
+  });
+</script>
