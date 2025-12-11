@@ -1,12 +1,16 @@
 ---
 import type { Team } from "@data/teams";
-import { ChevronDown } from "lucide-astro";
+import { ChevronDown, Info, ExternalLink } from "lucide-astro";
+import { categoryStats } from "@data/humanitarian-quotes";
 
 interface Props {
   team: Team;
 }
 
 const { team } = Astro.props;
+
+// Get stats for this team's category
+const stats = categoryStats.find(c => c.category === team.category);
 
 // Category color mapping - simplified to neutral with orange accent
 const categoryColors = {
@@ -53,6 +57,13 @@ const categoryColors = {
     ring: "ring-orange-400/30",
   },
   "Accessibility": {
+    border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
+    badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
+    gradient: "from-orange-500/5 dark:from-orange-500/10",
+    text: "text-orange-600 dark:text-orange-400",
+    ring: "ring-orange-400/30",
+  },
+  "Human Rights": {
     border: "border-neutral-200 dark:border-neutral-600 hover:border-orange-400",
     badge: "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300",
     gradient: "from-orange-500/5 dark:from-orange-500/10",
@@ -129,13 +140,57 @@ const previewPitch = team.elevatorPitch.length > 120
       </div>
     </div>
 
-    <!-- Category badge -->
+    <!-- Category badge with "Why This Matters" tooltip -->
     <div class="flex justify-center mb-4">
-      <span
-        class={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider ${colors.badge} transition-colors duration-300`}
-      >
-        {team.category}
-      </span>
+      <div class="relative group/tooltip">
+        <button
+          type="button"
+          class={`category-badge flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider ${colors.badge} transition-colors duration-300 cursor-help`}
+          aria-describedby={`tooltip-${team.id}`}
+        >
+          {team.category}
+          <Info size={12} class="opacity-50 group-hover/tooltip:opacity-100 transition-opacity" />
+        </button>
+
+        <!-- Tooltip -->
+        {stats && (
+          <div
+            id={`tooltip-${team.id}`}
+            role="tooltip"
+            class="category-tooltip absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 md:w-80 p-4 rounded-xl bg-neutral-900 dark:bg-neutral-950 border border-neutral-700 shadow-2xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 z-50"
+          >
+            <!-- Arrow -->
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-neutral-900 dark:bg-neutral-950 border-l border-t border-neutral-700 rotate-45"></div>
+
+            <!-- Content -->
+            <div class="relative">
+              <p class="text-orange-400 font-bold text-sm mb-1">Why This Matters</p>
+              <p class="text-white font-semibold text-base mb-3">{stats.headline}</p>
+
+              <!-- Stats grid -->
+              <div class="grid grid-cols-2 gap-2 mb-3">
+                {stats.stats.map((stat) => (
+                  <div class="text-center p-2 rounded-lg bg-neutral-800/50">
+                    <div class="text-lg font-black text-orange-500">{stat.value}</div>
+                    <div class="text-xs text-neutral-400 leading-tight">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Source -->
+              <a
+                href={stats.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center gap-1 text-xs text-neutral-500 hover:text-orange-400 transition-colors"
+              >
+                Source: {stats.source}
+                <ExternalLink size={10} />
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
 
     <!-- Team name -->
